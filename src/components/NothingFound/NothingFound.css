@@ -1,0 +1,50 @@
+.containerNothingFound {
+    /* margin: 100%; */
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.cardNothingFound {
+    height: 30vh !important;
+    width: 60% !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.imgNothinFound {
+    margin-left: 2.5em;
+    margin: 4px;
+    width: 12em;
+    height: 12em;
+    color: #169E85;
+}
+
+.bodyNothingFound {
+    padding-left: 0 !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.titleNothingFound {
+    font-weight: bold !important;
+    font-style: italic;
+    align-items: center;
+    text-align: center;
+    margin: 1rem;
+
+}
+
+.tryThis {
+    margin-bottom: 0 !important;
+    list-style: none;
+}
+
+.linkToHome {
+    color: #169E85 !important;
+}

@@ -1,0 +1,81 @@
+.datoImg {
+    width: 60px;
+    margin-top: 1em;
+  }
+
+th{
+    text-align: center;
+}
+
+td{
+
+    text-align: center;
+}
+
+.dato{
+    margin-top: 2em;
+}
+
+.tableContainer{
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 1em;
+}
+
+
+
+  
+  thead th {
+    text-align: center;
+    border-bottom: 2px solid black;
+  }
+  
+  thead Button {
+    border: 0;
+    border-radius: none;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: inherit;
+    padding: 0.5em;
+    margin-bottom: 1px;
+  }
+
+  .divSearchBar{
+    width: 50%;
+    margin-left: 25%;
+    flex-grow: 2;
+    display: flex;
+    justify-content: center;
+}
+
+.form-control{
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.updateImg {
+  margin-right: 4px;
+  margin-left: 5px;
+}
+
+.updateButton{
+  margin-left: 25%;
+  margin-top: 1em;
+  font-weight: bold;
+}
+
+.input-group-text:hover{
+  border: 1px solid #000;
+}
+
+th button {
+  border: 1px solid transparent;
+}
+
+th button:hover{
+  border: 1px solid #000;
+}
+
+td button{
+  width: 5em;
+}
