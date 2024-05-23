@@ -49,9 +49,9 @@ const LandingPage = () => {
   const emailAuth0 = email()
   const userDb = filterEmail()
 
-  console.log(todosUser)
-  console.log(userDb)
-  console.log(salir())
+  // console.log(todosUser)
+  // console.log(userDb)
+  // console.log(salir())
 
   const [activeIndex, setActiveIndex] = useState(0)
   const [animating, setAnimating] = useState(false)

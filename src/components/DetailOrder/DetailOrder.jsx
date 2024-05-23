@@ -15,13 +15,10 @@ const DetailOrder = () => {
     useEffect(() => {
         if (id) {
             dispatch(getOrderById(id))
-
         } else {
             dispatch(getOrdersUser(id_User))
         }
-
-
-    }, [dispatch, id])
+    }, [dispatch, id, id_User])
 
     return (
         <div>

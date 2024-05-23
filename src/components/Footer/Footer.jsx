@@ -1,14 +1,14 @@
 import React from "react";
 import { Navbar } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import './Footer.css';
 import { Link } from "react-router-dom";
 
 
 export default function Footer() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
-  
+
     <Navbar className="footer" bg="dark" variant="dark">
       <Navbar.Text className='Light-Font'>© CellPhones E-Commerce, 2022. All rights reserved.</Navbar.Text>
       <Navbar.Text >

@@ -73,7 +73,7 @@ export default function PaymentForm() {
         history("/")
       } catch (error) {
         setLoading(false)
-        console.log(error);
+        // console.log(error);
       }
     }
   }

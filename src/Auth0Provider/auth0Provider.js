@@ -4,26 +4,26 @@ import { Auth0Provider } from "@auth0/auth0-react"
 
 
 const Auth0ProviderWithHistory = ({ children }) => {
-const DOMAIN="dev-69fdataa.us.auth0.com"
-const CLIENT_ID="sEIus98bsCYv3quIfDWYFoWEAftmkeGe"
-const history=useNavigate();
+  const DOMAIN = "dev-69fdataa.us.auth0.com"
+  const CLIENT_ID = "l8MbvWkcRvz5yFoVyoVhv" //E3ASSDUKWNXLXCMBM3RFY6BQ
+  const history = useNavigate();
 
 
-const onRedirectCallback = appState => {
+  const onRedirectCallback = appState => {
     history.push(
       appState && appState.targetUrl
         ? appState.targetUrl
-        : window.location.href= "/home"
+        : window.location.href = "/home"
     );
   };
-  return(
+  return (
     <Auth0Provider
-    domain={DOMAIN}
-    clientId={CLIENT_ID}
-    redirectUri={window.location.origin}
-    onRedirectCallback={onRedirectCallback}
+      domain={DOMAIN}
+      clientId={CLIENT_ID}
+      redirectUri={window.location.origin}
+      onRedirectCallback={onRedirectCallback}
     >
-        {children}
+      {children}
 
     </Auth0Provider>
   )

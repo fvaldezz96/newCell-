@@ -60,7 +60,7 @@ export default function Filters() {
             setSearchParams(searchParams.set(e.target.name, e.target.value)) :
             searchParams.delete(e.target.name);
         location.search = `?${searchParams.toString()}`;
-        console.log(location)
+        // console.log(location)
         navigate(location);
     }
     // Save changes in the price slider

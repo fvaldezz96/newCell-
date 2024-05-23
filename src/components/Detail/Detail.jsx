@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { cellDetail, cleanStatus } from "../../redux/actions";
 import Questions from "../Questions/Questions.jsx";
 import { fav, cart } from '../Toast/Toast'
-import { BsCartFill, BsStarFill } from 'react-icons/bs';
+import { BsStarFill } from 'react-icons/bs';
 import { Toaster } from 'react-hot-toast'
 import Ratings from "../startRatings/Ratings";
 import Loading from "../Loading/Loading";
@@ -20,7 +20,7 @@ export default function Detail(props) {
     // let id=props.match.params.id;
     const { id } = useParams()
     const myCell = useSelector((state) => state.details);
-    const allRatings = useSelector((state) => state.allRating);
+    // const allRatings = useSelector((state) => state.allRating);
     // console.log(allRatings, 'soy  lo que llega del back')
     const get = () => {
         dispatch(cellDetail(id))
@@ -35,7 +35,7 @@ export default function Detail(props) {
         dispatch(cellDetail(id))
     }, [dispatch, id])
 
-    if (!myCell) { return <Loading/>}
+    if (!myCell) { return <Loading /> }
     return (
         <div className="container">
             {

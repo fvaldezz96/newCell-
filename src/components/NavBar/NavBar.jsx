@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { allUser } from "../../redux/actions";
 import { BsCartFill, BsStarFill, BsFillPhoneFill, BsCardChecklist } from 'react-icons/bs';
 import { AiOutlineUpload } from 'react-icons/ai';
-import { AiOutlineUserAdd } from "react-icons/ai"
+// import { AiOutlineUserAdd } from "react-icons/ai"
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -12,7 +12,7 @@ import Image from '../../image/logoConectCell.png';
 //LOGIN
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "../Login/LoginButton";
-import LogoutButton from '../Logout/LogoutButton';
+// import LogoutButton from '../Logout/LogoutButton';
 import { useNavigate } from "react-router-dom"
 //LOGIN
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap'
@@ -82,9 +82,9 @@ export default function NavBar() {
   const celllist = () => {
     navigate('/panelCells')
   }
-  const orderlist = () => {
-    navigate('/panelorders')
-  }
+  // const orderlist = () => {
+  //   navigate('/panelorders')
+  // }
   const userIr = () => {
     navigate('/Profile')
   }
@@ -126,7 +126,7 @@ export default function NavBar() {
               //  ? <Link to={'Profile/'} className='nav-link'><AiOutlineUserAdd className='NavBarIcon' /></Link> 
               ? <Dropdown isOpen={dropdown} toggle={abrirCerrarDropdown} size='sm'>
                 <DropdownToggle caret>
-                  <img className="ProfileImg" src={gmail !== undefined && gmail[0] ? gmail[0].image : "https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilu.jpg?ver=6"} />
+                  <img className="ProfileImg" alt='img not found' src={gmail !== undefined && gmail[0] ? gmail[0].image : "https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilu.jpg?ver=6"} />
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem onClick={userIr}>Perfil</DropdownItem>

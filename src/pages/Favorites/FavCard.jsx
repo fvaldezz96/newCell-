@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import { TiDelete } from 'react-icons/ti';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { addToCart } from '../../components/Card/favAndCart';
-import { cart, remove} from '../../components/Toast/Toast'
+// import { addToCart } from '../../components/Card/favAndCart';
+import { cart, remove } from '../../components/Toast/Toast'
 import { BsCartFill } from 'react-icons/bs';
 
 export default function FavCard({ id, brand, line, model, price, stock, capacity, image, memoryRAM, deleteFav }) {
 
-  const delet = (id) =>{
+  const delet = (id) => {
     remove()
-    deleteFav(id) 
+    deleteFav(id)
   }
   return (
     <Card className="card" >

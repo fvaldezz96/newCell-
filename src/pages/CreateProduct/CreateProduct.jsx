@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { allUser, createPost, getAllBrands } from '../../redux/actions';
 // import './CreateProduct.css';
-import { Link, useNavigate } from 'react-router-dom';
-import { error, success } from '../../components/Toast/Toast';
-import { Toaster } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+// import { error, success } from '../../components/Toast/Toast';
+// import { Toaster } from 'react-hot-toast';
 import { Formik, Form } from "formik";
 import CustomInput from '../../components/CustomInput/CustomInput';
 import * as yup from "yup";
 import CustomSelect from '../../components/CustomInput/CustomSelect';
 import CustomTextArea from '../../components/CustomInput/CustomTextArea';
 import swal from 'sweetalert';
-import { useAuth0 } from '@auth0/auth0-react'; 
+import { useAuth0 } from '@auth0/auth0-react';
 import NotFound from '../NotFound/NotFound';
 
 export default function CreateProduct() {
   //proteger ruta
-  const allUsers=useSelector(state=>state.allUser)
+  const allUsers = useSelector(state => state.allUser)
   const { user, isAuthenticated } = useAuth0()
   const usuarios = allUsers
-  const emailAuth0=email()
-  const userLogin=filterEmail()
+  const emailAuth0 = email()
+  const userLogin = filterEmail()
   //console.log(userLogin)
-// proteger ruta
+  // proteger ruta
   const dispatch = useDispatch();
   const allBrandData = useSelector((state) => state.brands);
   const history = useNavigate();
@@ -40,63 +40,63 @@ export default function CreateProduct() {
 
   async function onChangeValue(ev, props) {
 
-    if (ev.target.name == "color") {
-      if (props.values['spec'] == undefined) {
+    if (ev.target.name === "color") {
+      if (props.values['spec'] === undefined) {
         props.values.spec = [];
         props.values.spec[0] = `Color: ${ev.target.value}`;
       } else {
         props.values.spec[0] = `Color: ${ev.target.value}`;
       }
     }
-    if (ev.target.name == "dualSim") {
-      if (props.values['spec'] == undefined) {
+    if (ev.target.name === "dualSim") {
+      if (props.values['spec'] === undefined) {
         props.values.spec = [];
         props.values.spec[1] = `Dual SIM: ${ev.target.value}`;
       } else {
         props.values.spec[1] = `Dual SIM: ${ev.target.value}`;
       }
     }
-    if (ev.target.name == "operating") {
-      if (props.values['spec'] == undefined) {
+    if (ev.target.name === "operating") {
+      if (props.values['spec'] === undefined) {
         props.values.spec = [];
         props.values.spec[2] = `Operating system: ${ev.target.value}`;
       } else {
         props.values.spec[2] = `Operating system: ${ev.target.value}`;
       }
     }
-    if (ev.target.name == "rearCamera") {
-      if (props.values['spec'] == undefined) {
+    if (ev.target.name === "rearCamera") {
+      if (props.values['spec'] === undefined) {
         props.values.spec = [];
         props.values.spec[3] = `Rear camera resolution: ${ev.target.value} Mpx`;
       } else {
         props.values.spec[3] = `Rear camera resolution: ${ev.target.value} Mpx`;
       }
     }
-    if (ev.target.name == "frontCamera") {
-      if (props.values['spec'] == undefined) {
+    if (ev.target.name === "frontCamera") {
+      if (props.values['spec'] === undefined) {
         props.values.spec = [];
         props.values.spec[4] = `Front camera resolution: ${ev.target.value} Mpx`;
       } else {
         props.values.spec[4] = `Front camera resolution: ${ev.target.value} Mpx`;
       }
     }
-    if (ev.target.name == "launching") {
-      if (props.values['spec'] == undefined) {
+    if (ev.target.name === "launching") {
+      if (props.values['spec'] === undefined) {
         props.values.spec = [];
         props.values.spec[5] = `launching: ${ev.target.value}`;
       } else {
         props.values.spec[5] = `launching: ${ev.target.value}`;
       }
     }
-    if (ev.target.name == "resistant") {
-      if (props.values['spec'] == undefined) {
+    if (ev.target.name === "resistant") {
+      if (props.values['spec'] === undefined) {
         props.values.spec = [];
         props.values.spec[6] = `Resistant to the water: ${ev.target.value}`;
       } else {
         props.values.spec[6] = `Resistant to the water: ${ev.target.value}`;
       }
     }
-    if (ev.target.name == "images") {
+    if (ev.target.name === "images") {
       const data = new FormData();
       data.append("file", ev.target.files[0]);
       data.append("upload_preset", "unns5r2a");
@@ -144,12 +144,12 @@ export default function CreateProduct() {
   })
 
   function onCLick(ev, props) {
-    if (Object.keys(props.errors).length == 0) {
+    if (Object.keys(props.errors).length === 0) {
       dispatch(createPost(ev))
       swal({ title: `Your cell was created` });
       history("/")
     }
-    if (Object.keys(props.touched).length == 0) {
+    if (Object.keys(props.touched).length === 0) {
       swal({ title: `You must complete all fields` })
     }
   }
@@ -158,171 +158,171 @@ export default function CreateProduct() {
     history("/")
   }
   //proteger ruta
-function email() {
-  if (isAuthenticated) {
-    return user.email
+  function email() {
+    if (isAuthenticated) {
+      return user.email
+    }
   }
-}
-function filterEmail() {
-  if (isAuthenticated && usuarios.length) {
-    return usuarios.filter(e => e.email === emailAuth0)
+  function filterEmail() {
+    if (isAuthenticated && usuarios.length) {
+      return usuarios.filter(e => e.email === emailAuth0)
+    }
   }
-}
-// proteger ruta
+  // proteger ruta
 
 
   return (
-    isAuthenticated && userLogin && userLogin[0] && userLogin[0].role==="Administrador"
-    ?(
-<div className="container">
-      <h1 className="title text-center p-3">Create Product</h1>
-      <div className="abs-center">
-        <Formik initialValues={products} onSubmit={onSubmit} validationSchema={ValidateInput}>
-          {
-            (props) => (
-              <>
-                <Form className="shadow-lg mb-5 row g-3 needs-validation p-3 form border-info ">
-                  <CustomInput
-                    label="Model: "
-                    name="model"
-                    type="text"
-                    placeholder="Enter the model"
-                  />
-                  <CustomInput
-                    label="Line: "
-                    name="line"
-                    type="text"
-                    placeholder="Enter the line"
-                  />
-                  <CustomInput
-                    label="Image: "
-                    name="images"
-                    type="file"
-                    onChange={(ev) => onChangeValue(ev, props)}
-                  />
-                  <CustomSelect
-                    label="All Brands: "
-                    name="brand"
-                    type="text"
-                    placeholder="Please Selecciona:"
-                  >
-                    <option value="">Select Brand: </option>
-                    {
-                      allBrandData?.map((e, index) => (
-                        <option key={index} id="brand" value={e}>{e}</option>
-                      ))
-                    }
-                  </CustomSelect>
-                  <CustomInput
-                    label="Capacity: "
-                    name="capacity"
-                    type="number"
-                    placeholder="Enter the capacity"
-                  />
-                  <CustomInput
-                    label="Memory RAM: "
-                    name="memoryRAM"
-                    type="number"
-                    placeholder="Enter the Memory RAM"
-                    min="0" max="5"
-                  />
-                  <CustomInput
-                    label="Price: "
-                    name="price"
-                    type="number"
-                    placeholder="Enter the Price"
-                  />
-                  <CustomInput
-                    label="Stock: "
-                    name="stock"
-                    type="number"
-                    placeholder="Enter the Stock"
-                  />
-                  <CustomTextArea
-                    label="Description: "
-                    name="description"
-                    type="text"
-                    placeholder="Enter the Description"
-                  />
-                  <div>
-                    <h6>Specifications:</h6>
-                    <CustomInput
-                      label="Color: "
-                      name="color"
-                      // values={state.color}
-                      onChange={(ev) => onChangeValue(ev, props)}
-                      type="text"
-                      placeholder="Enter the Color"
-                    />
-                    <CustomSelect
-                      label="Dual SIM: "
-                      name="dualSim"
-                      // values={state.dualSim}
-                      onChange={(ev) => onChangeValue(ev, props)}
-                      type="text"
-                      placeholder="Enter the Dual SIM"
-                    >
-                      <option value="">Select Dual SIM: </option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                    </CustomSelect>
-                    <CustomInput
-                      label="Operating system "
-                      name="operating"
-                      // values={state.operating}
-                      onChange={(ev) => onChangeValue(ev, props)}
-                      type="text"
-                      placeholder="Enter the Operating System"
-                    />
-                    <CustomInput
-                      label="Rear Camera Resolution: "
-                      name="rearCamera"
-                      // values={state.rearCamera}
-                      onChange={(ev) => onChangeValue(ev, props)}
-                      type="number"
-                      placeholder="Enter the Rear Camera Resolution"
-                    />
-                    <CustomInput
-                      label="Front Camera Resolution: "
-                      name="frontCamera"
-                      // values={state.frontCamera}
-                      onChange={(ev) => onChangeValue(ev, props)}
-                      type="number"
-                      placeholder="Enter the Front Camera Resolution"
-                    />
-                    <CustomInput
-                      label="Launching: "
-                      name="launching"
-                      // values={state.launching}
-                      onChange={(ev) => onChangeValue(ev, props)}
-                      type="text"
-                      placeholder="Enter the Launching"
-                    />
-                    <CustomSelect
-                      label="Resistant to the water: "
-                      name="resistant"
-                      // values={state.resistant}
-                      onChange={(ev) => onChangeValue(ev, props)}
-                      type="text"
-                      placeholder="Enter the Resistant to the water"
-                    >
-                      <option value="">Select Resistant to the water: </option>
-                      <option value="Yes">Yes</option>
-                      <option value="No">No</option>
-                    </CustomSelect>
-                  </div>
-                  <div className="d-grid gap-2 d-md-flex justify-content-md-center text-decoration-none">
-                    <input disabled={Object.keys(props.errors).length != 0 ? true : props.isSubmitting} type="submit" value="Create" onClick={() => onCLick(props.values, props)} className="btn btn-outline-dark" />
-                    <input type="submit" value="Cancel" onClick={() => onClickCancel(props)} className="btn btn-outline-dark" />
-                  </div>
-                </Form>
-              </>
-            )
-          }
-        </Formik>
-      </div>
-    </div>
-    ):<NotFound/>
-    
+    isAuthenticated && userLogin && userLogin[0] && userLogin[0].role === "Administrador"
+      ? (
+        <div className="container">
+          <h1 className="title text-center p-3">Create Product</h1>
+          <div className="abs-center">
+            <Formik initialValues={products} onSubmit={onSubmit} validationSchema={ValidateInput}>
+              {
+                (props) => (
+                  <>
+                    <Form className="shadow-lg mb-5 row g-3 needs-validation p-3 form border-info ">
+                      <CustomInput
+                        label="Model: "
+                        name="model"
+                        type="text"
+                        placeholder="Enter the model"
+                      />
+                      <CustomInput
+                        label="Line: "
+                        name="line"
+                        type="text"
+                        placeholder="Enter the line"
+                      />
+                      <CustomInput
+                        label="Image: "
+                        name="images"
+                        type="file"
+                        onChange={(ev) => onChangeValue(ev, props)}
+                      />
+                      <CustomSelect
+                        label="All Brands: "
+                        name="brand"
+                        type="text"
+                        placeholder="Please Selecciona:"
+                      >
+                        <option value="">Select Brand: </option>
+                        {
+                          allBrandData?.map((e, index) => (
+                            <option key={index} id="brand" value={e}>{e}</option>
+                          ))
+                        }
+                      </CustomSelect>
+                      <CustomInput
+                        label="Capacity: "
+                        name="capacity"
+                        type="number"
+                        placeholder="Enter the capacity"
+                      />
+                      <CustomInput
+                        label="Memory RAM: "
+                        name="memoryRAM"
+                        type="number"
+                        placeholder="Enter the Memory RAM"
+                        min="0" max="5"
+                      />
+                      <CustomInput
+                        label="Price: "
+                        name="price"
+                        type="number"
+                        placeholder="Enter the Price"
+                      />
+                      <CustomInput
+                        label="Stock: "
+                        name="stock"
+                        type="number"
+                        placeholder="Enter the Stock"
+                      />
+                      <CustomTextArea
+                        label="Description: "
+                        name="description"
+                        type="text"
+                        placeholder="Enter the Description"
+                      />
+                      <div>
+                        <h6>Specifications:</h6>
+                        <CustomInput
+                          label="Color: "
+                          name="color"
+                          // values={state.color}
+                          onChange={(ev) => onChangeValue(ev, props)}
+                          type="text"
+                          placeholder="Enter the Color"
+                        />
+                        <CustomSelect
+                          label="Dual SIM: "
+                          name="dualSim"
+                          // values={state.dualSim}
+                          onChange={(ev) => onChangeValue(ev, props)}
+                          type="text"
+                          placeholder="Enter the Dual SIM"
+                        >
+                          <option value="">Select Dual SIM: </option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </CustomSelect>
+                        <CustomInput
+                          label="Operating system "
+                          name="operating"
+                          // values={state.operating}
+                          onChange={(ev) => onChangeValue(ev, props)}
+                          type="text"
+                          placeholder="Enter the Operating System"
+                        />
+                        <CustomInput
+                          label="Rear Camera Resolution: "
+                          name="rearCamera"
+                          // values={state.rearCamera}
+                          onChange={(ev) => onChangeValue(ev, props)}
+                          type="number"
+                          placeholder="Enter the Rear Camera Resolution"
+                        />
+                        <CustomInput
+                          label="Front Camera Resolution: "
+                          name="frontCamera"
+                          // values={state.frontCamera}
+                          onChange={(ev) => onChangeValue(ev, props)}
+                          type="number"
+                          placeholder="Enter the Front Camera Resolution"
+                        />
+                        <CustomInput
+                          label="Launching: "
+                          name="launching"
+                          // values={state.launching}
+                          onChange={(ev) => onChangeValue(ev, props)}
+                          type="text"
+                          placeholder="Enter the Launching"
+                        />
+                        <CustomSelect
+                          label="Resistant to the water: "
+                          name="resistant"
+                          // values={state.resistant}
+                          onChange={(ev) => onChangeValue(ev, props)}
+                          type="text"
+                          placeholder="Enter the Resistant to the water"
+                        >
+                          <option value="">Select Resistant to the water: </option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </CustomSelect>
+                      </div>
+                      <div className="d-grid gap-2 d-md-flex justify-content-md-center text-decoration-none">
+                        <input disabled={Object.keys(props.errors).length !== 0 ? true : props.isSubmitting} type="submit" value="Create" onClick={() => onCLick(props.values, props)} className="btn btn-outline-dark" />
+                        <input type="submit" value="Cancel" onClick={() => onClickCancel(props)} className="btn btn-outline-dark" />
+                      </div>
+                    </Form>
+                  </>
+                )
+              }
+            </Formik>
+          </div>
+        </div>
+      ) : <NotFound />
+
   )
 }

@@ -1,4 +1,4 @@
-import { useAuth0, user } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { createQuestion, getRole, createAnswer } from '../../redux/actions';
@@ -127,7 +127,7 @@ const Questions = ({ cellId, q, get }) => {
                            <Accordion.Item eventKey="0" >
                               <Accordion.Header>
                                  {admin ?
-                                 <div><p className='question-mail-user'>{c.emailUser}: &nbsp; &nbsp;</p></div>:""
+                                    <div><p className='question-mail-user'>{c.emailUser}: &nbsp; &nbsp;</p></div> : ""
                                  }
                                  <p className="questions text-left">{c.question}</p>
                               </Accordion.Header>

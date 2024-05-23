@@ -102,7 +102,7 @@ export function postUser(user) {
 export function allUser() {
    return async function (dispatch) {
       const allUser = (await axios(RUTA_USER)).data
-      console.log("estoy en el dispatch", allUser);
+      // console.log("estoy en el dispatch", allUser);
       if (allUser.message === "No users") {
          return dispatch({
             type: ALL_USER,
@@ -401,11 +401,11 @@ export function changeQuantity(id, quantity) {
 }
 
 export function getRolesRating(email, cellId) {
-   console.log(email,cellId, 'soy lo que llega a la action')
+   console.log(email, cellId, 'soy lo que llega a la action')
    return async function (dispatch) {
       try {
          var rating = await axios.get(`/rating/role/?em=${email}&cellId=${cellId}`)
-         console.log(rating,'soy lo que llega del back')
+         console.log(rating, 'soy lo que llega del back')
          return dispatch({
             type: GET_REVIEW_BOOLEAN,
             payload: rating.data

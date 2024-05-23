@@ -2,7 +2,7 @@ import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
 import ReactStars from 'react-stars';
 import { useEffect, useState } from "react";
-import { useAuth0, user } from '@auth0/auth0-react';
+import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from "react-redux";
 import { getRolesRating } from "../../redux/actions";
 
@@ -12,10 +12,10 @@ const Ratings = ({ cellId, r, get }) => {
    const dispatch = useDispatch();
    const { user, isAuthenticated } = useAuth0();
    const ratingRol = useSelector((state) => state.rating);
-   const [obj, setObj] = useState({
-      email: "",
-      cellId: cellId
-   });
+   // const [obj, setObj] = useState({
+   //    email: "",
+   //    cellId: cellId
+   // });
 
    const [rating, setRating] = useState({
       id: cellId,
@@ -61,7 +61,7 @@ const Ratings = ({ cellId, r, get }) => {
       if (isAuthenticated) {
          dispatch(getRolesRating(user.email, cellId));
       }
-   }, [dispatch, r])
+   }, [dispatch])//aca habia solo una r
 
    return (
       <div>

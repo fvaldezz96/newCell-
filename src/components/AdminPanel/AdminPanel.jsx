@@ -6,42 +6,42 @@ import { useDispatch, useSelector } from "react-redux";
 import { getRole } from "../../redux/actions";
 
 
-const AdminPanel=()=>{
-    const { user, isAuthenticated, logout } = useAuth0()
+const AdminPanel = () => {
+    const { user, isAuthenticated } = useAuth0()
     const dispatch = useDispatch;
     const admin = useSelector((state) => state.admin)
 
     useEffect(() => {
         if (isAuthenticated) {
-           dispatch(getRole(user.email));
- 
-        }
-  
-     }, [dispatch])
+            dispatch(getRole(user.email));
 
-    return(
+        }
+
+    }, [dispatch, isAuthenticated, user.email])
+
+    return (
         <div>
             {isAuthenticated && admin ?
-            <div>
                 <div>
-                    <h4>Usuarios</h4>
-                    <Link to='/panelUsers'><button>User</button></Link>
+                    <div>
+                        <h4>Usuarios</h4>
+                        <Link to='/panelUsers'><button>User</button></Link>
+                    </div>
+                    <div>
+                        <h4>Cells</h4>
+                        <Link to='/panelCells'><button>Celss</button></Link>
+                    </div>
+                    <div>
+                        <h4>Orders</h4>
+                        <Link to='/panelorders'><button>Orders</button></Link>
+                    </div>
                 </div>
-                <div>
-                    <h4>Cells</h4>
-                    <Link to='/panelCells'><button>Celss</button></Link>
-                </div>
-                <div>
-                    <h4>Orders</h4>
-                    <Link to='/panelorders'><button>Orders</button></Link>
-                </div>
-            </div>
 
-           :
-           <div>
-                <p>it is not allowed</p>
-                <NotFound/>
-           </div>}
+                :
+                <div>
+                    <p>it is not allowed</p>
+                    <NotFound />
+                </div>}
         </div>
     )
 }
