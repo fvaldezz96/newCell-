@@ -2,6 +2,7 @@
 import { Link } from 'react-router-dom';
 import { TiDelete } from 'react-icons/ti';
 import Card from 'react-bootstrap/Card';
+import React from 'react'
 import ListGroup from 'react-bootstrap/ListGroup';
 // import { addToCart } from '../../components/Card/favAndCart';
 import { cart, remove } from '../../components/Toast/Toast'

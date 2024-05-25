@@ -1,5 +1,7 @@
 import { BsGithub, BsLinkedin } from 'react-icons/bs';
 import './AboutUs.css'
+import React from 'react'
+
 import frank from "./frank.jpeg"
 
 export default function AboutUs() {

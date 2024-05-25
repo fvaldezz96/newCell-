@@ -81,7 +81,7 @@ const LandingPage = () => {
         key={item.src}
       >
         <div className='containerLanding'>
-          <img className="imgLanding" src={item.src} alt='landing_image' />
+          <img className="imgLanding" src={item.src} alt='landing_image' /> //Esta dando error
         </div>
         <CarouselCaption />
       </CarouselItem>

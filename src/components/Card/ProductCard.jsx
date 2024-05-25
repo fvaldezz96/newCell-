@@ -1,13 +1,15 @@
+import React from 'react';
 import { BsCartFill, BsStarFill } from 'react-icons/bs';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+
 import { Link } from 'react-router-dom'
 import './Card.css'
-import {fav, cart} from '../Toast/Toast'
+import { fav, cart } from '../Toast/Toast'
 
-export default function ProductCard({id, brand, line, model, price, stock, capacity, image, memoryRAM}) {
+export default function ProductCard({ id, brand, line, model, price, stock, capacity, image, memoryRAM }) {
 
-  
+
   return (
     <Card className="card" >
       <Link className='containCardImage' to={"/detail/" + id}>

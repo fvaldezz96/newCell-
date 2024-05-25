@@ -1,7 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import React from 'react'
 // PaymentForm
-import {Elements} from "@stripe/react-stripe-js";
-import {loadStripe} from "@stripe/stripe-js"
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js"
 
 import EditProduct from './pages/EditProduct/EditProduct';
 //login
@@ -30,7 +31,7 @@ import AdminPanel from './components/AdminPanel/AdminPanel'
 import DetailOrder from './components/DetailOrder/DetailOrder.jsx';
 // import EditUser from './components/EditUser/EditUser';
 
-const stripePromise=loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
+const stripePromise = loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
 
 
 
@@ -41,24 +42,24 @@ function App() {
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
         <Route path='/home' element={<Home />} />
-        <Route  path='/favorites' element={<Favorites />} />
-        <Route  path='/contact' element={<ContactUs />} />
-        <Route  path='/about' element={<AboutUs />} />
-        <Route  path='/cart' element={<Cart />} />
-        <Route path="/create" element={<CreateProduct/>}/>
-        <Route path='/postUser' element={<PostUser/>} />
-        <Route path='/cart/paymentForm' element={<Elements stripe={stripePromise}><PaymentForm></PaymentForm></Elements>}/>
-        <Route path="/detail/:id" element={<Detail/>}/>
-        <Route path='/Profile' element={<Profile/>}/>
-        <Route path='/panelCells' element={<PanelAdminCells/>}/>
+        <Route path='/favorites' element={<Favorites />} />
+        <Route path='/contact' element={<ContactUs />} />
+        <Route path='/about' element={<AboutUs />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path="/create" element={<CreateProduct />} />
+        <Route path='/postUser' element={<PostUser />} />
+        <Route path='/cart/paymentForm' element={<Elements stripe={stripePromise}><PaymentForm></PaymentForm></Elements>} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path='/Profile' element={<Profile />} />
+        <Route path='/panelCells' element={<PanelAdminCells />} />
         <Route path='/panelCells/editProduct/:id' element={<EditProduct />} />
-        <Route path='/panelUsers' element={<PanelAdminUsers/>}/>
-        <Route path='/panelOrders' element={<PanelAdminOrders/>}/>
-        <Route path='/panelOrders/detailOrder/:id' element={<DetailOrder/>}/>
-        <Route path='/adminPanel' element={<AdminPanel/>}/> 
-        <Route path='/orders/:id_User' element={<DetailOrder/>}/>
+        <Route path='/panelUsers' element={<PanelAdminUsers />} />
+        <Route path='/panelOrders' element={<PanelAdminOrders />} />
+        <Route path='/panelOrders/detailOrder/:id' element={<DetailOrder />} />
+        <Route path='/adminPanel' element={<AdminPanel />} />
+        <Route path='/orders/:id_User' element={<DetailOrder />} />
         {/* <Route path='/edit' element={<EditUser/>}/> */}
-     
+
 
         <Route path='*' element={<NotFound />} />
 

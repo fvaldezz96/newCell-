@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, React } from "react";
 import './Card.css'
 import { Link } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
