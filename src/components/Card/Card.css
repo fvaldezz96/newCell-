@@ -1,40 +1,41 @@
 .containerHome .card {
+  height: 34rem;
+  border-radius: 19px;
+  margin-top: 15px;
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  height: 60vh;
-  transition: all ease .5s;
-  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .containerHome .card:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  transform: translateY(-.5em);
-}
-
-.containCardBody {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 20px;
-
+  transition: transform 0.7s ease-in-out;
 }
 
 .linkStyle {
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .containerName {
   font-weight: 800;
   color: #000000;
   font-size: 40px;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 .containerListDescription {
   width: 8rem;
+}
+
+/* CARD HOME */
+.container-card-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
 .card .MuiSkeleton-root {
@@ -43,29 +44,43 @@
   margin: 15px;
 }
 
-.containCardImage {
-  margin: 1rem;
-  width: 15rem;
+/* CONTAINER BUTTOM AND TITLE CARD */
+.container-title-buttom {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
 }
 
-.cardImage {
+.container-image {
+  align-items: center;
+  justify-content: center;
+  width: 6rem;
+  height: 14rem;
+  border-radius: 2rem;
+}
+
+.img-card-component {
   height: 100%;
-  width: 15rem;
+  width: 100%;
   object-fit: contain;
 }
 
 .containerButton {
-  margin-right: 2rem;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
 }
 
+/* BTN-CARDS (LIKE- CARRITO */
 .CardIcon {
   cursor: pointer;
   margin: 0.5em;
   width: 1.9em;
-  height: 1.9em;
+  height: 1.2em;
   color: rgb(61, 61, 61)
 }
 

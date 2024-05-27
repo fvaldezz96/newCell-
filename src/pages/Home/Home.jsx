@@ -102,23 +102,26 @@ export default function Home() {
                 <Filters />
               </Col>
               <Col>
-                <div className="containerContent">
-                  <div className="containerCards" >
+                <div className="container-card-home">
+                  <Row>
                     {(!products || !products.length) ? (<NothingFound />) :
-                      pageProducts.map(e => <ProductCard
-                        key={e.id}
-                        id={e.id}
-                        line={e.line}
-                        model={e.model}
-                        capacity={e.capacity}
-                        price={e.price}
-                        stock={e.stock}
-                        image={e.image}
-                        brand={e.brand}
-                        memoryRAM={e.memoryRAM}
-                      />)
-                    }
-                  </div>
+                      pageProducts.map((e, index) =>
+                        <Col sm={4} md={4} key={index}>
+                          <ProductCard
+                            key={e.id}
+                            id={e.id}
+                            line={e.line}
+                            model={e.model}
+                            capacity={e.capacity}
+                            price={e.price}
+                            stock={e.stock}
+                            image={e.image}
+                            brand={e.brand}
+                            memoryRAM={e.memoryRAM}
+                          />
+                        </Col>
+                      )}
+                  </Row>
                 </div>
               </Col>
               {/* CARDS */}
