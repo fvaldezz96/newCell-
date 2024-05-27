@@ -2,13 +2,14 @@ import { useDispatch, useSelector } from "react-redux"
 import React, { useState, useEffect } from 'react';
 import { allUser } from "../../redux/actions";
 import { BsCartFill, BsStarFill, BsFillPhoneFill, BsCardChecklist } from 'react-icons/bs';
+import { FcLike } from "react-icons/fc";
 import { AiOutlineUpload } from 'react-icons/ai';
 // import { AiOutlineUserAdd } from "react-icons/ai"
 import { Link } from 'react-router-dom';
 import SearchBar from '../SearchBar/SearchBar'
 import 'bootstrap/dist/css/bootstrap.css';
 import './NavBar.css'
-import Image from '../../image/logoConectCell.png';
+import Image from '../../image/iphone.png';
 //LOGIN
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from "../Login/LoginButton";
@@ -110,7 +111,7 @@ export default function NavBar() {
           </div>
           <SearchBar />
           <Link to='/home' className="nav-link"><BsFillPhoneFill className='NavBarIcon' /></Link>
-          <Link to='/favorites' className="nav-link"><BsStarFill className='NavBarIcon' /></Link>
+          <Link to='/favorites' className="nav-link"><FcLike className='NavBarIcon' /></Link>
           <Link to='/cart' className="nav-link"><BsCartFill className='NavBarIcon' /></Link>
           {
             isAuthenticated && gmail !== undefined && gmail[0] && gmail[0].role !== "Cliente"
