@@ -12,6 +12,7 @@ import ContactUs from './pages/ContactUs/ContactUs';
 import Favorites from './pages/Favorites/Favorites';
 import Home from './pages/Home/Home';
 import CarouselPage from './pages/CarouselPage/CarouselComponent.jsx';
+import Landing from './pages/LandingPage/Landing.jsx'
 import NotFound from './pages/NotFound/NotFound';
 import Detail from './components/Detail/Detail';
 import Cart from './pages/Cart';
@@ -37,7 +38,7 @@ function App() {
     <Router>
       <NavBar />
       <Routes>
-        <Route exact path="/" element={<CarouselPage />} />
+        <Route exact path="/" element={<Landing />} />
         <Route path='/home' element={<Home />} />
         <Route path='/favorites' element={<Favorites />} />
         <Route path='/contact' element={<ContactUs />} />

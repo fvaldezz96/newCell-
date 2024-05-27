@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-bootstrap';
-import './LandingPage.css'
+import './CarouselStyle.css'
 import items from './JsonData.js';
 const dataJson = items
 const CarouselComponent = () => {
