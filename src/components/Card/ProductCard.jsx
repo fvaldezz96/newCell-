@@ -10,7 +10,6 @@ import { Col, Row } from 'react-bootstrap';
 import { FcLike } from 'react-icons/fc';
 
 export default function ProductCard({ id, brand, line, model, price, stock, capacity, image, memoryRAM }) {
-
   return (
     <Card>
       {/* CARD BODY */}

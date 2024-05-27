@@ -12,8 +12,8 @@ import './Home.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import Loading from "../../components/Loading/Loading";
 import { Toaster } from "react-hot-toast";
-import LandingPage from "../LandingPage/LandingPage";
-// import LandingPage from "../LandingPage/LandingPage";
+import CarouselComponent from "../CarouselPage/CarouselComponent";
+// import CarouselComponent from "../CarouselComponent/CarouselComponent";
 
 export default function Home() {
 
@@ -48,12 +48,19 @@ export default function Home() {
   }, [products])
 
   // Pagination logic
-  let idxLastItem = currentPage * 6;
-  let ixdFirstItem = idxLastItem - 6;
-  let pageProducts = products.slice(ixdFirstItem, idxLastItem);
+  const postPerPage = 6; // Adjust this value as needed
+  const product = useSelector(state => state.products);
+  const totalPages = Math.ceil(product.length / postPerPage);
   const paginate = (number) => {
-    setCurrentPage(number)
+    setCurrentPage(number);
   };
+
+  //ADD PRODUCTS
+  const pageProducts = products.slice(
+    (currentPage - 1) * postPerPage,
+    currentPage * postPerPage
+  );
+
 
   // Clear filters
   function clearFilter(filter) {
@@ -70,7 +77,7 @@ export default function Home() {
         <div>
           <div className="containerHome">
             {/* NUMBER OF RESULTS */}
-            <LandingPage />
+            <CarouselComponent />
             <div className="aditionalContent">
               <div className="numberOfResults">
                 {searchName ? <span>{searchName.toUpperCase()}</span> : null}
@@ -127,8 +134,12 @@ export default function Home() {
               {/* CARDS */}
             </Row>
             {/* PAGINADO */}
-            <Pagination currentPage={currentPage} postPerPage={6} totalPosts={products.length} paginate={paginate} />
-            <LandingPage />
+            <Pagination
+              currentPage={currentPage}
+              postPerPage={postPerPage}
+              totalPosts={products.length}
+              paginate={paginate} />
+            <CarouselComponent /> {/*=> component add changes as Carrousel-Home*/}
             {/* ALERT */}
             <Toaster position="bottom-right" reverseOrder={false} />
           </div>
