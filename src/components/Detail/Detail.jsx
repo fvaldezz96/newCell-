@@ -1,7 +1,6 @@
 import "./CellDetail.css"
-import React from "react";
 import ReactStars from 'react-stars';
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { cellDetail, cleanStatus } from "../../redux/actions";

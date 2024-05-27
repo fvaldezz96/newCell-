@@ -3,10 +3,8 @@ import React from 'react'
 // PaymentForm
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js"
-
 import EditProduct from './pages/EditProduct/EditProduct';
 //login
-
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
 import AboutUs from './pages/AboutUs/AboutUs';
@@ -17,7 +15,6 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import NotFound from './pages/NotFound/NotFound';
 import Detail from './components/Detail/Detail';
 import Cart from './pages/Cart';
-
 import PanelAdminCells from './components/PanelAdminCells/PanelAdminCells';
 import PanelAdminUsers from './components/PanelAdminUsers/PanelAdminUsers';
 import PanelAdminOrders from './components/PanelAdminOrders/PanelAdminOrders';

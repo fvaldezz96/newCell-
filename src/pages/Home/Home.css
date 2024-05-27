@@ -15,21 +15,16 @@
 }
 
 .containerContent {
-    display: flex;
-    align-items: flex-start;
-    /* flex-direction: column; */
     justify-content: center;
     gap: 2em;
     margin-bottom: 1em;
     color: grey;
-    padding: 50px;
 }
 
 .containerCards {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    width: 52%;
     gap: 2em;
 }
 

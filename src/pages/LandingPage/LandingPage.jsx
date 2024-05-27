@@ -1,126 +1,59 @@
 
-import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState, useEffect } from 'react';
-import { getAllUsers } from "../../redux/actions";
-import { useDispatch, useSelector } from 'react-redux';
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption
-} from 'reactstrap';
+import { Carousel } from 'react-bootstrap';
 import './LandingPage.css'
 
 const items = [
   {
     src: 'https://apple2fan.com/wp-content/uploads/2020/10/Captura-de-pantalla-2020-10-13-a-las-19.46.59.png',
-    // altText: 'Slide 1',
-    // caption: 'Slide 1',
+    alt: 'Image 1',
   },
   {
     src: 'https://depor.com/resizer/O77xSXFS32q6W_y3F147RtBfp1Q=/1200x675/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.arcpublishing.com/elcomercio/ECBYORMINFGF3HOTNUQCQ7QCXI.webp',
-
+    alt: 'Image 2',
   },
   {
     src: 'https://i0.wp.com/apperlas.com/wp-content/uploads/2016/09/iPhone-7-agua.jpg?ssl=1',
-
+    alt: 'Image 3',
   },
   {
     src: 'https://hd2.tudocdn.net/893603?w=1920',
-
+    alt: 'Image 4',
   },
   {
     src: 'https://clongeek.com/wp-content/uploads/2021/03/iPhone-13-1.jpg',
-
+    alt: 'Image 5',
   },
   {
     src: 'https://www.cined.com/content/uploads/2020/02/galaxy_s20_ultra_2-1300x750.jpg',
-
+    alt: 'Image 6',
   },
 ];
 
-
 const LandingPage = () => {
-  const { user, isAuthenticated, logout } = useAuth0()
-  const allUsers = useSelector(state => state.users);
-  const dispatch = useDispatch();
-  const todosUser = allUsers
-  const emailAuth0 = email()
-  const userDb = filterEmail()
+  const [index, setIndex] = useState(0);
 
-  // console.log(todosUser)
-  // console.log(userDb)
-  // console.log(salir())
-
-  const [activeIndex, setActiveIndex] = useState(0)
-  const [animating, setAnimating] = useState(false)
-
-  const next = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  }
-
-  const previous = () => {
-    if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  }
-
-  const goToIndex = (newIndex) => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  }
-
-  const slides = items.map((item) => {
-    return (
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={item.src}
-      >
-        <div className='containerLanding'>
-          <img className="imgLanding" src={item.src} alt='landing_image' /> //Esta dando error
-        </div>
-        <CarouselCaption />
-      </CarouselItem>
-    )
-  })
-  useEffect(() => {
-    dispatch(getAllUsers())
-  }, [])
-
-  function salir() {
-    if (userDb !== undefined && userDb[0] && userDb[0].disabled === true) {
-      logout()
-    }
-  }
-
-  function email() {
-    if (isAuthenticated) {
-      return user.email
-    }
-  }
-
-  function filterEmail() {
-    if (isAuthenticated && todosUser.length) {
-      return todosUser.filter(e => e.email === emailAuth0)
-    }
-  }
-  salir()
-
+  const handleSelect = (selectedIndex, event) => {
+    setIndex(selectedIndex);
+  };
   return (
-    <Carousel className='containerLanding'
-      activeIndex={activeIndex}
-      next={next}
-      previous={previous}
-    >
-      <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
-      {slides}
-      <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
-      <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
-    </Carousel>
+    <div>
+      <Carousel activeIndex={index} onSelect={handleSelect} >
+        {items.map((item, i) => (
+          <Carousel.Item key={i} className="my-carousel-container">
+            <img
+              className="img-carousel w-100"
+              src={item.src}
+              alt={item.alt}
+            />
+            <Carousel.Caption>
+              <h5>{i + 1}</h5>
+              <p>Img de prueba {i + 1}.</p>
+            </Carousel.Caption>
+          </Carousel.Item>
+        ))}
+      </Carousel>
+    </div>
   )
 }
 

@@ -10,7 +10,7 @@ export default function Footer() {
   return (
 
     <Navbar className="footer" bg="dark" variant="dark">
-      <Navbar.Text className='Light-Font'>© CellPhones E-Commerce, 2022. All rights reserved.</Navbar.Text>
+      <Navbar.Text className='Light-Font'>© Blip Software E-Commerce, 2024</Navbar.Text>
       <Navbar.Text >
         <Link to='/about'>
           <button className="btn btn-danger text-decoration-none">About us</button>

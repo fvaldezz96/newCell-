@@ -1,6 +1,6 @@
 
-import { useEffect, useState, React } from "react";
-import { CloseButton } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { CloseButton, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import ProductCard from "../../components/Card/ProductCard";
@@ -12,9 +12,10 @@ import './Home.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import Loading from "../../components/Loading/Loading";
 import { Toaster } from "react-hot-toast";
+import LandingPage from "../LandingPage/LandingPage";
+// import LandingPage from "../LandingPage/LandingPage";
 
 export default function Home() {
-
 
   const location = useLocation();
   const [searchParams] = useSearchParams();
@@ -25,6 +26,7 @@ export default function Home() {
   const products = useSelector(state => state.products);
   const dispatch = useDispatch()
   const filters = []
+
   searchParams.forEach((value, key) => {
     filters.push([key, value]);
   });
@@ -45,8 +47,6 @@ export default function Home() {
     setCurrentPage(1);
   }, [products])
 
-
-
   // Pagination logic
   let idxLastItem = currentPage * 6;
   let ixdFirstItem = idxLastItem - 6;
@@ -64,56 +64,71 @@ export default function Home() {
 
   return (
     <>
+      {/* CONTAINER HOME */}
       {isLoading ? <Loading /> :
-        <div className="containerHome">
-          <div className="aditionalContent">
-            <div className="numberOfResults">
-              {searchName ? <span>{searchName.toUpperCase()}</span> : null}
-              <p><b>{products.length}</b> results</p>
+        // COLUMS HOME
+        <div>
+          <div className="containerHome">
+            {/* NUMBER OF RESULTS */}
+            <LandingPage />
+            <div className="aditionalContent">
+              <div className="numberOfResults">
+                {searchName ? <span>{searchName.toUpperCase()}</span> : null}
+                <p><b>{products.length}</b> results</p>
+              </div>
             </div>
+            {/* FILTER */}
+            {filters.length ? searchName && filters.length === 1 ?
+              null :
+              <div className="selectedFilters">
+                <span>Selected filters: </span>
+                {
+                  filters.map(filter => {
+                    return filter[0] === 'name' ?
+                      null :
+                      (
+                        <div key={filter[0]} className="activeFilter">
+                          {filter[0] === 'price' || filter[0] === 'capacity' ? `${filter[0]} ${filter[1]}` : filter[1]}
+                          <CloseButton onClick={() => clearFilter(filter[0])} />
+                        </div>
+                      )
+                  })
+                }
+              </div>
+              : null}
+            <Pagination currentPage={currentPage} postPerPage={6} totalPosts={products.length} paginate={paginate} />
+            <Row>
+              <Col sm={3}>
+                <Filters />
+              </Col>
+              <Col>
+                <div className="containerContent">
+                  <div className="containerCards" >
+                    {(!products || !products.length) ? (<NothingFound />) :
+                      pageProducts.map(e => <ProductCard
+                        key={e.id}
+                        id={e.id}
+                        line={e.line}
+                        model={e.model}
+                        capacity={e.capacity}
+                        price={e.price}
+                        stock={e.stock}
+                        image={e.image}
+                        brand={e.brand}
+                        memoryRAM={e.memoryRAM}
+                      />)
+                    }
+                  </div>
+                </div>
+              </Col>
+              {/* CARDS */}
+            </Row>
+            {/* PAGINADO */}
+            <Pagination currentPage={currentPage} postPerPage={6} totalPosts={products.length} paginate={paginate} />
+            <LandingPage />
+            {/* ALERT */}
+            <Toaster position="bottom-right" reverseOrder={false} />
           </div>
-          {filters.length ? searchName && filters.length === 1 ?
-            null :
-            <div className="selectedFilters">
-              <span>Selected filters: </span>
-              {
-                filters.map(filter => {
-                  return filter[0] === 'name' ?
-                    null :
-                    (
-                      <div key={filter[0]} className="activeFilter">
-                        {filter[0] === 'price' || filter[0] === 'capacity' ? `${filter[0]} ${filter[1]}` : filter[1]}
-                        <CloseButton onClick={() => clearFilter(filter[0])} />
-                      </div>
-                    )
-                })
-              }
-            </div>
-            : null}
-          <Pagination currentPage={currentPage} postPerPage={6} totalPosts={products.length} paginate={paginate} />
-          <div className="positionFilter">
-            <Filters />
-          </div>
-          <div className="containerContent">
-            <div className="containerCards" >
-              {(!products || !products.length) ? (<NothingFound />) :
-                pageProducts.map(e => <ProductCard
-                  key={e.id}
-                  id={e.id}
-                  line={e.line}
-                  model={e.model}
-                  capacity={e.capacity}
-                  price={e.price}
-                  stock={e.stock}
-                  image={e.image}
-                  brand={e.brand}
-                  memoryRAM={e.memoryRAM}
-                />)
-              }
-            </div>
-          </div>
-          <Pagination currentPage={currentPage} postPerPage={6} totalPosts={products.length} paginate={paginate} />
-          <Toaster position="bottom-right" reverseOrder={false} />
         </div>
       }
     </>
