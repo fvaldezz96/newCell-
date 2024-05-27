@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { CloseButton, Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,8 +11,7 @@ import './Home.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import Loading from "../../components/Loading/Loading";
 import { Toaster } from "react-hot-toast";
-import CarouselComponent from "../CarouselPage/CarouselComponent";
-// import CarouselComponent from "../CarouselComponent/CarouselComponent";
+import CarouselComponent from "../../components/CarouselPage/CarouselComponent";
 
 export default function Home() {
 

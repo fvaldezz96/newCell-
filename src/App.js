@@ -11,7 +11,6 @@ import AboutUs from './pages/AboutUs/AboutUs';
 import ContactUs from './pages/ContactUs/ContactUs';
 import Favorites from './pages/Favorites/Favorites';
 import Home from './pages/Home/Home';
-import CarouselPage from './pages/CarouselPage/CarouselComponent.jsx';
 import Landing from './pages/LandingPage/Landing.jsx'
 import NotFound from './pages/NotFound/NotFound';
 import Detail from './components/Detail/Detail';

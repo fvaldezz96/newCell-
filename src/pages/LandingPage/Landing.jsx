@@ -9,7 +9,7 @@
 import React, { useState } from 'react';
 import './Landing.css'; // Optional for custom styles
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CarouselComponent from '../CarouselPage/CarouselComponent';
+import CarouselComponent from '../../components/CarouselPage/CarouselComponent';
 
 // const dataJson1 = items1
 // const dataJson2 = items2
