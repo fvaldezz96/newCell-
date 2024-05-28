@@ -12,7 +12,7 @@ export default function Favorites() {
         if (storedFavs) {
             setFavorites(storedFavs);
         }
-    }, []); // Empty dependency array to fetch data only once on component mount
+    }, []);
 
     const deleteFav = (id) => {
         let arr = favorites.filter(e => e.id !== id);
@@ -20,17 +20,16 @@ export default function Favorites() {
         setFavorites(arr);
     };
 
-    // Helper function to create grid rows (adjust grid classes for responsiveness)
     const createGridRows = (favorites) => {
         const rows = [];
-        for (let i = 0; i < favorites.length; i += 3) { // Adjust the increment (e.g., +4 for 4 columns)
-            const row = favorites.slice(i, i + 3); // Get a slice of 3 elements for each row
+        for (let i = 0; i < favorites.length; i += 3) {
+            const row = favorites.slice(i, i + 3);
             rows.push(
-                <div className="row" key={i}>
+                <div className="row d-flex justify-content-center" key={i}>
                     {row.map((favorite) => (
-                        <div className="col-md-4" key={favorite.id}>
+                        <div className="col-md-3" key={favorite.id}>
                             <FavCard
-                                {...favorite} // Spread all properties using ... operator
+                                {...favorite}
                                 deleteFav={deleteFav}
                             />
                         </div>
@@ -47,7 +46,7 @@ export default function Favorites() {
             {favorites.length === 0 ? (
                 <NothingFound />
             ) : (
-                <div className="favoriteCards d-flex flex-wrap justify-content-between">
+                <div className="d-flex flex-wrap justify-content-between">
                     {createGridRows(favorites)}
                 </div>
             )}

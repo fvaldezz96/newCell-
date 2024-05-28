@@ -5,6 +5,7 @@ import { Card, CardContent, CardMedia, Typography, IconButton } from "@mui/mater
 import React from 'react'
 import { cart, remove } from '../../components/Toast/Toast'
 import { BsCartFill } from 'react-icons/bs';
+import { CardTitle } from 'reactstrap';
 
 export default function FavCard({ id, brand, line, model, price, stock, capacity, image, memoryRAM, deleteFav }) {
 
@@ -22,17 +23,20 @@ export default function FavCard({ id, brand, line, model, price, stock, capacity
     deleteFav(id)
   }
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 260, maxHeight: 520 }}>
       <CardMedia
         component="img"
-        height="140"
+        height="240"
         image={image}
         alt="Product Image"
+        sx={{
+          objectFit: 'cover'
+        }}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <CardTitle gutterBottom variant="h5" component="div">
           <Link to={`/detail/${id}`}>{model}</Link>
-        </Typography>
+        </CardTitle>
         <Typography variant="body2" color="text.secondary">
           Brand: {brand}
         </Typography>
