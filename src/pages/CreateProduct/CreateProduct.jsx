@@ -264,8 +264,8 @@ export default function CreateProduct() {
                           />
                         </div>
                       </div>
-                      <h6>Specifications:</h6>
                       <div className='row'>
+                        <h6 className='justify-content-center d-flex' style={{ fontSize: '30px' }}>Specifications:</h6>
                         <div className='col-sm'>
                           <CustomInput
                             label="Color: "

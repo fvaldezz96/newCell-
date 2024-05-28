@@ -17,11 +17,8 @@ import { FcLike } from "react-icons/fc";
 export default function Detail(props) {
 
     const dispatch = useDispatch();
-    // let id=props.match.params.id;
     const { id } = useParams()
     const myCell = useSelector((state) => state.details);
-    // const allRatings = useSelector((state) => state.allRating);
-    // console.log(allRatings, 'soy  lo que llega del back')
     const get = () => {
         dispatch(cellDetail(id))
     }

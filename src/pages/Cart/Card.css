@@ -3,23 +3,22 @@
   height: 100vh;
 }
 
-.containerGeneralLogin{
+.containerGeneralLogin {
   width: 100%;
   height: 100vh;
 }
 
 .shoppingCart {
   padding: 1em 2.5em;
-  margin: 1.5em 3em;
+  margin: 2rem;
   display: flex;
   flex-direction: column;
   background-color: white;
   border-radius: 1em;
-  box-shadow: .5em .5em 2em #282c34;
+  box-shadow: 0px 0px 12px -6px;
 }
 
 .shoppingCart h2 {
-  border-bottom: 1px solid rgb(0, 0, 0, .3);
   width: 65%;
   padding-bottom: .5em;
   margin: 0;
@@ -28,6 +27,7 @@
 .shoppingCart .cardShoppingCart {
   display: flex;
   flex-direction: row;
+  cursor: pointer;
   width: 100%;
   border: none;
   border-bottom: 1px solid rgb(0, 0, 0, .3);
@@ -39,7 +39,9 @@
 
 .principalSC {
   display: flex;
-  gap: 2em;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
@@ -48,7 +50,7 @@
 }
 
 .cardShoppingCart .cardContainerImageSC {
-  height: 10em;
+  height: 10rem;
   width: 15%;
 }
 
@@ -58,9 +60,16 @@
   object-fit: contain;
 }
 
+/* CONTENEDOR */
+.body-styles-component {
+  height: 100%;
+}
+
 .containerBodySC {
-  width: 65%;
+  padding: 1.6rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
   gap: .7em;
 }
@@ -80,11 +89,9 @@
 }
 
 .containerButtonsSC {
-  text-align: center;
-  width: 15%;
-  height: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  flex-direction: row;
   align-items: center;
   gap: 3em;
   padding-left: 1em;
@@ -94,6 +101,18 @@
 .containerButtonsSC .MuiSvgIcon-root {
   color: #169E85;
   cursor: pointer;
+}
+
+/* IMAGEN STYLES CARD  */
+.container-image {
+  height: 12rem;
+  width: 100%;
+}
+
+.container-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .selectQuantity {

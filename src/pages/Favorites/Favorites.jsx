@@ -3,6 +3,7 @@ import './Favorites.css';
 import FavCard from "./FavCard";
 import { Toaster } from "react-hot-toast";
 import NothingFound from "../../components/NothingFound/NothingFound";
+import { Margin, Padding } from "@mui/icons-material";
 
 export default function Favorites() {
     const [favorites, setFavorites] = useState([]);
@@ -25,9 +26,9 @@ export default function Favorites() {
         for (let i = 0; i < favorites.length; i += 3) {
             const row = favorites.slice(i, i + 3);
             rows.push(
-                <div className="row d-flex justify-content-center" key={i}>
+                <div className="row" key={i} >
                     {row.map((favorite) => (
-                        <div className="col-md-3" key={favorite.id}>
+                        <div key={favorite.id} className="col" >
                             <FavCard
                                 {...favorite}
                                 deleteFav={deleteFav}
@@ -40,15 +41,20 @@ export default function Favorites() {
         return rows;
     };
 
+    const rowStyle = {
+        display: 'grid',
+        gap: '20px',
+        gridRowGap: '40px',
+    };
     return (
-        <div className="containerHome">
+        <div className="container" style={{ ...rowStyle, padding: '20px' }}>
             <h1>Favorites</h1>
             {favorites.length === 0 ? (
                 <NothingFound />
             ) : (
-                <div className="d-flex flex-wrap justify-content-between">
+                <>
                     {createGridRows(favorites)}
-                </div>
+                </>
             )}
             <Toaster position="bottom-right" reverseOrder={false} />
         </div>

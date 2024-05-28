@@ -23,19 +23,17 @@ export default function FavCard({ id, brand, line, model, price, stock, capacity
     deleteFav(id)
   }
   return (
-    <Card sx={{ maxWidth: 260, maxHeight: 520 }}>
+    <Card sx={{ maxWidth: 300, height: "30rem", cursor: "pointer" }} className='shadow p-3 mb-5 bg-white rounded'>
       <CardMedia
         component="img"
-        height="240"
         image={image}
+        height="240"
         alt="Product Image"
-        sx={{
-          objectFit: 'cover'
-        }}
+        sx={{ objectFit: 'cover' }}
       />
       <CardContent>
-        <CardTitle gutterBottom variant="h5" component="div">
-          <Link to={`/detail/${id}`}>{model}</Link>
+        <CardTitle gutterBottom variant="h5" component="div" style={{ fontSize: "14px", fontStyle: "bold" }}>
+          <Link to={`/detail/${id}`} className="text-decoration-none fw-bold ">{model}</Link>
         </CardTitle>
         <Typography variant="body2" color="text.secondary">
           Brand: {brand}
