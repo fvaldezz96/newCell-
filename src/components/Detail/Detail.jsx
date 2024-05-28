@@ -10,6 +10,7 @@ import { BsStarFill } from 'react-icons/bs';
 import { Toaster } from 'react-hot-toast'
 import Ratings from "../startRatings/Ratings";
 import Loading from "../Loading/Loading";
+import { FcLike } from "react-icons/fc";
 
 
 
@@ -44,9 +45,9 @@ export default function Detail(props) {
                             <div className="card row detailsContainer d-flex flex-column align-items-center">
                                 <div className="d-flex flex-row justify-content-between">
                                     <Link to='/home' className="align-self-start">
-                                        <button className="btn btn-primary bg3 border-0 m-3" style={{ width: '2.3rem' }} onClick={(e) => handleClearStatus(e)}>X</button>
+                                        <button className="btn-close" aria-label="Close" style={{ width: '2.3rem' }} onClick={(e) => handleClearStatus(e)}></button>
                                     </Link>
-                                    <BsStarFill className='CardIcon' onClick={() => fav(myCell.id, myCell.brand, myCell.line, myCell.model, myCell.price, myCell.stock, myCell.capacity, myCell.image, myCell.memoryRAM)} />
+                                    <FcLike onClick={() => fav(myCell.id, myCell.brand, myCell.line, myCell.model, myCell.price, myCell.stock, myCell.capacity, myCell.image, myCell.memoryRAM)} />
                                 </div>
                                 <div className=" col-12 d-flex flex-sm-column flex-md-row align-items-center justify-content-center">
                                     <div className="d-flex flex-column" style={{ width: '65%' }}>
