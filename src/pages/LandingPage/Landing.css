@@ -1,6 +1,5 @@
 .landing-page {
     max-width: 1140px;
-    /* Adjust as needed */
     margin: 0 auto;
     padding: 20px;
 }
@@ -9,7 +8,6 @@
 .header {
     background-color: #fff;
     border-radius: 10px 10px 0 0;
-    /* Rounded top corners */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
@@ -30,7 +28,6 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px 0 0 5px;
-    /* Rounded left corners */
 }
 
 .search-bar button {
@@ -88,7 +85,8 @@
 }
 
 .product-card {
-    margin-bottom: 20px;
+    flex-direction: column;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: box-shadow 0.3s ease;
@@ -103,7 +101,6 @@
     height: 200px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
-    /* Rounded top corners */
 }
 
 .product-card h3 {

@@ -1,20 +1,8 @@
-
-// import React, { useState, useEffect } from 'react';
-// import { Carousel } from 'react-bootstrap';
-// import '../CarouselPage/LandingPage.css'
-// import items from '../CarouselPage/JsonData';
-// import items1 from './data'
-// import items2 from './data.1'
-// import items3 from './data.2'
 import React, { useState } from 'react';
 import './Landing.css'; // Optional for custom styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CarouselComponent from '../../components/CarouselPage/CarouselComponent';
-
-// const dataJson1 = items1
-// const dataJson2 = items2
-// const dataJson3 = items3
-// const dataJson = items
+import { Col, Row } from 'react-bootstrap';
 const Landing = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -23,8 +11,7 @@ const Landing = () => {
     };
 
     const handleSearchSubmit = (event) => {
-        event.preventDefault(); // Prevent default form submission
-        // Implement your search logic here (e.g., redirect to search results page)
+        event.preventDefault();
     };
 
     return (
@@ -45,7 +32,6 @@ const Landing = () => {
                     </form>
                 </div>
             </header>
-
             <main className="main">
                 <section className="hero">
                     <div className="container">
@@ -56,18 +42,15 @@ const Landing = () => {
                         <a href="#" className="btn btn-primary">Comprar ahora</a>
                     </div>
                 </section>
-
-                <section className="products">
-                    <div className="container">
-                        <h2>Productos destacados</h2>
-                        {/* Placeholder for product listings (you'll need to fetch and display your products here) */}
-                        <div className="product-card">
-                            <CarouselComponent />
+                <section>
+                    <div className="product-card">
+                        <CarouselComponent />
+                        <div>
+                            <h2>Productos destacados</h2>
                             <h3>Nombre del producto</h3>
                             <p>Descripción breve del producto</p>
                             <a href="#" className="btn btn-secondary">Ver detalles</a>
                         </div>
-                        {/* ... more product cards */}
                     </div>
                 </section>
 
@@ -78,12 +61,6 @@ const Landing = () => {
                     </div>
                 </section>
             </main>
-
-            <footer className="footer">
-                <div className="container">
-                    <p>&copy; 2024 Tu Ecommerce</p>
-                </div>
-            </footer>
         </div>
     );
 }

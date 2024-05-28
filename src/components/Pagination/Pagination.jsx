@@ -9,8 +9,8 @@ export default function Pagination({ postPerPage, totalPosts, paginate, currentP
     paginate(pageNumber)
   }
   return (
-    <nav aria-label="Page navigation example">
-      <ul className="pagination justify-content-center">
+    <nav aria-label="Page navigation example ">
+      <ul className="pagination justify-content-center custom-pagination">
         <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
           <a
             className="page-link"
