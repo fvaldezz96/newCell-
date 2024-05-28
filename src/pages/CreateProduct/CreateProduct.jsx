@@ -175,145 +175,228 @@ export default function CreateProduct() {
     isAuthenticated && userLogin && userLogin[0] && userLogin[0].role === "Administrador"
       ? (
         <div className="container">
-          <h1 className="title text-center p-3">Create Product</h1>
           <div className="abs-center">
             <Formik initialValues={products} onSubmit={onSubmit} validationSchema={ValidateInput}>
               {
                 (props) => (
                   <>
-                    <Form className="shadow-lg mb-5 row g-3 needs-validation p-3 form border-info ">
-                      <CustomInput
-                        label="Model: "
-                        name="model"
-                        type="text"
-                        placeholder="Enter the model"
-                      />
-                      <CustomInput
-                        label="Line: "
-                        name="line"
-                        type="text"
-                        placeholder="Enter the line"
-                      />
-                      <CustomInput
-                        label="Image: "
-                        name="images"
-                        type="file"
-                        onChange={(ev) => onChangeValue(ev, props)}
-                      />
-                      <CustomSelect
-                        label="All Brands: "
-                        name="brand"
-                        type="text"
-                        placeholder="Please Selecciona:"
-                      >
-                        <option value="">Select Brand: </option>
-                        {
-                          allBrandData?.map((e, index) => (
-                            <option key={index} id="brand" value={e}>{e}</option>
-                          ))
-                        }
-                      </CustomSelect>
-                      <CustomInput
-                        label="Capacity: "
-                        name="capacity"
-                        type="number"
-                        placeholder="Enter the capacity"
-                      />
-                      <CustomInput
-                        label="Memory RAM: "
-                        name="memoryRAM"
-                        type="number"
-                        placeholder="Enter the Memory RAM"
-                        min="0" max="5"
-                      />
-                      <CustomInput
-                        label="Price: "
-                        name="price"
-                        type="number"
-                        placeholder="Enter the Price"
-                      />
-                      <CustomInput
-                        label="Stock: "
-                        name="stock"
-                        type="number"
-                        placeholder="Enter the Stock"
-                      />
-                      <CustomTextArea
-                        label="Description: "
-                        name="description"
-                        type="text"
-                        placeholder="Enter the Description"
-                      />
-                      <div>
-                        <h6>Specifications:</h6>
-                        <CustomInput
-                          label="Color: "
-                          name="color"
-                          // values={state.color}
-                          onChange={(ev) => onChangeValue(ev, props)}
+                    <Form className="shadow-lg mb-5 row g-3 needs-validation mt-4 form border-info font-weight: bold ">
+                      <h1 className="title text-center pt-3">Create Product</h1>
+                      <div className='container'>
+                        <div className='row'>
+                          <div className='col-sm'>
+                            <CustomInput
+                              label="Model: "
+                              name="model"
+                              type="text"
+                              placeholder="Enter the model"
+                              className="mb-3"
+                            />
+                          </div>
+                          <div className='col-sm'>
+                            <CustomInput
+                              label="Line: "
+                              name="line"
+                              type="text"
+                              placeholder="Enter the line"
+                              className="mb-3"
+                            />
+                          </div>
+                          <div className='col-sm'>
+                            <CustomInput
+                              label="Image: "
+                              name="images"
+                              type="file"
+                              onChange={(ev) => onChangeValue(ev, props)}
+                              className="mb-3"
+                            />
+                          </div>
+                          <div className='col-sm'>
+                            <CustomSelect
+                              label="All Brands: "
+                              name="brand"
+                              type="text"
+                              placeholder="Please Selecciona:"
+                              className="mb-3"
+                            >
+                              <option value="">Select Brand: </option>
+                              {
+                                allBrandData?.map((e, index) => (
+                                  <option key={index} id="brand" value={e}>{e}</option>
+                                ))
+                              }
+                            </CustomSelect>
+                          </div>
+                        </div>
+                      </div>
+                      <div className='row'>
+                        <div className='col-sm'>
+                          <CustomInput
+                            label="Memory RAM: "
+                            name="memoryRAM"
+                            type="number"
+                            placeholder="Enter the Memory RAM"
+                            min="0" max="5"
+                            className="mb-3"
+                          />
+                          <CustomInput
+                            label="Price: "
+                            name="price"
+                            type="number"
+                            placeholder="Enter the Price"
+                            className="mb-3"
+                          />
+                        </div>
+                        <div className='col-sm'>
+                          <CustomInput
+                            label="Stock: "
+                            name="stock"
+                            type="number"
+                            placeholder="Enter the Stock"
+                            className="mb-3"
+                          />
+                          <CustomInput
+                            label="Capacity: "
+                            name="capacity"
+                            type="number"
+                            placeholder="Enter the capacity"
+                            className="mb-3"
+                          />
+                        </div>
+                      </div>
+                      <h6>Specifications:</h6>
+                      <div className='row'>
+                        <div className='col-sm'>
+                          <CustomInput
+                            label="Color: "
+                            name="color"
+                            // values={state.color}
+                            onChange={(ev) => onChangeValue(ev, props)}
+                            type="text"
+                            placeholder="Enter the Color"
+                            className="mb-3"
+                          />
+                        </div>
+                        <div className='col-sm'>
+                          <CustomSelect
+                            label="Dual SIM: "
+                            name="dualSim"
+                            // values={state.dualSim}
+                            onChange={(ev) => onChangeValue(ev, props)}
+                            type="text"
+                            placeholder="Enter the Dual SIM"
+                          >
+                            <option value="">Select Dual SIM: </option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                          </CustomSelect>
+                        </div>
+                        <div className='col-sm'>
+                          <CustomInput
+                            label="Operating system "
+                            name="operating"
+                            // values={state.operating}
+                            onChange={(ev) => onChangeValue(ev, props)}
+                            type="text"
+                            placeholder="Enter the Operating System"
+                            className="mb-3"
+                          />
+                        </div>
+                      </div>
+                      <div className='row'>
+                        <div className='col-sm'>
+                          <CustomInput
+                            label="Rear Camera Resolution: "
+                            name="rearCamera"
+                            // values={state.rearCamera}
+                            onChange={(ev) => onChangeValue(ev, props)}
+                            type="number"
+                            placeholder="Enter the Rear Camera Resolution"
+                            className="mb-3"
+                          />
+                        </div>
+                        <div className='col-sm'>
+                          <CustomInput
+                            label="Front Camera Resolution: "
+                            name="frontCamera"
+                            // values={state.frontCamera}
+                            onChange={(ev) => onChangeValue(ev, props)}
+                            type="number"
+                            placeholder="Enter the Front Camera Resolution"
+                            className="mb-3"
+                          />
+                        </div>
+                        <div className='col-sm'>
+                          <CustomInput
+                            label="Launching: "
+                            name="launching"
+                            // values={state.launching}
+                            onChange={(ev) => onChangeValue(ev, props)}
+                            type="text"
+                            placeholder="Enter the Launching"
+                            className="mb-3"
+                          />
+                        </div>
+                      </div>
+                      <div className='row'>
+                        <div className='col-sm'>
+                          <CustomInput
+                            label="Rear Camera Resolution: "
+                            name="rearCamera"
+                            // values={state.rearCamera}
+                            onChange={(ev) => onChangeValue(ev, props)}
+                            type="number"
+                            placeholder="Enter the Rear Camera Resolution"
+                            className="mb-3"
+                          />
+                        </div>
+                        <div className='col-sm'>
+                          <CustomInput
+                            label="Front Camera Resolution: "
+                            name="frontCamera"
+                            // values={state.frontCamera}
+                            onChange={(ev) => onChangeValue(ev, props)}
+                            type="number"
+                            placeholder="Enter the Front Camera Resolution"
+                            className="mb-3"
+                          />
+                        </div>
+                        <div className='col-sm'>
+                          <CustomInput
+                            label="Launching: "
+                            name="launching"
+                            // values={state.launching}
+                            onChange={(ev) => onChangeValue(ev, props)}
+                            type="text"
+                            placeholder="Enter the Launching"
+                            className="mb-3"
+                          />
+                        </div>
+                        <div className='col-sm'>
+                          <CustomSelect
+                            label="Resistant to the water: "
+                            name="resistant"
+                            // values={state.resistant}
+                            onChange={(ev) => onChangeValue(ev, props)}
+                            type="text"
+                            placeholder="Enter the Resistant to the water"
+                          >
+                            <option value="">Select Resistant to the water: </option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                          </CustomSelect>
+                        </div>
+                        <CustomTextArea
+                          label="Description: "
+                          name="description"
                           type="text"
-                          placeholder="Enter the Color"
+                          placeholder="Enter the Description"
+                          className="mb-3"
                         />
-                        <CustomSelect
-                          label="Dual SIM: "
-                          name="dualSim"
-                          // values={state.dualSim}
-                          onChange={(ev) => onChangeValue(ev, props)}
-                          type="text"
-                          placeholder="Enter the Dual SIM"
-                        >
-                          <option value="">Select Dual SIM: </option>
-                          <option value="Yes">Yes</option>
-                          <option value="No">No</option>
-                        </CustomSelect>
-                        <CustomInput
-                          label="Operating system "
-                          name="operating"
-                          // values={state.operating}
-                          onChange={(ev) => onChangeValue(ev, props)}
-                          type="text"
-                          placeholder="Enter the Operating System"
-                        />
-                        <CustomInput
-                          label="Rear Camera Resolution: "
-                          name="rearCamera"
-                          // values={state.rearCamera}
-                          onChange={(ev) => onChangeValue(ev, props)}
-                          type="number"
-                          placeholder="Enter the Rear Camera Resolution"
-                        />
-                        <CustomInput
-                          label="Front Camera Resolution: "
-                          name="frontCamera"
-                          // values={state.frontCamera}
-                          onChange={(ev) => onChangeValue(ev, props)}
-                          type="number"
-                          placeholder="Enter the Front Camera Resolution"
-                        />
-                        <CustomInput
-                          label="Launching: "
-                          name="launching"
-                          // values={state.launching}
-                          onChange={(ev) => onChangeValue(ev, props)}
-                          type="text"
-                          placeholder="Enter the Launching"
-                        />
-                        <CustomSelect
-                          label="Resistant to the water: "
-                          name="resistant"
-                          // values={state.resistant}
-                          onChange={(ev) => onChangeValue(ev, props)}
-                          type="text"
-                          placeholder="Enter the Resistant to the water"
-                        >
-                          <option value="">Select Resistant to the water: </option>
-                          <option value="Yes">Yes</option>
-                          <option value="No">No</option>
-                        </CustomSelect>
                       </div>
                       <div className="d-grid gap-2 d-md-flex justify-content-md-center text-decoration-none">
-                        <input disabled={Object.keys(props.errors).length !== 0 ? true : props.isSubmitting} type="submit" value="Create" onClick={() => onCLick(props.values, props)} className="btn btn-outline-dark" />
-                        <input type="submit" value="Cancel" onClick={() => onClickCancel(props)} className="btn btn-outline-dark" />
+                        <input disabled={Object.keys(props.errors).length !== 0 ? true : props.isSubmitting} type="submit" value="Create" onClick={() => onCLick(props.values, props)} className="btn btn-success" />
+                        <input type="submit" value="Cancel" onClick={() => onClickCancel(props)} className="btn btn-danger" />
                       </div>
                     </Form>
                   </>

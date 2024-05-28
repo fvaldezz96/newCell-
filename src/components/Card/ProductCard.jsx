@@ -31,8 +31,8 @@ export default function ProductCard({ id, brand, line, model, price, stock, capa
               </div>
               {/* BUTTONS */}
               <div className='containerButton'>
-                <FcLike className='CardIcon' onClick={() => fav(id, brand, line, model, price, stock, capacity, image, memoryRAM)} />
-                <BsCartFill className='CardIcon' onClick={() => cart(id, brand, line, model, price, stock, capacity, image, memoryRAM)} />
+                <FcLike className='button-like' onClick={() => fav(id, brand, line, model, price, stock, capacity, image, memoryRAM)} />
+                <BsCartFill className='button-add-shop' onClick={() => cart(id, brand, line, model, price, stock, capacity, image, memoryRAM)} />
               </div>
             </div>
             {/* INFO */}

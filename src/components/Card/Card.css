@@ -76,7 +76,15 @@
 }
 
 /* BTN-CARDS (LIKE- CARRITO */
-.CardIcon {
+.button-like {
+  cursor: pointer;
+  margin: 0.5em;
+  width: 1.9em;
+  height: 1.2em;
+  color: rgb(61, 61, 61);
+}
+
+.button-add-shop {
   cursor: pointer;
   margin: 0.5em;
   width: 1.9em;
@@ -84,8 +92,12 @@
   color: rgb(61, 61, 61)
 }
 
-.CardIcon:hover {
+.button-add-shop :hover {
   color: #169E85;
+}
+
+.button-like:hover {
+  color: #9e1616;
 }
 
 .cardPrice {
