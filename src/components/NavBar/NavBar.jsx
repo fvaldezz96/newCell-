@@ -143,7 +143,7 @@ export default function NavBar() {
 
                 ? (!gmail[0] ?
                   <Link to='/postUser'>
-                    <button type="button" className="btn btn-outline-danger">Complete your user information</button>
+                    <button type="button" className="w-75 btn btn-outline-danger">Complete your user information</button>
                   </Link>
                   : null
                 )
