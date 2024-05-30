@@ -30,9 +30,6 @@ const DetailOrder = () => {
 
                         <div className="subcontainer01-order">
                             <div className="title-order-detail"><h1>Order Detail</h1></div>
-
-
-
                             {order && order.user ?
                                 <div>
                                     <br /><br />
@@ -83,7 +80,6 @@ const DetailOrder = () => {
                         </div>
                         <div className="container-cells-order">
                             {/* Se muestra las Cartas */}
-
                             {order.cells && order.cells.length ? order.cells.map(c => {
                                 return (
                                     <div className="cell-card-order">

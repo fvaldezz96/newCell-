@@ -220,11 +220,11 @@ export function putCell(a) {
          });
    };
 }
-
+//CHANGES GETALLUSERS
 export const getAllUsers = () => {
    return async function (dispatch) {
       const users = await axios('/users/admin');
-      return dispatch({
+      dispatch({
          type: GET_ALL_USERS,
          payload: users.data
       });

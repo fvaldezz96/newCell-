@@ -27,7 +27,7 @@ export default function Pagination({ postPerPage, totalPosts, paginate, currentP
             className={`page-item ${currentPage === page ? 'active' : ''}`}
             onClick={() => handlePage(page)}
           >
-            <a className="page-link" href="#">
+            <a className="page-link" href="img not found">
               {page}
             </a>
           </li>

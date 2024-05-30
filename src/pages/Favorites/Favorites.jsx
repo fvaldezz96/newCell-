@@ -3,7 +3,7 @@ import './Favorites.css';
 import FavCard from "./FavCard";
 import { Toaster } from "react-hot-toast";
 import NothingFound from "../../components/NothingFound/NothingFound";
-import { Margin, Padding } from "@mui/icons-material";
+// import { Margin, Padding } from "@mui/icons-material";
 
 export default function Favorites() {
     const [favorites, setFavorites] = useState([]);

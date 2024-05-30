@@ -15,11 +15,6 @@ export default function DbCart({ user }) {
     const isLoading = useSelector(state => state.isLoading);
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        localStorage.setItem("carrrito", JSON.stringify(cart))
-        setPrice()
-    }, [cart])
-
     const setPrice = () => {
         let total = 0
         cart.forEach(e => { total += e.price * (e.quantity ? e.quantity : 1) })
@@ -28,6 +23,7 @@ export default function DbCart({ user }) {
     }
 
     useEffect(() => {
+        localStorage.setItem("carrrito", JSON.stringify(cart))
         dispatch(getUserCart(user.email))
         setPrice()
     }, [dispatch])
@@ -45,10 +41,10 @@ export default function DbCart({ user }) {
         setPrice()
     }
 
-    console.log(isLoading, 'isLoanding data!');
-    console.log(cart, 'cart.length front');
+    // console.log(isLoading, 'isLoanding data!');
+    // console.log(cart, 'cart.length front');
     if (isLoading || !cart) { return (<Loading />) }
-    console.log(cart.length, 'cart.length front');
+    // console.log(cart.length, 'cart.length front');
     if (!cart.length) { return (<NothingFound />) }
 
     return (

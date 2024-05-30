@@ -1,5 +1,5 @@
 import React from 'react';
-import { BsCartFill, BsStarFill } from 'react-icons/bs';
+import { BsCartFill } from 'react-icons/bs';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 

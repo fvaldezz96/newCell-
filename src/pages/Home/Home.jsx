@@ -47,8 +47,8 @@ export default function Home() {
 
   // Pagination logic
   const postPerPage = 6; // Adjust this value as needed
-  const product = useSelector(state => state.products);
-  const totalPages = Math.ceil(product.length / postPerPage);
+  // const product = useSelector(state => state.products);
+  // const totalPages = Math.ceil(product.length / postPerPage);
   const paginate = (number) => {
     setCurrentPage(number);
   };

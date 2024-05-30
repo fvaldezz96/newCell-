@@ -45,7 +45,7 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path="/create" element={<CreateProduct />} />
         <Route path='/postUser' element={<PostUser />} />
-        <Route path='/cart/paymentForm' element={<Elements stripe={stripePromise}><PaymentForm></PaymentForm></Elements>} />
+        <Route path='/cart/paymentForm' element={<Elements stripe={stripePromise}><PaymentForm /></Elements>} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path='/Profile' element={<Profile />} />
         <Route path='/panelCells' element={<PanelAdminCells />} />

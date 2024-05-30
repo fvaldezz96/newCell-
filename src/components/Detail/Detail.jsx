@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { cellDetail, cleanStatus } from "../../redux/actions";
 import Questions from "../Questions/Questions.jsx";
 import { fav, cart } from '../Toast/Toast'
-import { BsStarFill } from 'react-icons/bs';
+// import { BsStarFill } from 'react-icons/bs';
 import { Toaster } from 'react-hot-toast'
 import Ratings from "../startRatings/Ratings";
 import Loading from "../Loading/Loading";

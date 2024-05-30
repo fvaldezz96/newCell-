@@ -172,7 +172,7 @@ const Profile = () => {
         <div className="row">
           <div className="col-12 my-3 pt-3 shadow">
             {/* {JSON.stringify(user)} */}
-            <img className="ProfileImg" src={user.picture} alt='Profile Image' />
+            <img className="ProfileImg" src={user.picture} alt='Profile Imagene' />
             <h4>{user.name}</h4>
             <h5>{user.email}</h5>
             <div>

@@ -41,7 +41,7 @@ const Questions = ({ cellId, q, get }) => {
          })
       }
 
-   }, [dispatch, q])
+   }, [dispatch, q, isAuthenticated, question, user.email]) //QUITE UNA "Q"
 
 
    const handleChange = (e) => {

@@ -1,5 +1,5 @@
 //import './Card.css'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { TiDelete } from 'react-icons/ti';
 import { Card, CardContent, CardMedia, Typography, IconButton } from "@mui/material";
 import React from 'react'
@@ -9,7 +9,7 @@ import { CardTitle } from 'reactstrap';
 
 export default function FavCard({ id, brand, line, model, price, stock, capacity, image, memoryRAM, deleteFav }) {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleDelete = (id) => {
     remove();
     deleteFav(id);
@@ -18,10 +18,10 @@ export default function FavCard({ id, brand, line, model, price, stock, capacity
   const handleAddToCart = (id, brand, line, model, price, stock, capacity, image, memoryRAM) => {
     cart(id, brand, line, model, price, stock, capacity, image, memoryRAM);
   };
-  const delet = (id) => {
-    remove()
-    deleteFav(id)
-  }
+  // const delet = (id) => {
+  //   remove()
+  //   deleteFav(id)
+  // }
   return (
     <Card sx={{ maxWidth: 300, height: "30rem", cursor: "pointer" }} className='shadow p-3 mb-5 bg-white rounded'>
       <CardMedia

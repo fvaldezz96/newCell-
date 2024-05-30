@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import React, { useState, useEffect } from 'react';
 import { allUser } from "../../redux/actions";
-import { BsCartFill, BsStarFill, BsFillPhoneFill, BsCardChecklist } from 'react-icons/bs';
+import { BsCartFill, BsFillPhoneFill, BsCardChecklist } from 'react-icons/bs';
 import { FcLike } from "react-icons/fc";
 import { AiOutlineUpload } from 'react-icons/ai';
 // import { AiOutlineUserAdd } from "react-icons/ai"

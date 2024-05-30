@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Landing.css'; // Optional for custom styles
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CarouselComponent from '../../components/CarouselPage/CarouselComponent';
-import { Col, Row } from 'react-bootstrap';
+// import { Col, Row } from 'react-bootstrap';
 const Landing = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
@@ -39,7 +39,7 @@ const Landing = () => {
                         <p className="hero-description">
                             Explora nuestra amplia gama de productos y descubre ofertas increíbles.
                         </p>
-                        <a href="#" className="btn btn-primary">Comprar ahora</a>
+                        <a href="img buy" className="btn btn-primary">Comprar ahora</a>
                     </div>
                 </section>
                 <section>
@@ -49,7 +49,7 @@ const Landing = () => {
                             <h2>Productos destacados</h2>
                             <h3>Nombre del producto</h3>
                             <p>Descripción breve del producto</p>
-                            <a href="#" className="btn btn-secondary">Ver detalles</a>
+                            <a href="img detail product" className="btn btn-secondary">Ver detalles</a>
                         </div>
                     </div>
                 </section>
