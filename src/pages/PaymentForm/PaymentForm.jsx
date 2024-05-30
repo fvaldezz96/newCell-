@@ -21,6 +21,7 @@ export default function PaymentForm() {
   const totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
   const items = JSON.parse(localStorage.getItem("carrrito"))
   const { user } = useAuth0()
+  console.log(user, "data user!")
 
   useEffect(() => {
     if (user) {
@@ -29,36 +30,36 @@ export default function PaymentForm() {
     }
   }, [user, dispatch])
 
-  var esteUsuario = {}
+  let theUser = {}
   if (user !== undefined) {
     for (let i in users) {
       if (users[i].email === user.email) {
-        esteUsuario = users[i];
+        theUser = users[i];
+        console.log(theUser, "email the user!!")
       }
     }
   }
-  //------------------------
-
+  //FOR DEFAULT
   let history = useNavigate();
   function handleRegresar(e) {
     history("/cart");
   }
 
-  async function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const { error, paymentMethod } = await stripe.createPaymentMethod({ //Tieme objetos que debe de completar
-      type: "card",  //type de pago: metodo de tarjeta
-      card: elements.getElement(CardNumberElement) //Selecciona el input element de la tarjeta
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardNumberElement)
     });
+    console.log(paymentMethod, "payment method!!!")
     setLoading(true)
-
     if (!error) {
       const { id } = paymentMethod
       try {
         const data = await axios.post(`http://localhost:3001/checkout`, {
           id,
           amount: (Number(totalPrice)),
-          userIdName: esteUsuario.id,
+          userIdName: theUser.id,
           mail: user.email,
           arr: items,
 
@@ -66,14 +67,13 @@ export default function PaymentForm() {
         if (data.status === 200) {
           localStorage.removeItem("totalPrice")
           localStorage.removeItem("carrrito")
-          await axios.delete('/cart', { data: { userId: esteUsuario.id } })
+          await axios.delete('/cart', { data: { userId: theUser.id } })
           alert(`You have pay $ ${totalPrice} successfully`)
         }
         setLoading(false)
         history("/")
       } catch (error) {
         setLoading(false)
-        // console.log(error);
       }
     }
   }
@@ -89,9 +89,7 @@ export default function PaymentForm() {
           {/* <input type="submit" value={'Continue Shopping'} onClick={(e) => handleRegresar(e)} /> */}
         </div>
         <hr></hr>
-        <div>
-          {/* Se muestra las Cartas */}
-
+        <div className="container">
           {items && items.length ? items.map(product => {
             return (
               <CardPayment
@@ -106,27 +104,21 @@ export default function PaymentForm() {
         </div>
       </div>
       <hr />
-      <div className="subcontainer02">
-        <div className="containerCardDetails">
-          <div className="tituloCardDetails">
-            <h2>Card Details</h2>
-          </div>
-          <div className="containerSubCard">
-            <h4> Card Number </h4>
-            <CardNumberElement className="cardNumb" />
-
-            <h4> Date </h4>
-            <CardExpiryElement className="cardExpi" />
-
-            <h4> CVV </h4>
-            <CardCvcElement className="cardCvc" />
-          </div>
-          <div className="containerSubCard02">
-            <button className="btn btn-success" onClick={(e) => handleSubmit(e)} disabled={loading ? true : false}>
-              {loading ? <p>Loading</p> : <p>   {`$ ${totalPrice.toFixed(0)}.00`}</p>}  <p> 'Checkout'   </p>
-            </button>
-          </div>
+      <div className="rounded" style={{ width: "40rem", backgroundColor: "white" }}>
+        <div className="container">
+          <h2 className="h2">Datos Tarjeta</h2>
+          <h4> Card Number </h4>
+          <CardNumberElement className="cardNumb" />
+          <h4> Date </h4>
+          <CardExpiryElement className="cardExpi" />
+          <h4> CVV </h4>
+          <CardCvcElement className="cardCvc" />
         </div>
+      </div>
+      <div className="d-flex justify-content-center ">
+        <button className="btn btn-success" onClick={(e) => handleSubmit(e)} disabled={loading ? true : false}>
+          {loading ? <p>Loading</p> : <p>Comprar: {`$${totalPrice.toFixed(0)}.00`}</p>}
+        </button>
       </div>
     </div>
   )

@@ -1,15 +1,15 @@
-// import React from 'react'
+import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 
 
-const LoginButton=()=>{
+const LoginButton = () => {
 
-const {loginWithRedirect}=useAuth0()
+    const { loginWithRedirect } = useAuth0()
 
     return (
-<button onClick={()=>loginWithRedirect()} className="btn btn-success">Login</button>
+        <button onClick={() => loginWithRedirect()} className="btn btn-success">Login</button>
     )
-        
-    
+
+
 }
 export default LoginButton

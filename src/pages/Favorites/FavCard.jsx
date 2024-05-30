@@ -1,39 +1,62 @@
 //import './Card.css'
 import { Link } from 'react-router-dom';
 import { TiDelete } from 'react-icons/ti';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-// import { addToCart } from '../../components/Card/favAndCart';
+import { Card, CardContent, CardMedia, Typography, IconButton } from "@mui/material";
+import React from 'react'
 import { cart, remove } from '../../components/Toast/Toast'
 import { BsCartFill } from 'react-icons/bs';
+import { CardTitle } from 'reactstrap';
 
 export default function FavCard({ id, brand, line, model, price, stock, capacity, image, memoryRAM, deleteFav }) {
 
-  const delet = (id) => {
-    remove()
-    deleteFav(id)
-  }
+  // const navigate = useNavigate();
+  const handleDelete = (id) => {
+    remove();
+    deleteFav(id);
+  };
+
+  const handleAddToCart = (id, brand, line, model, price, stock, capacity, image, memoryRAM) => {
+    cart(id, brand, line, model, price, stock, capacity, image, memoryRAM);
+  };
+  // const delet = (id) => {
+  //   remove()
+  //   deleteFav(id)
+  // }
   return (
-    <Card className="card" >
-      <Link className='containCardImage' to={"/detail/" + id}>
-        <img className='cardImage' src={image} alt={model} />
-      </Link>
-      <Card.Body className='containCardBody'>
-        <Link to={"/detail/" + id}>
-          <Card.Title className='containerName'>{model}</Card.Title>
-        </Link>
-        <ListGroup className='containerListDescription' variant="flush">
-          <ListGroup.Item className='cardBrand'>Brand {brand}</ListGroup.Item>
-          <ListGroup.Item className='cardBrand'>Stock {stock}</ListGroup.Item>
-          <ListGroup.Item className='cardBrand'>Capacity {capacity}GB</ListGroup.Item>
-          <ListGroup.Item className='cardBrand'>RAM {memoryRAM}GB</ListGroup.Item>
-          <ListGroup.Item className='cardPrice'>${price.toFixed(2)}</ListGroup.Item>
-        </ListGroup>
-      </Card.Body>
-      <div className='containerButton'>
-        <TiDelete className='CardIcon EditIcon' onClick={() => delet(id)} />
-        <BsCartFill className='CardIcon' onClick={() => cart(id, brand, line, model, price, stock, capacity, image, memoryRAM)} />
-      </div>
+    <Card sx={{ maxWidth: 300, height: "30rem", cursor: "pointer" }} className='shadow p-3 mb-5 bg-white rounded'>
+      <CardMedia
+        component="img"
+        image={image}
+        height="240"
+        alt="Product Image"
+        sx={{ objectFit: 'cover' }}
+      />
+      <CardContent>
+        <CardTitle gutterBottom variant="h5" component="div" style={{ fontSize: "14px", fontStyle: "bold" }}>
+          <Link to={`/detail/${id}`} className="text-decoration-none fw-bold ">{model}</Link>
+        </CardTitle>
+        <Typography variant="body2" color="text.secondary">
+          Brand: {brand}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Stock: {stock}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Capacity: {capacity}GB
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          RAM: {memoryRAM}GB
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          Price: ${price.toFixed(2)}
+        </Typography>
+      </CardContent>
+      <IconButton aria-label="delete" onClick={() => handleDelete(id)}>
+        <TiDelete />
+      </IconButton>
+      <IconButton aria-label="add to cart" onClick={() => handleAddToCart(id, brand, line, model, price, stock, capacity, image, memoryRAM)}>
+        <BsCartFill />
+      </IconButton>
     </Card>
   )
 }

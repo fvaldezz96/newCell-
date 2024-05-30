@@ -1,56 +1,59 @@
 .datoImg {
-    width: 60px;
-    margin-top: 1em;
-  }
-
-th{
-    text-align: center;
+  width: 60px;
+  margin-top: 1em;
 }
 
-td{
-
-    text-align: center;
+th {
+  text-align: center;
 }
 
-.dato{
-    margin-top: 2em;
+td {
+
+  text-align: center;
 }
 
-.tableContainer{
-    width: 50%;
-    margin-left: 25%;
-    margin-top: 1em;
+.dato {
+  margin-top: 2em;
 }
 
-
-
-  
-  thead th {
-    text-align: center;
-    border-bottom: 2px solid black;
-  }
-  
-  thead Button {
-    border: 0;
-    border-radius: none;
-    font-family: inherit;
-    font-weight: 700;
-    font-size: inherit;
-    padding: 0.5em;
-    margin-bottom: 1px;
-  }
-
-  .divSearchBar{
-    width: 50%;
-    margin-left: 25%;
-    flex-grow: 2;
-    display: flex;
-    justify-content: center;
+.tableContainer {
+  width: 70%;
+  padding: 2rem;
 }
 
-.form-control{
-    cursor: pointer;
-    font-weight: bold;
+/* CONTAINER COMPONENT */
+.container-style-complet {
+  padding: 2rem;
+  padding-top: 3rem;
+  height: 100vh;
+}
+
+thead th {
+  text-align: center;
+  border-bottom: 2px solid black;
+}
+
+thead Button {
+  border: 0;
+  border-radius: none;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: inherit;
+  padding: 0.5em;
+  margin-bottom: 1px;
+}
+
+.divSearchBar {
+  width: 50%;
+  margin-left: 25%;
+  flex-grow: 2;
+  display: flex;
+  justify-content: center;
+}
+
+.form-control {
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .updateImg {
@@ -58,13 +61,13 @@ td{
   margin-left: 5px;
 }
 
-.updateButton{
+.updateButton {
   margin-left: 25%;
   margin-top: 1em;
   font-weight: bold;
 }
 
-.input-group-text:hover{
+.input-group-text:hover {
   border: 1px solid #000;
 }
 
@@ -72,10 +75,10 @@ th button {
   border: 1px solid transparent;
 }
 
-th button:hover{
+th button:hover {
   border: 1px solid #000;
 }
 
-td button{
+td button {
   width: 5em;
 }

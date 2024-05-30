@@ -89,22 +89,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
         users: payload
       }
     case USER_ID:
-      return ({
-        ...state,
-        user: payload
-      })
-    case ALL_USER:
-      return {
-        ...state,
-        allUser: payload
-      }
-
-    case GET_ALL_USERS:
-      return {
-        ...state,
-        users: payload
-      }
-    case USER_ID:
       return {
         ...state,
         user: payload
@@ -114,7 +98,6 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         allUser: payload
       }
-
     case GET_USER_CART:
       return {
         ...state,

@@ -28,21 +28,31 @@ export default function LocalCart({ registered }) {
     if (!cartItem) { return <NothingFound /> }
 
     return (
-        <div className="containerCardShopp">
-            <div className="shoppingCart">
-                <h2>Your Shopping Cart: {totalPrice}</h2>
+        <div className="rounded body-styles-component">
+            <div className="shoppingCart rounded">
+                <div className="container-total">
+                    <div className="row">
+                        <div className="col-sm-6">
+                            <h2 className="text-center">Your Shopping Cart</h2>
+                        </div>
+                        <div className="col-sm-3">
+                            <h3 className="text-center">Total: ${totalPrice}</h3>
+                        </div>
+                    </div>
+                </div>
                 <div className="principalSC">
-                    {cartItem.map(e => <ShopCard
-                        key={e.id}
-                        id={e.id}
-                        model={e.model}
-                        stock={e.stock}
-                        price={e.price}
-                        image={e.image}
-                        deleteItem={deleteItem}
-                        updateQuantity={updateQuantity}
-                        quantity={e.quantity}
-                    />
+                    {cartItem.map((e) => (
+                        <ShopCard
+                            key={e.id}
+                            id={e.id}
+                            model={e.model}
+                            stock={e.stock}
+                            price={e.price}
+                            image={e.image}
+                            deleteItem={deleteItem}
+                            updateQuantity={updateQuantity}
+                            quantity={e.quantity}
+                        />)
                     )}
                 </div>
                 <hr />
