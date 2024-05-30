@@ -1,46 +1,61 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './Favorites.css';
 import FavCard from "./FavCard";
 import { Toaster } from "react-hot-toast";
-// import { cart, remove} from '../../components/Toast/Toast'
 import NothingFound from "../../components/NothingFound/NothingFound";
+// import { Margin, Padding } from "@mui/icons-material";
 
 export default function Favorites() {
-    const [favorites, setFavorites] = useState(JSON.parse(localStorage.getItem('favList')))
+    const [favorites, setFavorites] = useState([]);
 
-    if (!favorites || favorites.length === 0) {
-        return (
-            <div className="containerHome">
-                <NothingFound />
-            </div>
-        );
-    }
+    useEffect(() => {
+        const storedFavs = JSON.parse(localStorage.getItem('favList'));
+        if (storedFavs) {
+            setFavorites(storedFavs);
+        }
+    }, []);
 
     const deleteFav = (id) => {
-        let arr = favorites.filter(e => e.id !== id)
-        localStorage.setItem('favList', JSON.stringify(arr))
-        setFavorites(arr)
-    }
+        let arr = favorites.filter(e => e.id !== id);
+        localStorage.setItem('favList', JSON.stringify(arr));
+        setFavorites(arr);
+    };
 
-    let cellsMap = favorites.map((e) => <FavCard
-        key={e.id}
-        id={e.id}
-        line={e.line}
-        brand={e.brand}
-        model={e.model}
-        price={e.price}
-        stock={e.stock}
-        capacity={e.capacity}
-        image={e.image}
-        memoryRAM={e.memoryRAM}
-        deleteFav={deleteFav} />);
+    const createGridRows = (favorites) => {
+        const rows = [];
+        for (let i = 0; i < favorites.length; i += 3) {
+            const row = favorites.slice(i, i + 3);
+            rows.push(
+                <div className="row" key={i} >
+                    {row.map((favorite) => (
+                        <div key={favorite.id} className="col" >
+                            <FavCard
+                                {...favorite}
+                                deleteFav={deleteFav}
+                            />
+                        </div>
+                    ))}
+                </div>
+            );
+        }
+        return rows;
+    };
 
+    const rowStyle = {
+        display: 'grid',
+        gap: '20px',
+        gridRowGap: '40px',
+    };
     return (
-        <div className="containerHome">
+        <div className="container" style={{ ...rowStyle, padding: '20px' }}>
             <h1>Favorites</h1>
-            <div className="favoriteCards">
-                {cellsMap}
-            </div>
+            {favorites.length === 0 ? (
+                <NothingFound />
+            ) : (
+                <>
+                    {createGridRows(favorites)}
+                </>
+            )}
             <Toaster position="bottom-right" reverseOrder={false} />
         </div>
     );

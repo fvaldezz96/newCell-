@@ -1,0 +1,25 @@
+.my-carousel-container {
+    height: 30rem;
+}
+
+.carousel-item {
+    padding: 1rem;
+}
+
+.img-carousel {
+    height: auto;
+    width: auto;
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .my-carousel {
+        height: 400px;
+    }
+}
+
+@media (min-width: 992px) {
+    .my-carousel {
+        height: 500px;
+    }
+}

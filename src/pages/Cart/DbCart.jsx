@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import './Card.css'
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,17 +6,14 @@ import { deleteFromCart, getUserCart, changeQuantity } from "../../redux/actions
 import NothingFound from "../../components/NothingFound/NothingFound";
 import DbShopCard from "./DbShopCard";
 import Loading from "../../components/Loading/Loading";
+import './Card.css'
 
 export default function DbCart({ user }) {
+
     const [totalPrice, setTotalPrice] = useState(0);
     const cart = useSelector(state => state.cart);
     const isLoading = useSelector(state => state.isLoading);
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        localStorage.setItem("carrrito", JSON.stringify(cart))
-        setPrice()
-    }, [cart])
 
     const setPrice = () => {
         let total = 0
@@ -27,6 +23,7 @@ export default function DbCart({ user }) {
     }
 
     useEffect(() => {
+        localStorage.setItem("carrrito", JSON.stringify(cart))
         dispatch(getUserCart(user.email))
         setPrice()
     }, [dispatch])
@@ -44,7 +41,10 @@ export default function DbCart({ user }) {
         setPrice()
     }
 
+    // console.log(isLoading, 'isLoanding data!');
+    // console.log(cart, 'cart.length front');
     if (isLoading || !cart) { return (<Loading />) }
+    // console.log(cart.length, 'cart.length front');
     if (!cart.length) { return (<NothingFound />) }
 
     return (
@@ -64,11 +64,10 @@ export default function DbCart({ user }) {
                         quantity={e.quantity || 1}
                     />)}
                 </div>
-                <hr />
-                <>
+                <div>
                     <Link to={"/cart/paymentForm"}><button className="btn btn-success text-decoration-none">Buy now !</button></Link>
                     <Toaster position="bottom-right" reverseOrder={false} />
-                </>
+                </div>
             </div>
         </div>
     );

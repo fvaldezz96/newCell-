@@ -4,6 +4,7 @@ import { allUser, postUser } from '../../redux/actions';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom"
 import NotFound from '../../pages/NotFound/NotFound';
+import './PostUser.css'
 
 export default function CreateUser() {
     const navigate = useNavigate()
@@ -45,38 +46,58 @@ export default function CreateUser() {
 
     return (
         isAuthenticated ? (
-            <div>
-                <div>
-                    <img src={input.image} alt='imagen usuario' />
-                    <h4>{input.name}</h4>
-                    <h4>{input.email}</h4>
+            <div className="container user-edit-form" sx={{ padding: "20px" }}>
+                <div className="row">
+                    <div className="col-md-4 col-sm-12 user-info">
+                        <img src={input.image} alt="Imagen de usuario" />
+                        <div>
+                            <h4>{input.name}</h4>
+                            <p>{input.email}</p>
+                        </div>
+                    </div>
+                    <div className="col-md-8 col-sm-12 form-section">
+                        <form onSubmit={handleSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="location">Ubicación</label>
+                                <input
+                                    type="text"
+                                    id="location"
+                                    name="location"
+                                    value={input.location}
+                                    onChange={handleChange}
+                                    placeholder="Ciudad, Estado"
+                                    className="form-control"
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="direction">Dirección</label>
+                                <input
+                                    type="text"
+                                    id="direction"
+                                    name="direction"
+                                    value={input.direction}
+                                    onChange={handleChange}
+                                    placeholder="Calle, número, colonia"
+                                    className="form-control"
+                                />
+                            </div>
+                            {/* <div className="form-group">
+                                <label htmlFor="phone">Teléfono</label>
+                                <input
+                                    type="tel"
+                                    id="phone"
+                                    name="phone"
+                                    value={input.phone || ''} // Asigna un string vacío si 'phone' no existe en 'input'
+                                    onChange={handleChange}
+                                    placeholder="Ej.: 55 1234-5678"
+                                    className="form-control"
+                                />
+                            </div> */}
+                            <button type="submit" className="btn btn-primary">Actualizar</button>
+                        </form>
+                    </div>
                 </div>
-
-                <div>
-                    <label>Location </label>
-                    <input type="text"
-                        value={input.location}
-                        name="location"
-                        id="location"
-                        onChange={handleChange} />
-                </div>
-                <div>
-                    <br></br>
-                    <label>Direction</label>
-                    <input type="text"
-                        value={input.direction}
-                        name="direction"
-                        id="direction"
-                        onChange={handleChange} />
-                </div>
-                <br></br>
-                <div>
-                    <button onClick={handleSubmit}>Update</button>
-                </div>
-
-
             </div>
         ) : <NotFound />
-
     )
 }

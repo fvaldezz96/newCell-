@@ -1,8 +1,8 @@
 .filtersContainer {
     width: 280px;
-    background-color: white;
     margin-top: 30px;
     padding: 1.5em;
+    box-shadow: 0px 7px 15px -6px;
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -15,6 +15,7 @@
     border: none;
     border-radius: 8px;
 }
+
 
 .filtersContainer .MuiInputBase-root {
     height: 2em !important;

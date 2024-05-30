@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { remove } from '../../components/Toast/Toast';
+import { Card } from 'react-bootstrap';
 
 export default function ShopCard({ id, model, stock, price, image, deleteItem, updateQuantity, quantity }) {
   const [qua, setQua] = useState(quantity);
@@ -39,23 +40,29 @@ export default function ShopCard({ id, model, stock, price, image, deleteItem, u
   }
 
   return (
-    <div className="cardShoppingCart">
-      <Link className='cardContainerImageSC' to={"/detail/" + id}>
-        <img className='cardImageSC' src={image} alt={model} />
-      </Link>
+    <Card style={{ width: "16rem", boxShadow: "0px 0px 12px -6px" }}>
+      {/* IMG */}
+      <div className='container-image'>
+        <Link to={"/detail/" + id}>
+          <img src={image} alt={model} />
+        </Link>
+      </div>
+      {/* BODY */}
       <div className='containerBodySC'>
         <h5>{model}</h5>
         <p><span className='priceSC'>${(price).toFixed(2)}</span></p>
-        <p><span className='priceSC'>${(qua * price).toFixed(2)}</span> ({qua} Items)</p>
-      </div>
-      <div className='containerButtonsSC'>
-        <div className='selectQuantity'>
-          <AddCircleIcon onClick={plus} />
-          <p>{qua}</p>
-          <RemoveCircleIcon onClick={minus} />
+        <p><span className='priceSC'>${(qua * price).toFixed(2)}</span> ({qua} Unidades)</p>
+        <div className='containerButtonsSC'>
+          <div className='selectQuantity'>
+            <AddCircleIcon onClick={plus} />
+            <p>{qua}</p>
+            <RemoveCircleIcon onClick={minus} />
+          </div>
+          <div>
+            <DeleteIcon onClick={() => delet(id)} />
+          </div>
         </div>
-        <DeleteIcon onClick={() => delet(id)} />
       </div>
-    </div>
+    </Card>
   )
 }

@@ -55,7 +55,7 @@ export default function Filters() {
     const [capacitySlide, setCapacitySlide] = useState([Math.floor(Math.min(...capacityAll)), Math.ceil(Math.max(...capacityAll))]);
     // Send selected filters
     function handlerSubmit(e) {
-        e.target.value ? (e.target.name === 'price' || e.target.name === 'capacity' ) ?
+        e.target.value ? (e.target.name === 'price' || e.target.name === 'capacity') ?
             setSearchParams(searchParams.set(e.target.name, `${e.target.value[0]}/${e.target.value[1]}`)) :
             setSearchParams(searchParams.set(e.target.name, e.target.value)) :
             searchParams.delete(e.target.name);
