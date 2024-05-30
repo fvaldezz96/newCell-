@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-
 // import reportWebVitals from './reportWebVitals';
 //LOGIN
 import { Auth0Provider } from '@auth0/auth0-react';
@@ -16,11 +15,8 @@ dotenv.config();
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001"
 
 //TODO LO DE LOGIN
-const DOMAIN = "dev-69fdataa.us.auth0.com"
-const CLIENT_ID = "sEIus98bsCYv3quIfDWYFoWEAftmkeGe"
-// TODO LO DE LOGIN
-
-
+const DOMAIN = "dev-pjw-u5xd.us.auth0.com"
+const CLIENT_ID = "Pnl91k7Wp9B83IkO7BHziQgzZvhU4zv9"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -43,8 +43,7 @@ useEffect(()=>{
 
 const userProfile=useSelector((state)=>state.user);
 return (
-    userProfile
-    ?(
+    userProfile ? (
         <div>
             <div>
                 <img src={userProfile[0].image}></img>
@@ -71,12 +70,8 @@ return (
                 id='direction'
                 onChange={handleChange}/>
             </div>
-            <div>
-                {/* <button onClick={handleSubmit}>Update</button> */}
-            </div>
         </div>
-    )
-    :null
+    ) : null
 )
 
 

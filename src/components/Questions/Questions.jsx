@@ -41,7 +41,7 @@ const Questions = ({ cellId, q, get }) => {
          })
       }
 
-   }, [dispatch, q, isAuthenticated, question, user.email]) //QUITE UNA "Q"
+   }, [dispatch, q, isAuthenticated]) 
 
 
    const handleChange = (e) => {
@@ -117,7 +117,7 @@ const Questions = ({ cellId, q, get }) => {
                      <button type="button" className="btn btn-outline-primary" onClick={() => createQ()}>Create Question</button>
                   </div>
                </div>
-               : <h2 >Login...</h2>
+               : <h2 >Registrarse...</h2>
             }
             <div>
                {q && q.length >= 0 ? q.map((c, index) => {

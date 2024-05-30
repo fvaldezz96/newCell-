@@ -1,8 +1,6 @@
-
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-// import LogoutButton from '../Logout/LogoutButton';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { allUser, postUser, putUser } from "../../redux/actions";
@@ -15,15 +13,10 @@ const Profile = () => {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0()
   const navigate = useNavigate()
-  // const imagen=imagenn()
   const allUsers = useSelector(state => state.allUser)
   const usuarios = allUsers
   const emailAuth0 = email()
   const profile = filterEmail()
-  // console.log(usuarios)
-  // console.log(emailAuth0)
-  // console.log(profile)
-  // console.log(imagen)
   const [input, setInput] = useState({
     id: profile !== undefined && profile[0] ? profile[0].id : "",
     name: profile !== undefined && profile[0] ? profile[0].name : "",
@@ -42,7 +35,6 @@ const Profile = () => {
     password: "",
   })
 
-
   function filterEmail() {
     if (isAuthenticated && usuarios.length) {
       return usuarios.filter(e => e.email === emailAuth0)
@@ -53,46 +45,24 @@ const Profile = () => {
       return user.email
     }
   }
-  // function imagenn(){
-  //   if(isAuthenticated){
-  //     return user.picture
-  //   }
-  // }
 
   function handleChange(e) {
     setInput({
       ...input,
       [e.target.name]: e.target.value
     })
-    // console.log(input)
   }
   function handleChange1(e) {
     setInput1({
       ...input1,
       [e.target.name]: e.target.value
     })
-    // console.log(input1)
   }
 
   useEffect(() => {
     dispatch(allUser())
   }, [dispatch])
 
-  // function handleSubmit(){
-  //   dispatch(putUser(input))
-  //   .then(()=>{
-  //     dispatch(allUser())
-  //   })
-  // }
-  // function handleSubmit1(e){
-  //   dispatch(postUser(input1))
-  //   .then(()=>{
-  //     dispatch(allUser())
-  //   })
-  //   .then(()=>{
-  //     navigate("/home")
-  //   })
-  // }
   function handleChange2() {
     if (profile !== undefined && profile[0] && profile[0].id) {
       dispatch(putUser(input))
@@ -111,18 +81,10 @@ const Profile = () => {
         .then(() => {
           navigate('/Home')
         })
-
     }
   }
 
-
-
-
-
-
   return (
-
-
     isAuthenticated && profile !== undefined && profile[0] ? (
       <div className="container">
         <div className="row">
@@ -155,18 +117,9 @@ const Profile = () => {
             <div>
               <button onClick={handleChange2}>Update</button>
             </div>
-
-
-            {/* "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJHVLf9CA9-Aga5SAXLHh0evd-Zrsn3l0Wlg&usqp=CAU" */}
-
-
-
           </div>
-
         </div>
       </div>
-
-
     ) : isAuthenticated ? (
       <div className="container">
         <div className="row">
@@ -182,7 +135,6 @@ const Profile = () => {
                 name='location'
                 id='location'
                 onChange={handleChange1}></input>
-
             </div>
             <div>
               <label>Direction:</label>
@@ -192,18 +144,12 @@ const Profile = () => {
                 id='direction'
                 onChange={handleChange1}></input>
             </div>
-
-            {/* <button onClick={handleSubmit1}>Update</button> */}
             <button onClick={handleChange2}>Update</button>
-
           </div>
         </div>
       </div>
-
     ) : null
   )
-
-
 }
 
 export default Profile;
