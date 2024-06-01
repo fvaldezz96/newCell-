@@ -26,7 +26,7 @@ import Profile from './components/Profile/Profile';
 //login
 import AdminPanel from './components/AdminPanel/AdminPanel'
 import DetailOrder from './components/DetailOrder/DetailOrder.jsx';
-// import EditUser from './components/EditUser/EditUser';
+import EditUser from './components/EditUser/EditUser';
 
 const stripePromise = loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
 
@@ -55,7 +55,11 @@ function App() {
         <Route path='/panelOrders/detailOrder/:id' element={<DetailOrder />} />
         <Route path='/adminPanel' element={<AdminPanel />} />
         <Route path='/orders/:id_User' element={<DetailOrder />} />
+<<<<<<< HEAD
         {/* <Route path='/edit' element={<EditUser/>}/> */}
+=======
+        <Route path='/edit/:id_User' element={<EditUser/>}/> INTEGRAR EDITAR DATA USER
+>>>>>>> 7bcfcce28fe84391cd0085ed56ca370f7c085bc2
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

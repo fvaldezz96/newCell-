@@ -62,7 +62,7 @@ const Ratings = ({ cellId, r, get }) => {
       if (isAuthenticated) {
          dispatch(getRolesRating(user?.email, cellId));
       }
-   }, [dispatch, r])
+   }, [dispatch, r, user?.email, cellId, isAuthenticated])
 
    return (
       <div>
