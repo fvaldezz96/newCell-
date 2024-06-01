@@ -16,14 +16,7 @@ axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001"
 
 //TODO LO DE LOGIN
 const DOMAIN = "dev-pjw-u5xd.us.auth0.com"
-<<<<<<< HEAD
-const CLIENT_ID = "r5iTjeQnjr05wt2OVUYmaObJJxTDxYph"
-// TODO LO DE LOGIN
-
-
-=======
 const CLIENT_ID = "Pnl91k7Wp9B83IkO7BHziQgzZvhU4zv9"
->>>>>>> 7bcfcce28fe84391cd0085ed56ca370f7c085bc2
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
