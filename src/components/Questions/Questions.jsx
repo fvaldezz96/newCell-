@@ -34,14 +34,14 @@ const Questions = ({ cellId, q, get }) => {
 
    useEffect(() => {
       if (isAuthenticated) {
-         dispatch(getRole(user.email));
+         dispatch(getRole(user?.email));
          setQuestion({
             ...question,
-            emailUser: user.email
+            emailUser: user?.email
          })
       }
 
-   }, [dispatch, q, isAuthenticated, question, user.email]) //QUITE UNA "Q"
+   }, [dispatch, q]) //QUITE UNA "Q"
 
 
    const handleChange = (e) => {

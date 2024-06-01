@@ -56,10 +56,7 @@ function App() {
         <Route path='/adminPanel' element={<AdminPanel />} />
         <Route path='/orders/:id_User' element={<DetailOrder />} />
         {/* <Route path='/edit' element={<EditUser/>}/> */}
-
-
         <Route path='*' element={<NotFound />} />
-
       </Routes>
       <Footer />
     </Router>

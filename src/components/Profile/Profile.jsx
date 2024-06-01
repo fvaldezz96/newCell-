@@ -192,9 +192,8 @@ const Profile = () => {
                 id='direction'
                 onChange={handleChange1}></input>
             </div>
-
             {/* <button onClick={handleSubmit1}>Update</button> */}
-            <button onClick={handleChange2}>Update</button>
+            <button className="btn btn-success" onClick={handleChange2}>Update</button>
 
           </div>
         </div>

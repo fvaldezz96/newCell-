@@ -16,8 +16,8 @@ dotenv.config();
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001"
 
 //TODO LO DE LOGIN
-const DOMAIN = "dev-69fdataa.us.auth0.com"
-const CLIENT_ID = "sEIus98bsCYv3quIfDWYFoWEAftmkeGe"
+const DOMAIN = "dev-pjw-u5xd.us.auth0.com"
+const CLIENT_ID = "r5iTjeQnjr05wt2OVUYmaObJJxTDxYph"
 // TODO LO DE LOGIN
 
 

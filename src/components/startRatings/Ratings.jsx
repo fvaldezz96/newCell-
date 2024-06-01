@@ -60,9 +60,9 @@ const Ratings = ({ cellId, r, get }) => {
 
    useEffect(() => {
       if (isAuthenticated) {
-         dispatch(getRolesRating(user.email, cellId));
+         dispatch(getRolesRating(user?.email, cellId));
       }
-   }, [dispatch, r, user.email, cellId, isAuthenticated])
+   }, [dispatch, r])
 
    return (
       <div>

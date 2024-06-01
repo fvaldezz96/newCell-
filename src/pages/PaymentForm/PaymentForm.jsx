@@ -21,7 +21,7 @@ export default function PaymentForm() {
   const totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
   const items = JSON.parse(localStorage.getItem("carrrito"))
   const { user } = useAuth0()
-  console.log(user, "data user!")
+  // console.log(items, "data user!")
 
   useEffect(() => {
     if (user) {
@@ -35,10 +35,10 @@ export default function PaymentForm() {
     for (let i in users) {
       if (users[i].email === user.email) {
         theUser = users[i];
-        console.log(theUser, "email the user!!")
       }
     }
   }
+  // console.log(theUser, "email the user!!")
   //FOR DEFAULT
   let history = useNavigate();
   function handleRegresar(e) {
@@ -51,7 +51,7 @@ export default function PaymentForm() {
       type: "card",
       card: elements.getElement(CardNumberElement)
     });
-    console.log(paymentMethod, "payment method!!!")
+    // console.log(paymentMethod, "payment method!!!")
     setLoading(true)
     if (!error) {
       const { id } = paymentMethod
@@ -62,7 +62,6 @@ export default function PaymentForm() {
           userIdName: theUser.id,
           mail: user.email,
           arr: items,
-
         })
         if (data.status === 200) {
           localStorage.removeItem("totalPrice")
@@ -82,43 +81,44 @@ export default function PaymentForm() {
   }
 
   return (
-    <div className="conteiner-card">
-      <div className="subcontainer01">
-        <div className="shopping_button">
-          <button className="btn btn-secondary" type="submit" value={'Continue Shopping'} onClick={(e) => handleRegresar(e)}>Continue Shopping</button>
-          {/* <input type="submit" value={'Continue Shopping'} onClick={(e) => handleRegresar(e)} /> */}
+    <div className="container-absolut">
+      <div className="conteiner-card">
+        <div className="subcontainer01">
+          <div className="shopping_button">
+            <button className="btn btn-secondary" type="submit" value={'Continue Shopping'} onClick={(e) => handleRegresar(e)}>Continue Shopping</button>
+            {/* <input type="submit" value={'Continue Shopping'} onClick={(e) => handleRegresar(e)} /> */}
+          </div>
+          <div className="container">
+            {items && items.length ? items.map(product => {
+              return (
+                <CardPayment
+                  key={product.id}
+                  image={product.image}
+                  name={product.model}
+                  price={product.price}
+                  quantity={product.quantity}
+                />
+              )
+            }) : <div className="h2" style={{ color: "white" }}>Has no cell selected!😁</div>}
+          </div>
         </div>
-        <hr></hr>
-        <div className="container">
-          {items && items.length ? items.map(product => {
-            return (
-              <CardPayment
-                key={product.id}
-                image={product.image}
-                name={product.model}
-                price={product.price}
-                quantity={product.quantity}
-              />
-            )
-          }) : <div>has no items selected!</div>}
+        <hr />
+        <div className="rounded" style={{ width: "40rem", backgroundColor: "white" }}>
+          <div className="container">
+            <h2 className="h2">Datos Tarjeta</h2>
+            <h4> Card Number </h4>
+            <CardNumberElement className="cardNumb" />
+            <h4> Date </h4>
+            <CardExpiryElement className="cardExpi" />
+            <h4> CVV </h4>
+            <CardCvcElement className="cardCvc" />
+          </div>
         </div>
-      </div>
-      <hr />
-      <div className="rounded" style={{ width: "40rem", backgroundColor: "white" }}>
-        <div className="container">
-          <h2 className="h2">Datos Tarjeta</h2>
-          <h4> Card Number </h4>
-          <CardNumberElement className="cardNumb" />
-          <h4> Date </h4>
-          <CardExpiryElement className="cardExpi" />
-          <h4> CVV </h4>
-          <CardCvcElement className="cardCvc" />
+        <div className="d-flex justify-content-center ">
+          <button className="btn btn-success" onClick={(e) => handleSubmit(e)} disabled={loading ? true : false}>
+            {loading ? <p>Loading</p> : <p>Comprar: {`$${totalPrice.toFixed(0)}.00`}</p>}
+          </button>
         </div>
-      </div>
-      <div className="d-flex justify-content-center ">
-        <button className="btn btn-success" onClick={(e) => handleSubmit(e)} disabled={loading ? true : false}>
-          {loading ? <p>Loading</p> : <p>Comprar: {`$${totalPrice.toFixed(0)}.00`}</p>}
-        </button>
       </div>
     </div>
   )

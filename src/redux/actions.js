@@ -277,14 +277,13 @@ export const getUserCart = (email) => {
             localStorage.removeItem('cartList');
          }
          let cart = (await axios.get('/cart/' + user.id)).data
-
-         return dispatch({
+         dispatch({
             type: GET_USER_CART,
             payload: cart.map(e => { return { ...e, quantity: 1 } })
          });
       } catch (err) {
          console.log(err)
-         return dispatch({
+         dispatch({
             type: GET_USER_CART,
             payload: []
          });
@@ -401,11 +400,11 @@ export function changeQuantity(id, quantity) {
 }
 
 export function getRolesRating(email, cellId) {
-   console.log(email, cellId, 'soy lo que llega a la action')
+   // console.log(email, cellId, 'soy lo que llega a la action') 
    return async function (dispatch) {
       try {
          var rating = await axios.get(`/rating/role/?em=${email}&cellId=${cellId}`)
-         console.log(rating, 'soy lo que llega del back')
+         // console.log(rating, 'soy lo que llega del back') //DATA BACKEND
          return dispatch({
             type: GET_REVIEW_BOOLEAN,
             payload: rating.data
