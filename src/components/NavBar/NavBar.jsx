@@ -33,9 +33,9 @@ export default function NavBar() {
   //   logout();
   //   navigate('/');
   // };
-  const handleLogout = async() => {
+  const handleLogout = async () => {
     try {
-      await logout(); 
+      await logout();
     } catch (error) {
       console.error("Logout error:", error);
     } finally {
@@ -44,34 +44,16 @@ export default function NavBar() {
   }
   // user
   localStorage.setItem('user', JSON.stringify(usuarios))
-<<<<<<< HEAD
-
-=======
->>>>>>> 7bcfcce28fe84391cd0085ed56ca370f7c085bc2
   function filterEmail() {
     if (isAuthenticated && usuarios.length) {
       return usuarios.filter(e => e.email === emailAuth0)
     }
   }
-<<<<<<< HEAD
-
-  // function role() {
-  //   if (!gmail === undefined) {
-  //     return gmail[0]?.role
-  //   }
-  // }
-
-=======
->>>>>>> 7bcfcce28fe84391cd0085ed56ca370f7c085bc2
   function email() {
     if (isAuthenticated) {
       return user?.email
     }
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> 7bcfcce28fe84391cd0085ed56ca370f7c085bc2
   const abrirCerrarDropdown = () => {
     setDropdown(!dropdown)
   }
@@ -90,10 +72,6 @@ export default function NavBar() {
   const orderList = () => {
     navigate('panelOrders')
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> 7bcfcce28fe84391cd0085ed56ca370f7c085bc2
   useEffect(() => {
     dispatch(allUser());
   }, [dispatch])
@@ -122,27 +100,17 @@ export default function NavBar() {
               ? <Link to='/create' className="nav-link"><AiOutlineUpload className='NavBarIcon' /></Link>
               : null
           }
-<<<<<<< HEAD
-          {/* {isAuthenticated ? <Link to={'Profile/'} className='nav-link'><AiOutlineUserAdd className='NavBarIcon' /></Link> : null} */}
-          {isAuthenticated && gmail !== undefined && gmail[0] ? <Link to={`orders/${gmail[0].id}`} className='nav-link'><BsCardChecklist className='NavBarIcon' /></Link> : null}
-
-=======
           {isAuthenticated && gmail !== undefined && gmail[0] ?
-           <Link to={`orders/${gmail[0].id}`} className='nav-link'>
-            <BsCardChecklist className='NavBarIcon'/>
-            </Link> 
-           : null
+            <Link to={`orders/${gmail[0].id}`} className='nav-link'>
+              <BsCardChecklist className='NavBarIcon' />
+            </Link>
+            : null
           }
->>>>>>> 7bcfcce28fe84391cd0085ed56ca370f7c085bc2
           <div className="navbar-nav hstack gap-3 NavBar-Item">
             {isAuthenticated
               ? <Dropdown isOpen={dropdown} toggle={abrirCerrarDropdown} size='sm'>
                 <DropdownToggle caret>
-<<<<<<< HEAD
-                  <img className="ProfileImg" alt='img not found' src={gmail !== undefined && gmail[0] ? gmail[0].image : "https://www.pngmart.com/files/10/User-Account-PNG-Clipart.png"} />
-=======
                   <img className="ProfileImg" alt='image profil' src={gmail !== undefined && gmail[0] ? gmail[0].image : "https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilu.jpg?ver=6"} />
->>>>>>> 7bcfcce28fe84391cd0085ed56ca370f7c085bc2
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem onClick={userIr}>Perfil</DropdownItem>
@@ -153,29 +121,24 @@ export default function NavBar() {
             }
             {
               isAuthenticated && gmail !== undefined ? (!gmail[0] ?
-                  <Link to='/postUser'>
-                    <button type="button" className="w-75 btn btn-outline-danger">Complete your user information</button>
-                  </Link>
-                  : null
-                )
+                <Link to='/postUser'>
+                  <button type="button" className="w-75 btn btn-outline-danger">Complete your user information</button>
+                </Link>
+                : null
+              )
                 : null
             }
             {
               isAuthenticated && gmail === undefined ? (
-                  <Link to='/postUser'>
-                    <button type="button" className="btn btn-outline-danger">Complete sus datos de usuario</button>
-                  </Link>
-                )
+                <Link to='/postUser'>
+                  <button type="button" className="btn btn-outline-danger">Complete sus datos de usuario</button>
+                </Link>
+              )
                 : null
             }
             {
-<<<<<<< HEAD
-              isAuthenticated && gmail !== undefined && gmail[0] && gmail[0]?.role === "Administrador"
-                ? <Dropdown isOpen={dropdown1} toggle={abrirCerrarDropdown1} size='sm'>
-=======
-              isAuthenticated && gmail !== undefined && gmail[0] && gmail[0].role === "Administrador" ? 
-              <Dropdown isOpen={dropdown1} toggle={abrirCerrarDropdown1} size='sm'>
->>>>>>> 7bcfcce28fe84391cd0085ed56ca370f7c085bc2
+              isAuthenticated && gmail !== undefined && gmail[0] && gmail[0].role === "Administrador" ?
+                <Dropdown isOpen={dropdown1} toggle={abrirCerrarDropdown1} size='sm'>
                   <DropdownToggle caret>
                     Admin Panel
                   </DropdownToggle>
