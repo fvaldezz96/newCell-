@@ -1,9 +1,17 @@
+.container-absolut {
+    width: 100%;
+    height: 80vh;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
 .conteiner-card {
     background-color: #323449ed;
-    margin: 1%;
-    width: 98%;
-    padding: 1%;
-    border-radius: 10px;
+    margin: 2rem;
+    padding: 2rem;
+    height: auto;
+    border-radius: 20px;
     display: flex;
     flex-wrap: nowrap;
 }

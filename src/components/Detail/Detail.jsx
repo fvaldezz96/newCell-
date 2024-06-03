@@ -53,9 +53,9 @@ export default function Detail(props) {
                                             <img src={myCell.image} className="img w-75" alt="img" />
                                         </div>
                                         <div className='d-flex flex-column m-5 align-items-start'>
-                                            <h3 className="tx4">Description</h3>
+                                            <h3 className="h5">Description</h3>
                                             <p className='description'>{myCell.description}</p>
-                                            <h3 className="tx4">Specs</h3>
+                                            <h3 className="h5">Specs</h3>
                                             <div className="specs">
                                                 {myCell.spec && myCell.spec.map((e) => { return <li>{e}</li> })}
                                             </div>
@@ -65,7 +65,7 @@ export default function Detail(props) {
                                         <div className="container-6 p-3 d-flex flex-column align-items-start justify-content-around border-start border-dark border-opacity-10">
                                             {/* <div className="d-flex flex-column align-items-start justify-content-around border-start border-dark border-opacity-10 ps-4" style={{ width: '35%' }}> */}
                                             <div className="d-flex flex-column align-items-start justify-content-around" >
-                                                <h1 className="d-flex flex-column align-items-start tx4">{`${myCell.brand} ${myCell.model} ${myCell.capacity}`}</h1>
+                                                <h1 className="d-flex flex-column align-items-start h5">{`${myCell.brand} ${myCell.model} ${myCell.capacity}`}</h1>
                                                 <h6>Brand: {myCell.brand}</h6>
                                                 <h6>Model: {myCell.model}</h6>
                                                 <h6>Capacity: {myCell.capacity}GB</h6>

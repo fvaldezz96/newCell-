@@ -15,6 +15,7 @@ import LoginButton from "../Login/LoginButton";
 import { useNavigate } from "react-router-dom"
 //LOGIN
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap'
+import { Tooltip } from "@mui/material";
 
 
 export default function NavBar() {
@@ -32,9 +33,9 @@ export default function NavBar() {
   //   logout();
   //   navigate('/');
   // };
-  const handleLogout = async() => {
+  const handleLogout = async () => {
     try {
-      await logout(); 
+      await logout();
     } catch (error) {
       console.error("Logout error:", error);
     } finally {
@@ -50,7 +51,7 @@ export default function NavBar() {
   }
   function email() {
     if (isAuthenticated) {
-      return user.email
+      return user?.email
     }
   }
   const abrirCerrarDropdown = () => {
@@ -81,23 +82,29 @@ export default function NavBar() {
         <div className="navbar-nav hstack gap-3 NavBar-Item">
           <div className="logoStyle">
             <Link to='/home'>
-              <img src={Image} alt="#" width={"110px"} height={"85px"} />
+              <img src={Image} alt="imagen home" width={"110px"} height={"85px"} />
             </Link>
           </div>
           <SearchBar />
-          <Link to='/home' className="nav-link"><BsFillPhoneFill className='NavBarIcon' /></Link>
-          <Link to='/favorites' className="nav-link"><FcLike className='NavBarIcon' /></Link>
-          <Link to='/cart' className="nav-link"><BsCartFill className='NavBarIcon' /></Link>
+          <Tooltip title="Home" aria-label="add">
+            <Link to='/home' className="nav-link"><BsFillPhoneFill className='NavBarIcon' /></Link>
+          </Tooltip>
+          <Tooltip title="favorite" arial-label="add">
+            <Link to='/favorites' className="nav-link"><FcLike className='NavBarIcon' /></Link>
+          </Tooltip>
+          <Tooltip title="cart" arial-label="add">
+            <Link to='/cart' className="nav-link"><BsCartFill className='NavBarIcon' /></Link>
+          </Tooltip>
           {
             isAuthenticated && gmail !== undefined && gmail[0] && gmail[0].role !== "Cliente"
               ? <Link to='/create' className="nav-link"><AiOutlineUpload className='NavBarIcon' /></Link>
               : null
           }
           {isAuthenticated && gmail !== undefined && gmail[0] ?
-           <Link to={`orders/${gmail[0].id}`} className='nav-link'>
-            <BsCardChecklist className='NavBarIcon'/>
-            </Link> 
-           : null
+            <Link to={`orders/${gmail[0].id}`} className='nav-link'>
+              <BsCardChecklist className='NavBarIcon' />
+            </Link>
+            : null
           }
           <div className="navbar-nav hstack gap-3 NavBar-Item">
             {isAuthenticated
@@ -114,24 +121,24 @@ export default function NavBar() {
             }
             {
               isAuthenticated && gmail !== undefined ? (!gmail[0] ?
-                  <Link to='/postUser'>
-                    <button type="button" className="w-75 btn btn-outline-danger">Complete your user information</button>
-                  </Link>
-                  : null
-                )
+                <Link to='/postUser'>
+                  <button type="button" className="w-75 btn btn-outline-danger">Complete your user information</button>
+                </Link>
+                : null
+              )
                 : null
             }
             {
               isAuthenticated && gmail === undefined ? (
-                  <Link to='/postUser'>
-                    <button type="button" className="btn btn-outline-danger">Complete sus datos de usuario</button>
-                  </Link>
-                )
+                <Link to='/postUser'>
+                  <button type="button" className="btn btn-outline-danger">Complete sus datos de usuario</button>
+                </Link>
+              )
                 : null
             }
             {
-              isAuthenticated && gmail !== undefined && gmail[0] && gmail[0].role === "Administrador" ? 
-              <Dropdown isOpen={dropdown1} toggle={abrirCerrarDropdown1} size='sm'>
+              isAuthenticated && gmail !== undefined && gmail[0] && gmail[0].role === "Administrador" ?
+                <Dropdown isOpen={dropdown1} toggle={abrirCerrarDropdown1} size='sm'>
                   <DropdownToggle caret>
                     Admin Panel
                   </DropdownToggle>

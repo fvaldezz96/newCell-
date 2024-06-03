@@ -7,17 +7,17 @@ import './NothingFound.css';
 
 export default function NothingFound() {
     return (
-            <div className="containerNothingFound">
-                <Card className="cardNothingFound">
-                    <MdOutlineSearchOff className="imgNothinFound" />
-                    <Card.Body className="bodyNothingFound">
-                        <Card.Title className="titleNothingFound">There are no publications that match your search</Card.Title>
-                        <ul className="tryThis">
-                            <li>Check the spelling of the words.</li>
-                            <li>Use more generic words or fewer words.</li>
-                        </ul>
-                    </Card.Body>
-                </Card>
-            </div>
+        <div className="containerNothingFound">
+            <Card className="cardNothingFound">
+                <MdOutlineSearchOff className="imgNothinFound" />
+                <Card.Body className="bodyNothingFound">
+                    <Card.Title className="titleNothingFound">There are no publications that match your search</Card.Title>
+                    <ul className="tryThis">
+                        <li>Check the spelling of the words.</li>
+                        <li>Use more generic words or fewer words.</li>
+                    </ul>
+                </Card.Body>
+            </Card>
+        </div>
     )
 }

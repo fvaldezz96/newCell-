@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { SlArrowLeft } from "react-icons/sl"
 import { SlArrowRight } from "react-icons/sl";
 export default function Pagination({ postPerPage, totalPosts, paginate, currentPage }) {
+
   const totalPages = Math.ceil(totalPosts / postPerPage);
   const handlePage = (pageNumber) => {
     paginate(pageNumber)
@@ -27,7 +28,7 @@ export default function Pagination({ postPerPage, totalPosts, paginate, currentP
             className={`page-item ${currentPage === page ? 'active' : ''}`}
             onClick={() => handlePage(page)}
           >
-            <a className="page-link" href="img not found">
+            <a className="page-link">
               {page}
             </a>
           </li>

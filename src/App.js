@@ -55,7 +55,7 @@ function App() {
         <Route path='/panelOrders/detailOrder/:id' element={<DetailOrder />} />
         <Route path='/adminPanel' element={<AdminPanel />} />
         <Route path='/orders/:id_User' element={<DetailOrder />} />
-        <Route path='/edit/:id_User' element={<EditUser/>}/> INTEGRAR EDITAR DATA USER
+        <Route path='/edit/:id_User' element={<EditUser />} /> INTEGRAR EDITAR DATA USER
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />
