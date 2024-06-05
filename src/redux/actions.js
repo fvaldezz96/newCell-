@@ -101,21 +101,23 @@ export function postUser(user) {
 //GET USER
 export function allUser() {
    return async function (dispatch) {
-      const allUser = (await axios(RUTA_USER)).data
-      // console.log("estoy en el dispatch", allUser);
-      if (allUser.message === "No users") {
+      try {
+         const allUser = (await axios(RUTA_USER)).data
+         if (allUser?.message === "No users") {
+            return dispatch({
+               type: ALL_USER,
+               payload: []
+            })
+         }
          return dispatch({
             type: ALL_USER,
-            payload: []
+            payload: allUser
          })
+         
+      } catch (error) {
+         console.log(error)
       }
-
-      return dispatch({
-         type: ALL_USER,
-         payload: allUser
-      })
    }
-
 }
 
 //GET RATING 

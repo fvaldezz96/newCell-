@@ -10,7 +10,8 @@ export default function CreateUser() {
     const navigate = useNavigate()
     const dispatch = useDispatch();
     const { user, isAuthenticated } = useAuth0()
-    const image = user.picture || "https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilu.jpg?ver=6"
+    console.log(user, 'user img de front')
+    const image = user.picture || ""
     // console.log("Esto es: " + isAuthenticated)
     // console.log(user)
     // console.log(image)

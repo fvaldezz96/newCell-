@@ -11,6 +11,11 @@ import { allUser, getUserCart } from "../../redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "../../components/Loading/Loading";
 
+//MERCADO PAGO
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+// initMercadoPago('')
+//MERCADO PAGO
+
 export default function PaymentForm() {
 
   const dispatch = useDispatch()
@@ -21,7 +26,38 @@ export default function PaymentForm() {
   const totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
   const items = JSON.parse(localStorage.getItem("carrrito"))
   const { user } = useAuth0()
+  const [ preferenceId , setPreferenceID ] = useState(null)
+
+  //EMAIL DEL COMPRADOR 
+  initMercadoPago("TEST-4d85592a-0826-41a8-b5b4-15ff01add200", {
+    locale : "es-AR"
+ })
+ console.log(initMercadoPago, "initMarcadoPago")
   // console.log(items, "data user!")
+
+  const createPreference = async () => {
+         try {
+             const response = await axios.post("http://localhost:3001/payment", {
+              title: "Laptop",
+              quantity : 1,
+              unit_price : 200,
+              currency_id : "ARS"
+             })
+             console.log(response.data, "respuesta de la api")
+             const { id } = response.data
+             console.log(id, "id de backend")
+             return id
+         } catch (error) {
+           console.log(error)          
+         }
+  }
+  console.log(createPreference(), "funcion de preferencias")
+   const handleBuy = async () => {
+     const id = await createPreference()
+      if(id){
+        setPreferenceID(id)
+      }
+   } 
 
   useEffect(() => {
     if (user) {
@@ -91,18 +127,21 @@ export default function PaymentForm() {
           <div className="container">
             {items && items.length ? items.map(product => {
               return (
+                <div>
                 <CardPayment
                   key={product.id}
                   image={product.image}
                   name={product.model}
                   price={product.price}
                   quantity={product.quantity}
-                />
+                  />
+                  </div>
               )
             }) : <div className="h2" style={{ color: "white" }}>Has no cell selected!😁</div>}
           </div>
+            <button onClick={handleBuy}className="btn btn-success">Comprar</button>
+          { preferenceId && <Wallet initialization={{preferenceId: preferenceId}}/> }
         </div>
-        <hr />
         <div className="rounded" style={{ width: "40rem", backgroundColor: "white" }}>
           <div className="container">
             <h2 className="h2">Datos Tarjeta</h2>
