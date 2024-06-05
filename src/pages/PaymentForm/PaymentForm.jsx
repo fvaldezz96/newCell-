@@ -10,11 +10,8 @@ import "./PaymentForm.css";
 import { allUser, getUserCart } from "../../redux/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Loading from "../../components/Loading/Loading";
-
 //MERCADO PAGO
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-// initMercadoPago('')
-//MERCADO PAGO
 
 export default function PaymentForm() {
 
@@ -27,14 +24,12 @@ export default function PaymentForm() {
   const items = JSON.parse(localStorage.getItem("carrrito"))
   const { user } = useAuth0()
   const [ preferenceId , setPreferenceID ] = useState(null)
-
-  //EMAIL DEL COMPRADOR 
+  //PUBLIK KEY SELL 
   initMercadoPago("TEST-4d85592a-0826-41a8-b5b4-15ff01add200", {
     locale : "es-AR"
  })
  console.log(initMercadoPago, "initMarcadoPago")
   // console.log(items, "data user!")
-
   const createPreference = async () => {
          try {
              const response = await axios.post("http://localhost:3001/payment", {
