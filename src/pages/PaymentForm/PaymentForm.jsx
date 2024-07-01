@@ -23,36 +23,40 @@ export default function PaymentForm() {
   const totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
   const items = JSON.parse(localStorage.getItem("carrrito"))
   const { user } = useAuth0()
-  const [ preferenceId , setPreferenceID ] = useState(null)
+  const [preferenceId, setPreferenceID] = useState(null)
   //PUBLIK KEY SELL 
   initMercadoPago("TEST-4d85592a-0826-41a8-b5b4-15ff01add200", {
-    locale : "es-AR"
- })
- console.log(initMercadoPago, "initMarcadoPago")
-  // console.log(items, "data user!")
+    locale: "es-AR"
+  })
+  const title = items.map((e) => e.line)
+  // console.log("data items carrito!😁", title[0])
+  //  console.log(initMercadoPago, "initMarcadoPago")
   const createPreference = async () => {
-         try {
-             const response = await axios.post("http://localhost:3001/payment", {
-              title: "Laptop",
-              quantity : 1,
-              unit_price : 200,
-              currency_id : "ARS"
-             })
-             console.log(response.data, "respuesta de la api")
-             const { id } = response.data
-             console.log(id, "id de backend")
-             return id
-         } catch (error) {
-           console.log(error)          
-         }
+    try {
+      const response = await axios.post("http://localhost:3001/payment", {
+        title: title[0],
+        quantity: 1,
+        unit_price: totalPrice,
+        currency_id: "ARS",
+        userIdName: theUser?.id,
+        mail: user?.email,
+        name: user?.name,
+        arr: items
+      })
+      const { id } = response.data
+      return id
+    } catch (error) {
+      console.log(error)
+    }
   }
-  console.log(createPreference(), "funcion de preferencias")
-   const handleBuy = async () => {
-     const id = await createPreference()
-      if(id){
-        setPreferenceID(id)
-      }
-   } 
+  // console.log(createPreference(), "funcion de preferencias")
+  const handleBuy = async () => {
+    const id = await createPreference()
+    console.log("id createPreference: ", id)
+    if (id) {
+      setPreferenceID(id)
+    }
+  }
 
   useEffect(() => {
     if (user) {
@@ -69,8 +73,9 @@ export default function PaymentForm() {
       }
     }
   }
-  // console.log(theUser, "email the user!!")
-  //FOR DEFAULT
+
+  //console.log(theUser, "email the user!!")
+  //DEFAULT
   let history = useNavigate();
   function handleRegresar(e) {
     history("/cart");
@@ -107,6 +112,7 @@ export default function PaymentForm() {
       }
     }
   }
+
   if (!users.length || !items) {
     return (<Loading />)
   }
@@ -123,19 +129,19 @@ export default function PaymentForm() {
             {items && items.length ? items.map(product => {
               return (
                 <div>
-                <CardPayment
-                  key={product.id}
-                  image={product.image}
-                  name={product.model}
-                  price={product.price}
-                  quantity={product.quantity}
+                  <CardPayment
+                    key={product.id}
+                    image={product.image}
+                    name={product.model}
+                    price={product.price}
+                    quantity={product.quantity}
                   />
-                  </div>
+                </div>
               )
             }) : <div className="h2" style={{ color: "white" }}>Has no cell selected!😁</div>}
           </div>
-            <button onClick={handleBuy}className="btn btn-success">Comprar</button>
-          { preferenceId && <Wallet initialization={{preferenceId: preferenceId}}/> }
+          <button onClick={handleBuy} className="btn btn-success">Comprar</button>
+          {preferenceId && <Wallet initialization={{ preferenceId: preferenceId }} />}
         </div>
         <div className="rounded" style={{ width: "40rem", backgroundColor: "white" }}>
           <div className="container">
