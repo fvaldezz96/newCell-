@@ -13,7 +13,7 @@ const {
   GET_USER_CART,
   GET_ALL_ORDERS,
   GET_ORDER_ID,
-  // GET_ORDERS_USER,
+  GET_RATING_CHECK,
   UPDATE_QUANTITY,
   GET_REVIEW_BOOLEAN
 } = require('./actions.js')
@@ -31,7 +31,8 @@ const initialState = {
   orders: [],
   order: {},
   allRating: [],
-  rating: false
+  rating: false,
+  ratingCheck: false
 }
 
 export default function rootReducer(state = initialState, { type, payload }) {
@@ -127,7 +128,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
         ...state,
         rating: payload
       }
-
+    case GET_RATING_CHECK:
+      return {
+        ...state,
+        ratingCheck: payload
+      }
     default:
       return state
   }

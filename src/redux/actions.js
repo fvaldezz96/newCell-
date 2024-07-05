@@ -27,6 +27,7 @@ export const PUT_ORDERS = "PUT_ORDERS";
 export const GET_ORDER_ID = "GET_ORDER_ID";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const GET_REVIEW_BOOLEAN = "GET_REVIEW_BOOLEAN"
+export const GET_RATING_CHECK = "GET_RATING_CHECK"
 
 
 
@@ -113,7 +114,7 @@ export function allUser() {
             type: ALL_USER,
             payload: allUser
          })
-         
+
       } catch (error) {
          console.log(error)
       }
@@ -402,17 +403,43 @@ export function changeQuantity(id, quantity) {
 }
 
 export function getRolesRating(email, cellId) {
-   // console.log(email, cellId, 'soy lo que llega a la action') 
-   return async function (dispatch) {
+   return async (dispatch) => {
       try {
-         var rating = await axios.get(`/rating/role/?em=${email}&cellId=${cellId}`)
-         // console.log(rating, 'soy lo que llega del back') //DATA BACKEND
-         return dispatch({
+         if (!email || !cellId) {
+            throw new Error('Missing email or cellId parameter');
+         }
+         const response = await axios.get(`/rating/role/?em=${email}&cellId=${cellId}`);
+         dispatch({
             type: GET_REVIEW_BOOLEAN,
-            payload: rating.data
-         })
+            payload: response.data,
+         });
       } catch (error) {
-         console.log(error)
+         console.error('Error fetching roles and ratings:', error);
+         dispatch({
+            type: GET_REVIEW_BOOLEAN,
+            payload: false,
+         });
+      }
+   };
+}
+
+export const getRatingCheck = (email, cellId) => {
+   return async (dispatch) => {
+      try {
+         if (!email || !cellId) {
+            throw new Error('Missing email or cellId parameter');
+         }
+         const response = await axios.get(`/rating/rating-check/?em=${email}&cellId=${cellId}`);
+         dispatch({
+            type: GET_RATING_CHECK,
+            payload: response.data,
+         });
+      } catch (error) {
+         console.error('Error check Rating:', error);
+         dispatch({
+            type: GET_RATING_CHECK,
+            payload: false,
+         });
       }
    }
 }

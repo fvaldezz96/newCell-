@@ -10,8 +10,8 @@ const DetailOrder = () => {
 
     const dispatch = useDispatch();
 
-    const { id } = useParams();
-    const { id_User } = useParams();
+    const { id, id_User } = useParams();
+    // const { id_User } = useParams();
     const orders = useSelector((state) => state.orders)
 
     useEffect(() => {
