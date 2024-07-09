@@ -10,7 +10,7 @@ const LoginButton = () => {
     return (
         <div>
             <Tooltip title="Login" aria-label="add">
-                <button onClick={() => loginWithRedirect()} className="btn btn-success">Login</button>
+                <button onClick={() => loginWithRedirect()} className="btn bg-success">Login</button>
             </Tooltip>
         </div >
     )

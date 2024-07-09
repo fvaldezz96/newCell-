@@ -3,15 +3,16 @@
 .sticky-top {
   margin-bottom: .5em;
 }
-.logoStyle{
-   margin: 6px;
+
+.logoStyle {
+  margin: 6px;
 }
 
 .NavBarIcon {
   cursor: pointer;
   margin: 0.5em;
-  width: 1.9em;
-  height: 1.9em;
+  width: 3em;
+  height: 3em;
   color: #169E85
 }
 
@@ -83,18 +84,18 @@ body.Dark .navbar {
   background: linear-gradient(45deg, #0f7461, black, #0f7461);
 }
 
-.buttonData{
-      background-color: red;
-      color:white;
-      width:100px;
-      
+.buttonData {
+  background-color: red;
+  color: white;
+  width: 100px;
+
 }
 
 
-.data{
+.data {
   text-decoration: none;
 }
-  
+
 
 
 .sellStyle {
@@ -108,4 +109,12 @@ body.Dark .navbar {
 .dropDown {
   font-size: 1.1rem;
   font-weight: 900;
+}
+
+@media (max-width: 426px) {
+  .responsive-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }

@@ -86,7 +86,7 @@ const Ratings = ({ cellId, r, get }) => {
                         <button type="submit" className="btn btn-outline-primary">Submit</button>
                      </div>
                   ) :
-                     <p>No has comprado el producto, no puedes clasificarlo!</p>
+                     ''
                   }
                </div>
             </form>
