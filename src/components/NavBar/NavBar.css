@@ -9,6 +9,9 @@
 }
 
 .NavBarIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   margin: 0.5em;
   width: 3em;
@@ -122,10 +125,18 @@ body.Dark .navbar {
 /* GAP BTN */
 @media(max-width : 767.98px) {
   .gap-mobile {
+    gap: 1rem
+  }
+
+  .gap-mobile-icons {
     gap: 4rem
   }
 
   .login-responsive {
     margin-right: 2rem;
+  }
+
+  .fixed-height-row {
+    height: 20rem;
   }
 }

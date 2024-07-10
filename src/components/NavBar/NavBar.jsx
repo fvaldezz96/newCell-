@@ -83,15 +83,15 @@ export default function NavBar() {
   return (
     <nav className='sticky-top bg-dark'>
       <div className="navbar-nav">
-        <div className='d-flex flex-column flex-md-row flex-sm-justify-content-center align-items-center gap-3'>
+        <div className='d-flex flex-column container flex-md-row gap-3 justify-content-center align-items-center'>
           <div className='row'>
             {/* ICON */}
-            <div className='col-6 col-md-auto d-flex justify-content-center align-items-center'>
+            <div className='col-4 col-md-3 d-flex justify-content-center align-items-center'>
               <Link to='/home'>
                 <img src={Image} alt="imagen home" width={"90px"} height={"75px"} />
               </Link>
             </div>
-            <div className='col-6 col-md-auto d-md-none d-flex justify-content-center align-items-center'>
+            <div className='col-8 col-md-auto d-md-none d-flex justify-content-end align-items-center'>
               {/* RESPONSIVE BTN */}
               <button className="rounded-pill btn bg-success d-md-none" onClick={toggleMenu}>
                 {isOpen ? <BsX className="icon-color" style={{ color: 'white', fontSize: '24px' }} /> : <BsThreeDotsVertical className="icon-color" style={{ color: 'white', fontSize: '24px' }} />}
@@ -99,14 +99,14 @@ export default function NavBar() {
             </div>
           </div>
           {/* NAVBAR BTN */}
-          <div className='row gap-3'>
-            <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''} d-md-flex`}>
+          <div className='row'>
+            <div className={`collapse navbar-collapse  ${isOpen ? 'show' : ''} d-md-flex gap-5`}>
               {/* OPTIONS MENU */}
-              <div className='d-flex flex-column justify-content-center align-items-center flex-md-row'>
-                <div className='col-md-6'>
+              <div className='container d-flex flex-column justify-content-center align-items-center flex-md-row' style={{ marginRight: '1rem' }}>
+                <div className='col-md-11'>
                   <SearchBar />
                 </div>
-                <div className='d-flex flex-row flex-md-col gap-mobile'>
+                <div className='d-flex flex-row flex-md-col gap-mobile-icons'>
                   <div className='col'>
                     <Tooltip title="Home" aria-label="add">
                       <Link to='/home' className="nav-link"><BsFillPhoneFill className='NavBarIcon' /></Link>
@@ -124,73 +124,89 @@ export default function NavBar() {
                   </div>
                 </div>
               </div>
-              <div className='d-flex justify-content-end'>
-                {/* LOGIN */}
-                {isAuthenticated
-                  ? <Dropdown isOpen={dropdown} toggle={abrirCerrarDropdown} size='sm'>
-                    <DropdownToggle caret>
-                      <img className="ProfileImg" alt='image profil' src={gmail !== undefined && gmail[0] ? gmail[0].image : "https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilu.jpg?ver=6"} />
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem onClick={userIr}>Perfil</DropdownItem>
-                      <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-                  :
-                  <div className='login-responsive'>
-                    <LoginButton />
+              {/* iCONS OPCTION ADMIN-BUY*/}
+              <div className='d-flex flex-column justify-content-center align-items-center  flex-md-row'>
+                <div className='d-flex flex-row flex-md-col gap-mobile' style={{ height: '5rem' }}>
+                  {/* LOGIN */}
+                  < div className='col d-flex justify-content-center align-items-center'>
+                    {
+                      isAuthenticated && gmail !== undefined && gmail[0] && gmail[0].role !== "Cliente"
+                        ?
+                        <Link to='/create' className=" d-flex justify-content-center align-content-center">
+                          <AiOutlineUpload className='NavBarIcon' />
+                        </Link>
+                        : null
+                    }
                   </div>
+                  <div className='col d-flex justify-content-center align-items-center'>
+                    {isAuthenticated && gmail !== undefined && gmail[0] ?
+                      <Link to={`orders/${gmail[0].id}`} className=' d-flex justify-content-center align-content-center'>
+                        <BsCardChecklist className='NavBarIcon' />
+                      </Link>
+                      : null
+                    }
+                  </div>
+                  {isAuthenticated
+                    ?
+                    <div className='col d-flex justify-content-center align-items-center'>
+                      <Dropdown isOpen={dropdown} toggle={abrirCerrarDropdown} size='sm'>
+                        <DropdownToggle caret>
+                          <img className="ProfileImg" alt='image profil' src={gmail !== undefined && gmail[0] ? gmail[0].image : "https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilu.jpg?ver=6"} />
+                        </DropdownToggle>
+                        <DropdownMenu>
+                          <DropdownItem onClick={userIr}>Perfil</DropdownItem>
+                          <DropdownItem onClick={handleLogout}>Logout</DropdownItem>
+                        </DropdownMenu>
+                      </Dropdown>
+                    </div>
+                    :
+                    <div className='login-responsive'>
+                      <LoginButton />
+                    </div>
+                  }
+                  <div className='col d-flex justify-content-center align-items-center'>
+                    {
+                      isAuthenticated && gmail !== undefined ? (!gmail[0] ?
+                        <Link to='/postUser'>
+                          <button type="button" className="w-75 btn btn-outline-danger">Complete your user information</button>
+                        </Link>
+                        : null
+                      )
+                        : null
+                    }
+                  </div>
+                  <div className='col d-flex justify-content-center align-items-center'>
+                    {
+                      isAuthenticated && gmail === undefined ? (
+                        <Link to='/postUser'>
+                          <button type="button" className="btn btn-outline-danger">Complete sus datos de usuario</button>
+                        </Link>
+                      )
+                        : null
+                    }
+                  </div>
+                </div>
+              </div>
+              <div className='row'>
+                {
+                  isAuthenticated && gmail !== undefined && gmail[0] && gmail[0].role === "Administrador" ?
+                    <Dropdown isOpen={dropdown1} toggle={abrirCerrarDropdown1} size='sm'>
+                      <DropdownToggle caret>
+                        Admin Panel
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem onClick={userlist}>User list</DropdownItem>
+                        <DropdownItem onClick={celllist}>Cell list</DropdownItem>
+                        <DropdownItem onClick={orderList}>Order list</DropdownItem>
+                      </DropdownMenu>
+                    </Dropdown>
+                    : null
                 }
               </div>
-              {
-                isAuthenticated && gmail !== undefined && gmail[0] && gmail[0].role !== "Cliente"
-                  ? <Link to='/create' className="nav-link"><AiOutlineUpload className='NavBarIcon' /></Link>
-                  : null
-              }
-              {isAuthenticated && gmail !== undefined && gmail[0] ?
-                <Link to={`orders/${gmail[0].id}`} className='nav-link'>
-                  <BsCardChecklist className='NavBarIcon' />
-                </Link>
-                : null
-              }
-              {
-                isAuthenticated && gmail !== undefined ? (!gmail[0] ?
-                  <Link to='/postUser'>
-                    <button type="button" className="w-75 btn btn-outline-danger">Complete your user information</button>
-                  </Link>
-                  : null
-                )
-                  : null
-              }
-              {
-                isAuthenticated && gmail === undefined ? (
-                  <Link to='/postUser'>
-                    <button type="button" className="btn btn-outline-danger">Complete sus datos de usuario</button>
-                  </Link>
-                )
-                  : null
-              }
-              {
-                isAuthenticated && gmail !== undefined && gmail[0] && gmail[0].role === "Administrador" ?
-                  <Dropdown isOpen={dropdown1} toggle={abrirCerrarDropdown1} size='sm'>
-                    <DropdownToggle caret>
-                      Admin Panel
-                    </DropdownToggle>
-                    <DropdownMenu>
-                      <DropdownItem onClick={userlist}>User list</DropdownItem>
-                      <DropdownItem onClick={celllist}>Cell list</DropdownItem>
-                      <DropdownItem onClick={orderList}>Order list</DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-                  : null
-              }
             </div>
           </div>
         </div>
-        {/* <button className="btn bg-success" onClick={toggleMenu}>
-            {isOpen ? <BsX /> : <BsThreeDotsVertical />}
-          </button> */}
       </div>
-    </nav>
+    </nav >
   );
 }
