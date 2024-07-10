@@ -118,3 +118,14 @@ body.Dark .navbar {
     align-items: center;
   }
 }
+
+/* GAP BTN */
+@media(max-width : 767.98px) {
+  .gap-mobile {
+    gap: 4rem
+  }
+
+  .login-responsive {
+    margin-right: 2rem;
+  }
+}

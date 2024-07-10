@@ -82,26 +82,31 @@ export default function NavBar() {
 
   return (
     <nav className='sticky-top bg-dark'>
-      <div className="navbar-nav gap-3">
-        <div className='container'>
-          <div className='row flex-md-col'>
-            <div className="col">
+      <div className="navbar-nav">
+        <div className='d-flex flex-column flex-md-row flex-sm-justify-content-center align-items-center gap-3'>
+          <div className='row'>
+            {/* ICON */}
+            <div className='col-6 col-md-auto d-flex justify-content-center align-items-center'>
               <Link to='/home'>
                 <img src={Image} alt="imagen home" width={"90px"} height={"75px"} />
               </Link>
             </div>
-            <button className="rounded-pill btn bg-success col d-md-none" style={{ width: '30px' }} onClick={toggleMenu}>
-              {isOpen ? <BsX className="icon-color" style={{ color: 'white', fontSize: '24px' }} /> : <BsThreeDotsVertical className="icon-color" style={{ color: 'white', fontSize: '24px' }} />}
-            </button>
+            <div className='col-6 col-md-auto d-md-none d-flex justify-content-center align-items-center'>
+              {/* RESPONSIVE BTN */}
+              <button className="rounded-pill btn bg-success d-md-none" onClick={toggleMenu}>
+                {isOpen ? <BsX className="icon-color" style={{ color: 'white', fontSize: '24px' }} /> : <BsThreeDotsVertical className="icon-color" style={{ color: 'white', fontSize: '24px' }} />}
+              </button>
+            </div>
           </div>
-          <div className='d-md col'>
+          {/* NAVBAR BTN */}
+          <div className='row gap-3'>
             <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''} d-md-flex`}>
               {/* OPTIONS MENU */}
-              <div className='d-flex flex-column flex-md-row'>
+              <div className='d-flex flex-column justify-content-center align-items-center flex-md-row'>
                 <div className='col-md-6'>
                   <SearchBar />
                 </div>
-                <div className='d-flex flex-row flex-md-col'>
+                <div className='d-flex flex-row flex-md-col gap-mobile'>
                   <div className='col'>
                     <Tooltip title="Home" aria-label="add">
                       <Link to='/home' className="nav-link"><BsFillPhoneFill className='NavBarIcon' /></Link>
@@ -132,7 +137,9 @@ export default function NavBar() {
                     </DropdownMenu>
                   </Dropdown>
                   :
-                  <LoginButton />
+                  <div className='login-responsive'>
+                    <LoginButton />
+                  </div>
                 }
               </div>
               {
