@@ -28,7 +28,7 @@ export default function LocalCart({ registered }) {
     if (!cartItem) { return <NothingFound /> }
 
     return (
-        <div className="rounded body-styles-component">
+        <div className="rounded container">
             <div className="shoppingCart rounded">
                 <div className="container-total">
                     <div className="row">

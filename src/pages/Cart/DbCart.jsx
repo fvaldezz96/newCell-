@@ -8,7 +8,7 @@ import DbShopCard from "./DbShopCard";
 import Loading from "../../components/Loading/Loading";
 import './Card.css'
 
-export default function DbCart({ user }) {
+const DbCart = ({ user }) => {
 
     const [totalPrice, setTotalPrice] = useState(0);
     const cart = useSelector(state => state.cart);
@@ -48,21 +48,22 @@ export default function DbCart({ user }) {
     if (!cart.length) { return (<NothingFound />) }
 
     return (
-        <div className="containerGeneralLogin">
+        <div className="container">
             <div className="shoppingCart">
                 <h2>Your Shopping Cart: {totalPrice}</h2>
                 <div className="principalSC">
-                    {cart?.map((e) => <DbShopCard
-                        key={e.id}
-                        id={e.id}
-                        model={e.model}
-                        stock={e.stock}
-                        price={e.price}
-                        image={e.image}
-                        deleteItem={deleteItem}
-                        updateQuantity={updateQuantity}
-                        quantity={e.quantity || 1}
-                    />)}
+                    {cart?.map((e) =>
+                        <DbShopCard
+                            key={e.id}
+                            id={e.id}
+                            model={e.model}
+                            stock={e.stock}
+                            price={e.price}
+                            image={e.image}
+                            deleteItem={deleteItem}
+                            updateQuantity={updateQuantity}
+                            quantity={e.quantity || 1}
+                        />)}
                 </div>
                 <div>
                     <Link to={"/cart/paymentForm"}><button className="btn btn-success text-decoration-none">Buy now !</button></Link>
@@ -72,3 +73,4 @@ export default function DbCart({ user }) {
         </div>
     );
 }
+export default DbCart

@@ -28,7 +28,6 @@ import AdminPanel from './components/AdminPanel/AdminPanel'
 import DetailOrder from './components/DetailOrder/DetailOrder.jsx';
 import EditUser from './components/EditUser/EditUser';
 
-const stripePromise = loadStripe("pk_test_51LaZvGBnw8Rgt2NjQI3zwuWRhuXnnGKWZNCgHwz0UPBxh6t0l0SlRlMVMwTWvQUGfgyh9e4D0b7MD8sGiArVOQMg00JrfIx5p5")
 
 
 
@@ -45,7 +44,7 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path="/create" element={<CreateProduct />} />
         <Route path='/postUser' element={<PostUser />} />
-        <Route path='/cart/paymentForm' element={<Elements stripe={stripePromise}><PaymentForm /></Elements>} />
+        <Route path='/cart/paymentForm' element={<PaymentForm />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/panelCells' element={<PanelAdminCells />} />

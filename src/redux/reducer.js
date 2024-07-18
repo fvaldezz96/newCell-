@@ -116,7 +116,7 @@ export default function rootReducer(state = initialState, { type, payload }) {
         orders: payload
       }
     case UPDATE_QUANTITY:
-      let c = state.cart.map(e => e)
+      let c = state.cart?.map(e => e)
       let found = c.findIndex(e => e.id === payload.id)
       c[found].quantity = payload.quantity
       return {

@@ -271,34 +271,32 @@ export const getFiltersProductsAdmin = (filters) => {
 };
 
 export const getUserCart = (email) => {
-   return async function (dispatch) {
+   return async (dispatch) => {
       try {
-         const user = (await axios.get('/users/getByEmail/' + email)).data
-         let localCart = JSON.parse(localStorage.getItem('cartList'))
+         const user = (await axios.get('/users/getByEmail/' + email))?.data
+         let localCart = await JSON.parse(localStorage.getItem('cartList'))
          if (localCart) {
-            await axios.post('/cart', { userId: user.id, phoneId: localCart.map(e => e.id) })
+            axios.post('/cart', { userId: user?.id, phoneId: localCart?.map(e => e.id) });
             localStorage.removeItem('cartList');
          }
-         let cart = (await axios.get('/cart/' + user.id)).data
-         dispatch({
+         let cart = (await axios.get('/cart/' + user?.id))?.data
+         const resultMap = cart?.map(e => { return { ...e, quantity: 1 } })
+         return dispatch({
             type: GET_USER_CART,
-            payload: cart.map(e => { return { ...e, quantity: 1 } })
+            payload: resultMap
          });
       } catch (err) {
          console.log(err)
-         dispatch({
-            type: GET_USER_CART,
-            payload: []
-         });
       }
    };
 };
 
+
 export const deleteFromCart = (email, id) => {
-   return async function (dispatch) {
+   return async () => {
       try {
          const user = (await axios.get('/users/getByEmail/' + email)).data
-         await axios.delete('/cart', { data: { userId: user.id, phoneId: id } })
+         if (user) await axios.delete('/cart', { data: { userId: user.id, phoneId: id } })
       } catch (err) {
          console.log(err)
       }
@@ -394,7 +392,7 @@ export function getOrdersUser(id) {
    }
 }
 export function changeQuantity(id, quantity) {
-   return async function (dispatch) {
+   return async (dispatch) => {
       return dispatch({
          type: UPDATE_QUANTITY,
          payload: { id, quantity }
