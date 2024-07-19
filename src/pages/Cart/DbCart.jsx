@@ -26,7 +26,7 @@ const DbCart = ({ user }) => {
         localStorage.setItem("carrrito", JSON.stringify(cart))
         dispatch(getUserCart(user.email))
         setPrice()
-    }, [dispatch])
+    }, [dispatch, cart])
 
     const updateQuantity = (id, quantity) => {
         let found = cart.find(e => e.id === id)

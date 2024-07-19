@@ -18,7 +18,7 @@ const PaymentForm = () => {
   const dispatch = useDispatch()
   //QUANTITY PRODUCTO
   let cartsQuantity = useSelector(state => state.cart)
-  console.log('quantity carts product:', cartsQuantity.map(e => e.quantity));
+  // console.log('quantity carts product:', cartsQuantity.map(e => e.quantity));
   const users = useSelector(state => state.allUser);
   const totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
   const items = JSON.parse(localStorage.getItem("carrrito"))
