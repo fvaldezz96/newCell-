@@ -1,13 +1,12 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { allUser, postUser, putUser } from "../../redux/actions";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
-
-
+import './Profile.css'
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -85,70 +84,85 @@ const Profile = () => {
   }
 
   return (
-    isAuthenticated && profile !== undefined && profile[0] ? (
-      <div className="container">
-        <div className="row">
-          <div className="col-12 my-3 pt-3 shadow">
-            {/* {JSON.stringify(user)} */}
-            <img className="ProfileImg" alt='img not found' src={user.picture ? user.picture : "https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilu.jpg?ver=6"} />
-            <h4>{user.name}</h4>
-            <h5>{user.email}</h5>
-            <br></br>
-            <div>
-              <label>Location:</label>
-              <input type='text'
-                value={input.location}
-                name='location'
-                id='location'
-                onChange={handleChange}></input>
-            </div>
-
-            <br></br>
-            <div>
-              <label>Direction:</label>
-              <input type='text'
-                value={input.direction}
-                name='direction'
-                id='direction'
-                onChange={handleChange}></input>
-            </div>
-            <br></br>
-            {/* <button onClick={handleSubmit}>Update</button> */}
-            <div>
-              <button onClick={handleChange2}>Update</button>
+    <div>
+      {
+        isAuthenticated && profile !== undefined && profile[0] ? (
+          <div className="container d-flex justify-content-center align-items-center">
+            <div className="row">
+              <div className="col-12 my-3 pt-3 shadow d-flex flex-column">
+                <h1>Detalles del Usuario:</h1>
+                <div className='row'>
+                  <div className='col'>
+                    <div className="profile-image-container mb-3">
+                      <img className="profile-image" alt='image profil users' src={user.picture ? user.picture : "https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilu.jpg?ver=6"} />
+                    </div>
+                    <h4>{user.name}</h4>
+                    <h5>{user.email}</h5>
+                  </div>
+                  <div className='col'>
+                    <div className="form-group text-start">
+                      <label htmlFor="location">Location:</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={input.location}
+                        name="location"
+                        id="location"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <br />
+                    <div className="form-group text-start">
+                      <label htmlFor="direction">Direction:</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        value={input.direction}
+                        name="direction"
+                        id="direction"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div>
+                      <button onClick={handleChange2} className="btn btn-success">Update</button>
+                    </div>
+                  </div>
+                </div>
+                <br></br>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    ) : isAuthenticated ? (
-      <div className="container">
-        <div className="row">
-          <div className="col-12 my-3 pt-3 shadow">
-            {/* {JSON.stringify(user)} */}
-            <img className="ProfileImg" src={user.picture} alt='Profile Imagene' />
-            <h4>{user.name}</h4>
-            <h5>{user.email}</h5>
-            <div>
-              <label>Location:</label>
-              <input type='text'
-                value={input1.location}
-                name='location'
-                id='location'
-                onChange={handleChange1}></input>
+        ) : isAuthenticated ? (
+          <div className="container">
+            <div className="row">
+              <div className="col-12 my-3 pt-3 shadow">
+                {/* {JSON.stringify(user)} */}
+                <img className="ProfileImg" src={user.picture} alt='Profile Imagene' />
+                <h4>{user.name}</h4>
+                <h5>{user.email}</h5>
+                <div>
+                  <label>Location:</label>
+                  <input type='text'
+                    value={input1.location}
+                    name='location'
+                    id='location'
+                    onChange={handleChange1}></input>
+                </div>
+                <div>
+                  <label>Direction:</label>
+                  <input type='text'
+                    value={input1.direction}
+                    name='direction'
+                    id='direction'
+                    onChange={handleChange1}></input>
+                </div>
+                <button onClick={handleChange2} className="btn btn-success">Update</button>
+              </div>
             </div>
-            <div>
-              <label>Direction:</label>
-              <input type='text'
-                value={input1.direction}
-                name='direction'
-                id='direction'
-                onChange={handleChange1}></input>
-            </div>
-            <button onClick={handleChange2}>Update</button>
           </div>
-        </div>
-      </div>
-    ) : null
+        ) : null
+      }
+    </div>
   )
 }
 

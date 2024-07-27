@@ -5,11 +5,11 @@ import Loading from "../../components/Loading/Loading"
 import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector } from "react-redux";
 
-export default function Cart() {
+const Cart = () => {
   const { user, isLoading } = useAuth0()
   const users = useSelector(state => state.allUser);
 
-  function isRegistered() {
+  const isRegistered = () => {
     if (!user || !users) { return false }
     return users.some(e => e.email === user.email)
   }
@@ -19,3 +19,5 @@ export default function Cart() {
   }
   return (user && isRegistered()) ? <DbCart user={user} /> : <LocalCart registered={!!user} />
 }
+
+export default Cart

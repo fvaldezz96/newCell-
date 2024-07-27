@@ -13,11 +13,11 @@ export default function CardHover({ name, image, price, quantity }) {
 					<div className='capCard01'>
 						<figcaption>{name}</figcaption>
 					</div>
-					<div className='capCard02'>
-						<figcaption>Price {price ? `$ ${price}` : null}</figcaption>
+					<div className='capCard01'>
+						<figcaption>Price: {price ? `$ ${price}` : null}</figcaption>
 					</div>
-					<div className='capCard02'>
-						<figcaption>Qty {quantity}</figcaption>
+					<div className='capCard01'>
+						<figcaption>Quantity: {quantity}</figcaption>
 					</div>
 				</figure>
 			</div>
