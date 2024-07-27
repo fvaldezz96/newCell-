@@ -6,6 +6,7 @@ import iconSearch from './search_FILL0.png';
 //Styles
 import 'bootstrap/dist/css/bootstrap.css';
 import './SearchBar.css';
+import { Tooltip } from '@mui/material';
 
 
 export default function SearchBar() {
@@ -28,13 +29,15 @@ export default function SearchBar() {
     return (
         <div className='containerSearchBar d-flex'>
             <form className="d-flex input-group" role="search" onSubmit={(e) => { handleSubmit(e) }}>
-                <button
-                    className="input-group-text"
-                    id="inputGroup-sizing-default"
-                    type='submit'
-                >
-                    <img src={iconSearch} alt="search Icon" width="25" height="25" />
-                </button>
+                <Tooltip title="search" aria-label="add">
+                    <button
+                        className="input-group-text"
+                        id="inputGroup-sizing-default"
+                        type='submit'
+                    >
+                        <img src={iconSearch} alt="search Icon" width="25" height="25" />
+                    </button>
+                </Tooltip>
                 <input
                     className="form-control me-2"
                     value={model}

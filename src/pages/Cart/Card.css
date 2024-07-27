@@ -88,15 +88,13 @@
   margin-left: 1em;
 }
 
-.containerButtonsSC {
-  display: flex;
-  justify-content: center;
+/* .containerButtonsSC {
   flex-direction: row;
   align-items: center;
   gap: 3em;
   padding-left: 1em;
 
-}
+} */
 
 .containerButtonsSC .MuiSvgIcon-root {
   color: #169E85;

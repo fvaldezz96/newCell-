@@ -1,11 +1,10 @@
 import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
 import ReactStars from 'react-stars';
-// import React from 'react'
 import React, { useEffect, useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
 import { useDispatch, useSelector } from "react-redux";
-import { getRolesRating } from "../../redux/actions";
+import { getRatingCheck, getRolesRating } from "../../redux/actions";
 
 
 const Ratings = ({ cellId, r, get }) => {
@@ -13,11 +12,8 @@ const Ratings = ({ cellId, r, get }) => {
    const dispatch = useDispatch();
    const { user, isAuthenticated } = useAuth0();
    const ratingRol = useSelector((state) => state.rating);
-   // const [obj, setObj] = useState({
-   //    email: "",
-   //    cellId: cellId
-   // });
-
+   const ratingCheck = useSelector((state) => state.ratingCheck);
+   // console.log('RATING ROL ACTION', ratingRol);
    const [rating, setRating] = useState({
       id: cellId,
       rating: 0,
@@ -47,7 +43,6 @@ const Ratings = ({ cellId, r, get }) => {
       if (Object.keys(rating).length > 0) {
          await axios.post(`/rating/${cellId}`, rating);
          toast.success(`rating sent!!`);
-         // window.alert("rating sent!");
          setRating({
             rating: 0,
             comment: "",
@@ -57,37 +52,43 @@ const Ratings = ({ cellId, r, get }) => {
       }
    }
 
-
    useEffect(() => {
-      if (isAuthenticated) {
-         dispatch(getRolesRating(user?.email, cellId));
+      if (isAuthenticated && user && user.email && cellId) {
+         dispatch(getRolesRating(user.email, cellId));
+         dispatch(getRatingCheck(user.email, cellId));
       }
-   }, [dispatch, r, user?.email, cellId, isAuthenticated])
+   }, [dispatch, r, isAuthenticated, user, cellId])
 
    return (
       <div>
-         {ratingRol && isAuthenticated ?
+         {isAuthenticated ?
             <form style={styles.container} onSubmit={(e) => createRating(e)}>
-               <h2>Rate the product!</h2>
                <div style={styles.stars}>
-                  <ReactStars
-                     count={5}
-                     value={rating.rating}
-                     onChange={ratingChanged}
-                     size={40}
-                     half={false}
-                     edit={true}
-                     color2={'#ffd700'} />
+                  {ratingRol && ratingCheck ? (
+                     <div>
+                        <h2>Rate the product!</h2>
+                        <ReactStars
+                           count={5}
+                           value={rating.rating}
+                           onChange={ratingChanged}
+                           size={40}
+                           half={false}
+                           edit={true}
+                           color2={'#ffd700'} />
+                        <textarea
+                           type="text"
+                           name="comment"
+                           value={rating.comment}
+                           onChange={(e) => handleChange(e)}
+                           placeholder="What's your experience?"
+                           style={styles.textarea}
+                        />
+                        <button type="submit" className="btn btn-outline-primary">Submit</button>
+                     </div>
+                  ) :
+                     ''
+                  }
                </div>
-               <textarea
-                  type="text"
-                  name="comment"
-                  value={rating.comment}
-                  onChange={(e) => handleChange(e)}
-                  placeholder="What's your experience?"
-                  style={styles.textarea}
-               />
-               <button type="submit" className="btn btn-outline-primary">Submit</button>
             </form>
             : ""
          }

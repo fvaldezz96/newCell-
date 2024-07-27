@@ -27,6 +27,7 @@ export const PUT_ORDERS = "PUT_ORDERS";
 export const GET_ORDER_ID = "GET_ORDER_ID";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const GET_REVIEW_BOOLEAN = "GET_REVIEW_BOOLEAN"
+export const GET_RATING_CHECK = "GET_RATING_CHECK"
 
 
 
@@ -101,21 +102,23 @@ export function postUser(user) {
 //GET USER
 export function allUser() {
    return async function (dispatch) {
-      const allUser = (await axios(RUTA_USER)).data
-      // console.log("estoy en el dispatch", allUser);
-      if (allUser.message === "No users") {
+      try {
+         const allUser = (await axios(RUTA_USER)).data
+         if (allUser?.message === "No users") {
+            return dispatch({
+               type: ALL_USER,
+               payload: []
+            })
+         }
          return dispatch({
             type: ALL_USER,
-            payload: []
+            payload: allUser
          })
+
+      } catch (error) {
+         console.log(error)
       }
-
-      return dispatch({
-         type: ALL_USER,
-         payload: allUser
-      })
    }
-
 }
 
 //GET RATING 
@@ -268,35 +271,32 @@ export const getFiltersProductsAdmin = (filters) => {
 };
 
 export const getUserCart = (email) => {
-   return async function (dispatch) {
+   return async (dispatch) => {
       try {
-         const user = (await axios.get('/users/getByEmail/' + email)).data
-         let localCart = JSON.parse(localStorage.getItem('cartList'))
+         const user = (await axios.get('/users/getByEmail/' + email))?.data
+         let localCart = await JSON.parse(localStorage.getItem('cartList'))
          if (localCart) {
-            await axios.post('/cart', { userId: user.id, phoneId: localCart.map(e => e.id) })
+            axios.post('/cart', { userId: user?.id, phoneId: localCart?.map(e => e.id) });
             localStorage.removeItem('cartList');
          }
-         let cart = (await axios.get('/cart/' + user.id)).data
-
+         let cart = (await axios.get('/cart/' + user?.id))?.data
+         const resultMap = cart?.map(e => { return { ...e, quantity: 1 } })
          return dispatch({
             type: GET_USER_CART,
-            payload: cart.map(e => { return { ...e, quantity: 1 } })
+            payload: resultMap
          });
       } catch (err) {
          console.log(err)
-         return dispatch({
-            type: GET_USER_CART,
-            payload: []
-         });
       }
    };
 };
 
+
 export const deleteFromCart = (email, id) => {
-   return async function (dispatch) {
+   return async () => {
       try {
          const user = (await axios.get('/users/getByEmail/' + email)).data
-         await axios.delete('/cart', { data: { userId: user.id, phoneId: id } })
+         if (user) await axios.delete('/cart', { data: { userId: user.id, phoneId: id } })
       } catch (err) {
          console.log(err)
       }
@@ -323,10 +323,19 @@ export const getAllProductsAdmin = () => {
 export const getAllOrders = () => {
    return async function (dispatch) {
       const orders = await axios('/orders');
-      return dispatch({
-         type: GET_ALL_ORDERS,
-         payload: orders.data
-      });
+      try {
+         return dispatch({
+            type: GET_ALL_ORDERS,
+            payload: orders.data
+         });
+
+      } catch (error) {
+         console.log('Error fetching orders:', error);
+         dispatch({
+            type: GET_ALL_ORDERS,
+            payload: []
+         });
+      }
    };
 };
 
@@ -392,7 +401,7 @@ export function getOrdersUser(id) {
    }
 }
 export function changeQuantity(id, quantity) {
-   return async function (dispatch) {
+   return async (dispatch) => {
       return dispatch({
          type: UPDATE_QUANTITY,
          payload: { id, quantity }
@@ -401,17 +410,43 @@ export function changeQuantity(id, quantity) {
 }
 
 export function getRolesRating(email, cellId) {
-   console.log(email, cellId, 'soy lo que llega a la action')
-   return async function (dispatch) {
+   return async (dispatch) => {
       try {
-         var rating = await axios.get(`/rating/role/?em=${email}&cellId=${cellId}`)
-         console.log(rating, 'soy lo que llega del back')
-         return dispatch({
+         if (!email || !cellId) {
+            throw new Error('Missing email or cellId parameter');
+         }
+         const response = await axios.get(`/rating/role/?em=${email}&cellId=${cellId}`);
+         dispatch({
             type: GET_REVIEW_BOOLEAN,
-            payload: rating.data
-         })
+            payload: response.data,
+         });
       } catch (error) {
-         console.log(error)
+         console.error('Error fetching roles and ratings:', error);
+         dispatch({
+            type: GET_REVIEW_BOOLEAN,
+            payload: false,
+         });
+      }
+   };
+}
+
+export const getRatingCheck = (email, cellId) => {
+   return async (dispatch) => {
+      try {
+         if (!email || !cellId) {
+            throw new Error('Missing email or cellId parameter');
+         }
+         const response = await axios.get(`/rating/rating-check/?em=${email}&cellId=${cellId}`);
+         dispatch({
+            type: GET_RATING_CHECK,
+            payload: response.data,
+         });
+      } catch (error) {
+         console.error('Error check Rating:', error);
+         dispatch({
+            type: GET_RATING_CHECK,
+            payload: false,
+         });
       }
    }
 }

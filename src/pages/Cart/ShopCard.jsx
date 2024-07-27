@@ -15,24 +15,17 @@ export default function ShopCard({ id, model, stock, price, image, deleteItem, u
 
   const plus = () => {
     if (qua < stock) {
-      const cartList = JSON.parse(localStorage.getItem('cartList'))
-      let found = cartList.find(e => e.id === id)
-      found.quantity += 1
-      localStorage.setItem('cartList', JSON.stringify(cartList))
       setQua(qua + 1)
-      updateQuantity()
+      updateQuantity(id, quantity + 1)
     }
   }
   const minus = () => {
     if (qua > 1) {
-      const cartList = JSON.parse(localStorage.getItem('cartList'))
-      let found = cartList.find(e => e.id === id)
-      found.quantity -= 1
-      localStorage.setItem('cartList', JSON.stringify(cartList))
       setQua(qua - 1)
-      updateQuantity()
+      updateQuantity(id, quantity - 1)
     }
   }
+
 
   const delet = (id) => {
     remove();
