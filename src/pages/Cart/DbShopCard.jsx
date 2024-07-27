@@ -8,7 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import RemoveCircleIcon from '@mui/icons-material/RemoveCircle';
 import { remove } from '../../components/Toast/Toast';
-import { Card, CardBody, CardImage, CardTitle, CardText, Button, Container, Row, Col } from 'react-bootstrap';
+import { Card, CardBody, CardTitle,  Button } from 'react-bootstrap';
 const DbShopCard = ({ id, model, stock, price, image, deleteItem, updateQuantity, quantity }) => {
   const [qua, setQua] = useState(quantity);
 
