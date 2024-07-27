@@ -42,6 +42,7 @@
     "reactstrap": "^9.1.4",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
+    "reselect": "^5.1.1",
     "styled-components": "^5.3.5",
     "sweetalert": "^2.1.2",
     "web-vitals": "^2.1.4",

@@ -51,7 +51,7 @@ const DbShopCard = ({ id, model, stock, price, image, deleteItem, updateQuantity
           </div>
           <div className="d-flex justify-content-between">
             {/* <Button variant="primary">Comprar</Button> */}
-            <Button variant="danger" onClick={() => delet(id)}>Eliminar</Button>
+            <Button variant="danger" onClick={() => delet(id)}><DeleteIcon/></Button>
           </div>
         </CardBody>
       </Card>
