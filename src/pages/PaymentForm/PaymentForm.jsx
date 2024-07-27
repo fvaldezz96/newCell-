@@ -21,7 +21,7 @@ const PaymentForm = () => {
   // console.log('quantity carts product:', cartsQuantity.map(e => e.quantity));
   const users = useSelector(state => state.allUser);
   const totalPrice = JSON.parse(localStorage.getItem("totalPrice"));
-  const items = JSON.parse(localStorage.getItem("carrrito"))
+  const items = useSelector(state => state.cart)
   const isLoading = useSelector(state => state.isLoading);
   const { user } = useAuth0()
   const [preferenceId, setPreferenceID] = useState(null)
@@ -62,11 +62,17 @@ const PaymentForm = () => {
     }
   }
 
+  const dataResultCart = () => {
+    const data = localStorage.setItem("carrrito", JSON.stringify(items));
+    return data;
+}
+
   useEffect(() => {
     if (user) {
       dispatch(getUserCart(user.email))
       dispatch(allUser());
     }
+    dataResultCart()
   }, [dispatch])
 
   let theUser = {}

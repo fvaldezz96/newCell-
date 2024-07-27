@@ -323,10 +323,19 @@ export const getAllProductsAdmin = () => {
 export const getAllOrders = () => {
    return async function (dispatch) {
       const orders = await axios('/orders');
-      return dispatch({
-         type: GET_ALL_ORDERS,
-         payload: orders.data
-      });
+      try {
+         return dispatch({
+            type: GET_ALL_ORDERS,
+            payload: orders.data
+         });
+
+      } catch (error) {
+         console.log('Error fetching orders:', error);
+         dispatch({
+            type: GET_ALL_ORDERS,
+            payload: []
+         });
+      }
    };
 };
 

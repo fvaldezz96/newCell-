@@ -22,11 +22,18 @@ const DbCart = ({ user }) => {
         setTotalPrice(total.toFixed(2))
     }
 
+    const dataResultCart = () => {
+        const data = localStorage.setItem("carrrito", JSON.stringify(cart));
+        return data;
+    }
+
     useEffect(() => {
-        localStorage.setItem("carrrito", JSON.stringify(cart))
-        dispatch(getUserCart(user.email))
+        if (user) {
+            dispatch(getUserCart(user.email))
+        }
+        dataResultCart()
         setPrice()
-    }, [dispatch, cart])
+    }, [dispatch])
 
     const updateQuantity = (id, quantity) => {
         let found = cart.find(e => e.id === id)
@@ -49,8 +56,8 @@ const DbCart = ({ user }) => {
 
     return (
         <div className="container">
-            <div className="shoppingCart">
-                <h2>Your Shopping Cart: {totalPrice}</h2>
+            <h2 className="font-weight-bold">Monto carrito de compras: {totalPrice}</h2>
+            <div>
                 <div className="principalSC">
                     {cart?.map((e) =>
                         <DbShopCard

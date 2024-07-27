@@ -57,7 +57,7 @@ export default function Detail(props) {
                                             <p className='description'>{myCell.description}</p>
                                             <h3 className="h5">Specs</h3>
                                             <div className="specs">
-                                                {myCell.spec && myCell.spec.map((e) => { return <li>{e}</li> })}
+                                                {myCell.spec && myCell.spec.map((e) => { return <div key={e.id}><li>{e}</li></div> })}
                                             </div>
                                         </div>
                                     </div>
