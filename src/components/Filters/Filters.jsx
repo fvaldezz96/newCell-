@@ -11,7 +11,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Slider from '@mui/material/Slider';
 import './Filters.css';
 
-export default function Filters() {
+const Filters = () => {
 
     // Hooks
     const location = useLocation();
@@ -170,3 +170,6 @@ export default function Filters() {
             </div>
     )
 }
+
+
+export default  Filters

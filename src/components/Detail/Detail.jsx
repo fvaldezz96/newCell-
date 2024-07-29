@@ -14,7 +14,7 @@ import { FcLike } from "react-icons/fc";
 
 
 
-export default function Detail(props) {
+const Detail = (props) => {
 
     const dispatch = useDispatch();
     const { id } = useParams()
@@ -113,3 +113,5 @@ export default function Detail(props) {
         </div>
     )
 }
+
+export default Detail

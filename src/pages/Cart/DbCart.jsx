@@ -8,60 +8,36 @@ import DbShopCard from "./DbShopCard";
 import Loading from "../../components/Loading/Loading";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import './Card.css'
-import { createSelector } from "reselect";
+import totalCompra from "../../redux/utils/selectors";
 
 const DbCart = ({ user }) => {
 
-    const selectCartItems = state => state.cart;
-
-    const selectTotalPrice = createSelector(
-        selectCartItems,
-        (cartItems) => {
-            return cartItems.reduce((total, item) => total + item.price * (item.quantity || 1), 0);
-        }
-    );
-    // const [totalPrice, setTotalPrice] = useState(0);
+    const dispatch = useDispatch()
     const cart = useSelector(state => state.cart);
     const isLoading = useSelector(state => state.isLoading);
-    const dispatch = useDispatch()
-
-    // const dataResultCart = () => {
-    //     const data = localStorage.setItem("carrrito", JSON.stringify(cart));
-    //     return data;
-    // }
-
-    // const setPrice = () => {
-    //     let total = 0
-    //     cart.forEach(e => { total += e.price * (e.quantity ? e.quantity : 1) })
-    //     localStorage.setItem("totalPrice", total)
-    //     setTotalPrice(total.toFixed(2))
-    // }
-    const totalPrice = useSelector(selectTotalPrice);
-    useEffect(() => {
-        // setPrice()
-        if (user) {
-            dispatch(getUserCart(user.email))
-        }
-        // dataResultCart()
-    }, [dispatch])
+    const resultTotalCarrito = totalCompra()
+    const totalPrice = useSelector(resultTotalCarrito);
 
     const updateQuantity = (id, quantity) => {
         let found = cart.find(e => e.id === id)
         found.quantity = quantity
         dispatch(changeQuantity(id, quantity))
-        // setPrice()
+        totalCompra()
     }
 
     const deleteItem = async (id) => {
         dispatch(deleteFromCart(user.email, id))
         dispatch(getUserCart(user.email))
-        // setPrice()
+        totalCompra()
     }
 
-    // console.log(isLoading, 'isLoanding data!');
-    // console.log(cart, 'cart.length front');
+    useEffect(() => {
+        if (user) {
+            dispatch(getUserCart(user.email))
+        }
+    }, [dispatch])
+
     if (isLoading || !cart) { return (<Loading />) }
-    // console.log(cart.length, 'cart.length front');
     if (!cart.length) { return (<NothingFound />) }
 
     return (

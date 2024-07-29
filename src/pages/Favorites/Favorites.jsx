@@ -3,9 +3,8 @@ import './Favorites.css';
 import FavCard from "./FavCard";
 import { Toaster } from "react-hot-toast";
 import NothingFound from "../../components/NothingFound/NothingFound";
-// import { Margin, Padding } from "@mui/icons-material";
 
-export default function Favorites() {
+const Favorites = () => {
     const [favorites, setFavorites] = useState([]);
 
     useEffect(() => {
@@ -26,9 +25,9 @@ export default function Favorites() {
         for (let i = 0; i < favorites.length; i += 3) {
             const row = favorites.slice(i, i + 3);
             rows.push(
-                <div className="row" key={i} >
+                <div className="row gap-3" key={i} >
                     {row.map((favorite) => (
-                        <div key={favorite.id} className="col" >
+                        <div key={favorite.id} className="col d-flex align-items-center justify-content-center" >
                             <FavCard
                                 {...favorite}
                                 deleteFav={deleteFav}
@@ -48,15 +47,19 @@ export default function Favorites() {
     };
     return (
         <div className="container" style={{ ...rowStyle, padding: '20px' }}>
-            <h1>Favorites</h1>
-            {favorites.length === 0 ? (
-                <NothingFound />
-            ) : (
-                <>
-                    {createGridRows(favorites)}
-                </>
-            )}
+            <h1>Favoritos</h1>
+            <div>
+                {favorites.length === 0 ? (
+                    <NothingFound />
+                ) : (
+                    <>
+                        {createGridRows(favorites)}
+                    </>
+                )}
+            </div>
             <Toaster position="bottom-right" reverseOrder={false} />
         </div>
     );
 }
+
+export default Favorites

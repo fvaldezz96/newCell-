@@ -84,7 +84,7 @@ const Profile = () => {
   }
 
   return (
-    <div>
+    <div className="container-style-complet">
       {
         isAuthenticated && profile !== undefined && profile[0] ? (
           <div className="container d-flex justify-content-center align-items-center">
@@ -124,7 +124,7 @@ const Profile = () => {
                       />
                     </div>
                     <div>
-                      <button onClick={handleChange2} className="btn btn-success">Update</button>
+                      <button onClick={handleChange2} className="btn btn-success">modificar</button>
                     </div>
                   </div>
                 </div>
@@ -137,12 +137,14 @@ const Profile = () => {
             <div className="row">
               <div className="col-12 my-3 pt-3 shadow">
                 {/* {JSON.stringify(user)} */}
-                <img className="ProfileImg" src={user.picture} alt='Profile Imagene' />
+                <img className="profile-img" src={user.picture} alt='Profile Imagene' />
                 <h4>{user.name}</h4>
                 <h5>{user.email}</h5>
                 <div>
                   <label>Location:</label>
-                  <input type='text'
+                  <input
+                    type='text'
+                    className="form-control"
                     value={input1.location}
                     name='location'
                     id='location'
@@ -150,13 +152,15 @@ const Profile = () => {
                 </div>
                 <div>
                   <label>Direction:</label>
-                  <input type='text'
+                  <input
+                    type='text'
+                    className="form-control"
                     value={input1.direction}
                     name='direction'
                     id='direction'
                     onChange={handleChange1}></input>
                 </div>
-                <button onClick={handleChange2} className="btn btn-success">Update</button>
+                <button onClick={handleChange2} className="btn btn-success">modificar</button>
               </div>
             </div>
           </div>

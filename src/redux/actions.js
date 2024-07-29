@@ -28,6 +28,8 @@ export const GET_ORDER_ID = "GET_ORDER_ID";
 export const UPDATE_QUANTITY = "UPDATE_QUANTITY";
 export const GET_REVIEW_BOOLEAN = "GET_REVIEW_BOOLEAN"
 export const GET_RATING_CHECK = "GET_RATING_CHECK"
+// export const SET_PRECIO_FINAL = "SET_PRECIO_FINAL";
+
 
 
 
@@ -291,6 +293,16 @@ export const getUserCart = (email) => {
    };
 };
 
+// export const updateTotalCarrito = () => {
+//    return async (dispatch) => {
+//       try {
+
+//       } catch (error) {
+
+//       }
+//    }
+// }
+
 
 export const deleteFromCart = (email, id) => {
    return async () => {
@@ -408,6 +420,14 @@ export function changeQuantity(id, quantity) {
       })
    }
 }
+
+
+// export const setPrecioFinal = (precio) => async (dispatch) => {
+//    return dispatch({
+//       type: SET_PRECIO_FINAL,
+//       payload: precio
+//    });
+// };
 
 export function getRolesRating(email, cellId) {
    return async (dispatch) => {

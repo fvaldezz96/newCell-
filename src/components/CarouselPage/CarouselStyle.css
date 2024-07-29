@@ -1,5 +1,5 @@
 .my-carousel-container {
-    height: 30rem;
+    height: 20rem;
 }
 
 .carousel-item {
@@ -12,9 +12,9 @@
     object-fit: cover;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 500px) {
     .my-carousel {
-        height: 400px;
+        height: 10rem;
     }
 }
 

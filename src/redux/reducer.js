@@ -12,6 +12,7 @@ const {
   ALL_USER,
   GET_USER_CART,
   GET_ALL_ORDERS,
+  // SET_PRECIO_FINAL,
   GET_ORDER_ID,
   GET_RATING_CHECK,
   UPDATE_QUANTITY,
@@ -23,6 +24,7 @@ const initialState = {
   allProducts: [],
   isLoading: true,
   brands: [],
+  // precioFinal: 0,
   admin: false,
   users: [],
   user: [],
@@ -71,8 +73,12 @@ export default function rootReducer(state = initialState, { type, payload }) {
     case POST_USER:
       return {
         ...state,
-
       }
+    // case SET_PRECIO_FINAL:
+    //   return {
+    //     ...state,
+    //     precioFinal: payload
+    //   };
     case ACTIVE_LOADING:
       return {
         ...state,
@@ -119,9 +125,11 @@ export default function rootReducer(state = initialState, { type, payload }) {
       let c = state.cart?.map(e => e)
       let found = c.findIndex(e => e.id === payload.id)
       c[found].quantity = payload.quantity
+      // console.log('data quantity',c)
       return {
         ...state,
-        cart: c
+        cart: c,
+        isLoading: false
       }
     case GET_REVIEW_BOOLEAN:
       return {

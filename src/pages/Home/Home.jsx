@@ -78,14 +78,14 @@ export default function Home() {
             <div className="aditionalContent">
               <div className="numberOfResults">
                 {searchName ? <span>{searchName.toUpperCase()}</span> : null}
-                <p><b>{products.length}</b> results</p>
+                <p>resultados: <b>{products.length}</b></p>
               </div>
             </div>
             {/* FILTER */}
             {filters.length ? searchName && filters.length === 1 ?
               null :
               <div className="selectedFilters">
-                <span>Selected filters: </span>
+                <span>Selected filters:</span>
                 {
                   filters.map(filter => {
                     return filter[0] === 'name' ?

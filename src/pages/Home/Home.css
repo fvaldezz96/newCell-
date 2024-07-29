@@ -1,7 +1,9 @@
 .containerHome {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    padding: 0 3em;
+    /* padding: 0 3em; */
     width: auto;
     min-height: 72vh;
     margin-bottom: 1em;
@@ -103,6 +105,7 @@
 .selectedFilters {
     border-radius: 0.375rem;
     display: flex;
+    justify-content: center;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;

@@ -5,7 +5,7 @@ import { getPrice } from "../../components/Card/favAndCart";
 import NothingFound from "../../components/NothingFound/NothingFound";
 import { Link } from "react-router-dom";
 
-export default function LocalCart({ registered }) {
+const LocalCart = ({ registered }) => {
 
     const [cartItem, setCartItem] = useState(JSON.parse(localStorage.getItem('cartList')))
     const [totalPrice, setTotalPrice] = useState(getPrice());
@@ -33,7 +33,7 @@ export default function LocalCart({ registered }) {
                 <div className="container-total">
                     <div className="row">
                         <div className="col-sm-6">
-                            <h2 className="text-center">Your Shopping Cart</h2>
+                            <h2 className="text-center">Carrito de compras</h2>
                         </div>
                         <div className="col-sm-3">
                             <h3 className="text-center">Total: ${totalPrice}</h3>
@@ -57,10 +57,11 @@ export default function LocalCart({ registered }) {
                 </div>
                 <hr />
                 {
-                    registered ? <Link to={"/postUser"}><p>Complete your profile to continue</p></Link>
+                    registered ? <Link to={"/postUser"}><p>Completa tu informacion</p></Link>
                         : <p>Please Log in to continue shopping</p>
                 }
             </div>
         </div>
     );
 }
+export default LocalCart

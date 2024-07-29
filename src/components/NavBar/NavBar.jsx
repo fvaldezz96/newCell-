@@ -59,7 +59,7 @@ export default function NavBar() {
   }
 
   const userIr = () => {
-    navigate('/Profile');
+    navigate('/profile');
   }
 
   const orderList = () => {
@@ -151,7 +151,7 @@ export default function NavBar() {
                     <div className='col d-flex justify-content-center align-items-center'>
                       <Dropdown isOpen={dropdown} toggle={abrirCerrarDropdown} size='sm'>
                         <DropdownToggle caret>
-                          <img className="ProfileImg" alt='image profil' src={gmail !== undefined && gmail[0] ? gmail[0].image : "https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilu.jpg?ver=6"} />
+                          <img className="profile-img" alt='image profil' src={gmail !== undefined && gmail[0] ? gmail[0].image : "https://us.123rf.com/450wm/thesomeday123/thesomeday1231712/thesomeday123171200009/91087331-icono-de-perfil-de-avatar-predeterminado-para-hombre-marcador-de-posici%C3%B3n-de-foto-gris-vector-de-ilu.jpg?ver=6"} />
                         </DropdownToggle>
                         <DropdownMenu>
                           <DropdownItem onClick={userIr}>Perfil</DropdownItem>
@@ -168,7 +168,7 @@ export default function NavBar() {
                     {
                       isAuthenticated && gmail !== undefined ? (!gmail[0] ?
                         <Link to='/postUser'>
-                          <button type="button" className="w-75 btn btn-outline-danger">Complete your user information</button>
+                          <button type="button" className="w-75 btn btn-outline-danger">Completar informacion del usuario</button>
                         </Link>
                         : null
                       )

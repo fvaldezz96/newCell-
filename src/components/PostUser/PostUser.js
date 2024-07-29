@@ -49,8 +49,8 @@ export default function CreateUser() {
         isAuthenticated ? (
             <div className="container user-edit-form" sx={{ padding: "20px" }}>
                 <div className="row">
-                    <div className="col-md-4 col-sm-12 user-info">
-                        <img src={input.image} alt="Imagen de usuario" />
+                    <div className="col-md-4 col-sm-12">
+                        <img src={input.image} className='rounded-circle' alt="Imagen de usuario" />
                         <div>
                             <h4>{input.name}</h4>
                             <p>{input.email}</p>
@@ -58,7 +58,7 @@ export default function CreateUser() {
                     </div>
                     <div className="col-md-8 col-sm-12 form-section">
                         <form onSubmit={handleSubmit}>
-                            <div className="form-group">
+                            <div>
                                 <label htmlFor="location">Ubicación</label>
                                 <input
                                     type="text"
@@ -70,7 +70,7 @@ export default function CreateUser() {
                                     className="form-control"
                                 />
                             </div>
-                            <div className="form-group">
+                            <div>
                                 <label htmlFor="direction">Dirección</label>
                                 <input
                                     type="text"
